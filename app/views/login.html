@@ -1,0 +1,42 @@
+<!-- wait for auth to resolve (avoid flashing login page before redirect -->
+<div ng-cloak class="row">
+    <div class="col-md-12">
+
+        <!-- examples for fun and profit -->
+        <!--<div ng-show-auth="login">{{auth.user|json}}</div>-->
+        <!--<div ng-show-auth="error,logout">Logged out</div>-->
+        <!--<div ng-show-auth="error">{{auth.error}}</div>-->
+        
+
+        
+        <p>&nbsp;</p>
+        <form role="form" class="pure-form pure-form-aligned">
+            <fielset>
+                    <div class="pure-control-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" ng-model="email" placeholder="Enter email" />
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" ng-model="pass" />
+                    </div>
+
+                    <div class="pure-control-group" ng-show="createMode">
+                        <label for="confirm">Confirm password</label>
+                        <input id="confirm" type="password" ng-model="confirm" />
+                    </div>
+                    <div class="pure-controls">
+                    <button class="pure-button pure-button-primary" ng-click="loginPassword()" ng-hide="createMode">Log In</button>
+                    <button class="pure-button" ng-click="createMode = true" ng-hide="createMode">Register</button>
+                    <button class="pure-button button-success" ng-show="createMode" ng-click="createAccount()">Create Account</button>
+                    <button class="pure-button button-warning" ng-show="createMode" ng-click="createMode = false">Cancel</button>
+                    </div>
+            </fielset>
+        </form>
+
+        <br />
+        <div ng-show="err" class="alert alert-danger"><strong>{{err}}</strong></div>
+
+    </div>
+</div>
