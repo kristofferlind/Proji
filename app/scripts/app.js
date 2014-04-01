@@ -22,6 +22,16 @@ angular.module('projiApp', [
                 templateUrl: 'views/login.html',
                 controller: 'LoginController'
             })
+            .when('/project', {
+                authRequired: true,
+                templateUrl: 'views/project.html',
+                controller: 'ProjectController'
+            })
+            .when('/project/:projectId', {
+                authRequired: true,
+                templateUrl: 'views/projectDetails.html',
+                controller: 'ProjectDetailsController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

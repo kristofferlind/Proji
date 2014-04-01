@@ -1,0 +1,31 @@
+<h1>Project</h1>
+<div class="pure-g-r">
+	<div class="pure-u-1-2">
+		<h2>My projects</h2>
+		<ul>
+			<li ng-repeat="(projectId, project) in projects"><a href="#/project/{{projectId}}">{{project.name + ' - ' + project.description}}</a> -  <button class="pure-button" ng-click="deleteProject(projectId)">X</button></li>
+		</ul>
+	</div>
+	<div class="pure-u-1-2">
+		<h2>Create project</h2>
+		<form role="form" class="pure-form pure-form-aligned" ng-submit="createProject()">
+			<fieldset>
+				<div class="pure-control-group">
+					<label for="name">Name</label>
+					<input id="name" type="text" ng-model="project.name">
+				</div>
+				<div class="pure-control-group">
+					<label for="description">Description</label>
+					<input id="description" type="text" ng-model="project.description">
+				</div>
+				<div class="pure-controls">
+					<button class="pure-button pure-button-primary" type="submit">Create</button>
+				</div>
+			</fieldset>
+		</form>
+		<br />
+		<div class="alert alert-danger" ng-show="err">
+			{{err}}
+		</div>
+	</div>
+</div>

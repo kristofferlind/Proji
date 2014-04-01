@@ -29,7 +29,8 @@
                 <a class="pure-menu-heading" href="">Proji</a>
 
                 <ul>
-                    <li class="pure-menu-selected"><a href="#">Dashboard</a></li>
+                    <li class="pure-menu-selected"><a href="#">Overview</a></li>
+                    <li><a href="#/project">Project</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
@@ -66,13 +67,17 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/angularfire/config.js"></script>
         <script src="scripts/services/firebase.js"></script>
         <script src="scripts/services/login.js"></script>
+        <script src="scripts/services/projectService.js"></script>
+        <script src="scripts/services/sprintService.js"></script>
         <script src="scripts/angularfire/simpleLoginTools.js"></script>
         <script src="scripts/angularfire/routesecurity.js"></script>
-        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/loginController.js"></script>
+        <script src="scripts/controllers/mainController.js"></script>
+        <script src="scripts/controllers/projectController.js"></script>
+        <script src="scripts/controllers/projectDetailsController.js"></script>
         <!-- endbuild -->
     </body>
 </html>

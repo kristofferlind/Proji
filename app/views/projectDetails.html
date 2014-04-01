@@ -1,0 +1,42 @@
+<h1>{{project.name}}</h1>
+<p>{{project.description}}</p>
+
+<div class="pure-g-r">
+	<div class="pure-u-1-2">
+		<h2>Sprints</h2>
+		<ul>
+			<li ng-repeat="(sprintId, sprint) in sprints">{{sprint.name + ' - ' + sprint.goal + ' - (' + sprint.start + ' - ' + sprint.end + ')'}} -  <button class="pure-button" ng-click="deleteSprint(sprintId)">X</button></li>
+		</ul>
+	</div>
+	<div class="pure-u-1-2">
+		<h2>Create sprint</h2>
+		<form role="form" class="pure-form pure-form-aligned" ng-submit="createSprint()">
+			<fieldset>
+				<div class="pure-control-group">
+					<label for="name">Name</label>
+					<input id="name" type="text" ng-model="sprint.name">
+				</div>
+				<div class="pure-control-group">
+					<label for="description">Goal</label>
+					<input id="description" type="text" ng-model="sprint.goal">
+				</div>
+				<div class="pure-control-group">
+					<label for="start">Start</label>
+					<input id="start" type="date" ng-model="sprint.start">
+				</div>
+				<div class="pure-control-group">
+					<label for="end">End</label>
+					<input id="end" type="date" ng-model="sprint.end">
+				</div>
+				<div class="pure-controls">
+					<button class="pure-button pure-button-primary" type="submit">Create</button>
+				</div>
+			</fieldset>
+		</form>
+		<br />
+		{{sprint}}
+		<div class="alert alert-danger" ng-show="err">
+			{{err}}
+		</div>
+	</div>
+</div>
