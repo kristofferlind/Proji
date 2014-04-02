@@ -3,8 +3,9 @@
 	<div class="pure-u-1-2">
 		<h2>My projects</h2>
 		<ul>
-			<li ng-repeat="(projectId, project) in projects"><a href="#/project/{{projectId}}">{{project.name + ' - ' + project.description}}</a> -  <button class="pure-button" ng-click="deleteProject(projectId)">X</button></li>
+			<li ng-repeat="(projectId, project) in projects"><a href="#/project/{{projectId}}">{{project.name + ' - ' + project.description}}</a> - <button class="pure-button" ng-click="setCurrentProject(projectId)">Activate</button> - <button class="pure-button" ng-click="deleteProject(projectId)">X</button></li>
 		</ul>
+		{{rootScope}}
 	</div>
 	<div class="pure-u-1-2">
 		<h2>Create project</h2>

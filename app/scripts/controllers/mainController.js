@@ -2,10 +2,9 @@
 
 angular.module('projiApp')
 
-.controller('MainController', function($scope) {
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
+.controller('MainController', function($scope, Project) {
+    if (Project.anyCurrent) {
+        var projectId = Project.getCurrent();
+        $scope.project = Project.find(projectId);
+    }
 });

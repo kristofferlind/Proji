@@ -32,6 +32,11 @@ angular.module('projiApp', [
                 templateUrl: 'views/projectDetails.html',
                 controller: 'ProjectDetailsController'
             })
+            .when('/productbacklog', {
+                authRequired: true,
+                templateUrl: 'views/productbacklog.html',
+                controller: 'ProductBacklogController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

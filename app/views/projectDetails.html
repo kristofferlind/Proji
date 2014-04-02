@@ -1,12 +1,25 @@
-<h1>{{project.name}}</h1>
-<p>{{project.description}}</p>
+<h1 contenteditable ng-model="project.name"></h1>
+<p contenteditable ng-model="project.description"></p>
+<button class="pure-button" ng-click="updateProject()">Update</button>
 
 <div class="pure-g-r">
 	<div class="pure-u-1-2">
 		<h2>Sprints</h2>
 		<ul>
-			<li ng-repeat="(sprintId, sprint) in sprints">{{sprint.name + ' - ' + sprint.goal + ' - (' + sprint.start + ' - ' + sprint.end + ')'}} -  <button class="pure-button" ng-click="deleteSprint(sprintId)">X</button></li>
-		</ul>
+
+			<li ng-repeat="(sprintId, sprint) in sprints">
+				<span contenteditable ng-model="sprint.name"></span> - 
+				<span contenteditable ng-model="sprint.goal"></span> - 
+				<span contenteditable ng-model="sprint.start"></span> - 
+				<span contenteditable ng-model="sprint.end"></span> - 
+				<button class="pure-button" ng-click="updateSprint(sprintId, sprint)">Update</button> -  
+				<button class="pure-button" ng-click="deleteSprint(sprintId)">X</button>
+			</li>
+
+
+
+<!-- 			<li contenteditable ng-repeat="(sprintId, sprint) in sprints">{{sprint.name + ' - ' + sprint.goal + ' - (' + sprint.start + ' - ' + sprint.end + ')'}} - <button class="pure-button" ng-click="updateSprint(sprintId, sprint)">Update</button> -  <button class="pure-button" ng-click="deleteSprint(sprintId)">X</button></li>
+ -->		</ul>
 	</div>
 	<div class="pure-u-1-2">
 		<h2>Create sprint</h2>
@@ -34,6 +47,9 @@
 			</fieldset>
 		</form>
 		<br />
+		<input type="text" ng-model="project.name">
+		<input type="text" ng-model="project.description">
+		{{project}}
 		{{sprint}}
 		<div class="alert alert-danger" ng-show="err">
 			{{err}}

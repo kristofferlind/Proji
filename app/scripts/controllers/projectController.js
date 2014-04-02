@@ -15,6 +15,10 @@ angular.module('projiApp')
         });
     };
 
+    $scope.setCurrentProject = function(projectId) {
+        Project.setCurrent(projectId);
+    };
+
     $scope.deleteProject = function(projectId) {
         Project.delete(projectId);
     };

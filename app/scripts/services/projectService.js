@@ -2,7 +2,7 @@
 
 angular.module('projiApp')
 
-.factory('Project', function($firebase, FBURL) {
+.factory('Project', function($firebase, FBURL, $rootScope) {
     var ref = new Firebase(FBURL + '/projects'),
         projects = $firebase(ref),
         Project = {
@@ -15,6 +15,18 @@ angular.module('projiApp')
             },
             find: function(projectId) {
                 return projects.$child(projectId);
+            },
+            anyCurrent: function() {
+                return $rootScope.currentProject !== undefined;
+            },
+            getCurrent: function() {
+                return $rootScope.currentProject;
+            },
+            setCurrent: function(projectId) {
+                $rootScope.currentProject = projectId;
+            },
+            update: function(projectId, project) {
+                return projects.$child(projectId).$set(project);
             }
         };
 
