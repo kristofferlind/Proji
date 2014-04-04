@@ -12,6 +12,10 @@
         <p>&nbsp;</p>
         <form role="form" class="pure-form pure-form-aligned">
             <fielset>
+                    <div class="pure-control-group" ng-show="createMode">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" ng-model="username" placeholder="Enter username" />
+                    </div>
                     <div class="pure-control-group">
                         <label for="email">Email</label>
                         <input id="email" type="text" ng-model="email" placeholder="Enter email" />

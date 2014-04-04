@@ -24,21 +24,7 @@
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="header">
-            <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-                <a class="pure-menu-heading" href="">Proji</a>
-
-                <ul>
-                    <li class="pure-menu-selected"><a href="#">Overview</a></li>
-                    <li><a href="#/project">Project</a></li>
-                    <li><a href="#/productbacklog">Product Backlog</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
-                </ul>
-            </div>
-        </div>
+        <div class="header" ng-include="'views/navigation.html'"></div>
 
         <div class="content" ng-view=""></div>
 
@@ -74,6 +60,7 @@
         <script src="scripts/services/projectService.js"></script>
         <script src="scripts/services/sprintService.js"></script>
         <script src="scripts/services/taskService.js"></script>
+        <script src="scripts/services/userService.js"></script>
         <script src="scripts/angularfire/simpleLoginTools.js"></script>
         <script src="scripts/angularfire/routesecurity.js"></script>
         <script src="scripts/controllers/loginController.js"></script>
@@ -81,6 +68,8 @@
         <script src="scripts/controllers/projectController.js"></script>
         <script src="scripts/controllers/projectDetailsController.js"></script>
         <script src="scripts/controllers/productBacklogController.js"></script>
+        <script src="scripts/controllers/navigationController.js"></script>
+        <script src="scripts/controllers/profileController.js"></script>
         <script src="scripts/directives/contentEditableDirective.js"></script>
         <!-- endbuild -->
     </body>

@@ -2,7 +2,7 @@
 
 angular.module('projiApp')
 
-.controller('LoginController', function($scope, simpleLogin, $location) {
+.controller('LoginController', function($scope, simpleLogin, $location, User) {
     $scope.pass = null;
     $scope.err = null;
     $scope.email = null;
@@ -34,6 +34,8 @@ angular.module('projiApp')
                 $scope.err = 'Please enter a password';
             } else if ($scope.pass !== $scope.confirm) {
                 $scope.err = 'Passwords do not match';
+            } else if (!$scope.username) {
+                $scope.err = 'Username required';
             }
             return !$scope.err;
         }
@@ -45,9 +47,11 @@ angular.module('projiApp')
                     $scope.err = err ? err + '' : null;
                 } else {
                     // must be logged in before I can write to my profile
-                    $scope.login(function() {
-                        simpleLogin.createProfile(user.uid, user.email);
-                        $location.path('/account');
+                    $scope.loginPassword(function() {
+                        User.create(user, $scope.username);
+                        // console.log($scope.username);
+                        // simpleLogin.createProfile(user.uid, user.email);
+                        // $location.path('/account');
                     });
                 }
             });

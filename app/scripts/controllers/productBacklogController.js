@@ -1,9 +1,10 @@
 angular.module('projiApp')
 
-.controller('ProductBacklogController', function($scope, Task, Project) {
+.controller('ProductBacklogController', function($scope, Task, $rootScope) {
     'use strict';
 
-    var projectId = Project.getCurrent();
+    var user = $rootScope.currentUser,
+        projectId = user.pid;
 
     $scope.tasks = Task.all(projectId);
     $scope.task = {};

@@ -1,8 +1,10 @@
-'use strict';
-
 angular.module('projiApp')
 
-.controller('ProjectController', function($scope, $location, Project) {
+.controller('ProjectController', function($scope, $location, Project, User, $rootScope) {
+    'use strict';
+
+    var user = $rootScope.currentUser;
+
     $scope.projects = Project.all;
     $scope.project = {
         name: '',
@@ -16,7 +18,7 @@ angular.module('projiApp')
     };
 
     $scope.setCurrentProject = function(projectId) {
-        Project.setCurrent(projectId);
+        User.setCurrentProject(user.uid, projectId);
     };
 
     $scope.deleteProject = function(projectId) {

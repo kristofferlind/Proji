@@ -1,8 +1,7 @@
-'use strict';
-
 angular.module('projiApp')
 
-.factory('Project', function($firebase, FBURL, $rootScope) {
+.factory('Project', function($firebase, FBURL, User) {
+    'use strict';
     var ref = new Firebase(FBURL + '/projects'),
         projects = $firebase(ref),
         Project = {
@@ -14,17 +13,21 @@ angular.module('projiApp')
                 return projects.$remove(projectId);
             },
             find: function(projectId) {
+                // if (projectId !== undefined) {
                 return projects.$child(projectId);
+                // } else {
+                //     return 'no active project';
+                // }
             },
-            anyCurrent: function() {
-                return $rootScope.currentProject !== undefined;
-            },
+            // anyCurrent: function() {
+            //     return $rootScope.currentProject !== undefined;
+            // },
             getCurrent: function() {
-                return $rootScope.currentProject;
+                return projects.$child(User.getCurrentProject());
             },
-            setCurrent: function(projectId) {
-                $rootScope.currentProject = projectId;
-            },
+            // setCurrent: function(projectId) {
+            //     $rootScope.currentProject = projectId;
+            // },
             update: function(projectId, project) {
                 return projects.$child(projectId).$set(project);
             }
