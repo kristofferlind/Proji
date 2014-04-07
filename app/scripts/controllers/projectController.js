@@ -5,7 +5,14 @@ angular.module('projiApp')
 
     var user = $rootScope.currentUser;
 
-    $scope.projects = Project.all;
+    Project.all().then(function(data) {
+        $scope.projects = data;
+    });
+
+
+    // $scope.projects = Project.all();
+    // console.log($scope.projects);
+
     $scope.project = {
         name: '',
         description: ''

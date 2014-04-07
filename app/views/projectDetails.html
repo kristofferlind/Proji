@@ -15,11 +15,19 @@
 				<button class="pure-button" ng-click="updateSprint(sprintId, sprint)">Update</button> -  
 				<button class="pure-button" ng-click="deleteSprint(sprintId)">X</button>
 			</li>
+		</ul>
 
-
-
-<!-- 			<li contenteditable ng-repeat="(sprintId, sprint) in sprints">{{sprint.name + ' - ' + sprint.goal + ' - (' + sprint.start + ' - ' + sprint.end + ')'}} - <button class="pure-button" ng-click="updateSprint(sprintId, sprint)">Update</button> -  <button class="pure-button" ng-click="deleteSprint(sprintId)">X</button></li>
- -->		</ul>
+		<h2>Users</h2>
+		<ul>
+			<li ng-repeat="(userId, user) in users">{{user}} - <button class="pure-button pure-button-warning" ng-click="removeUser(userId)">Remove</button></li>
+		</ul>
+		<p>{{users}}</p>
+		<div class="pure-control-group">
+			<label for="addUser">Add user</label>
+			<input id="addUser" type="text" ng-model="addUser.userId" placeholder="UserId" />
+			<button class="pure-button pure-button-primary" ng-click="inviteUser()">Invite</button>
+		</div>
+		{{addUser}}
 	</div>
 	<div class="pure-u-1-2">
 		<h2>Create sprint</h2>

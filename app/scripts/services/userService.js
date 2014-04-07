@@ -5,7 +5,13 @@ angular.module('projiApp')
     var ref = new Firebase(FBURL + '/users'),
         users = $firebase(ref),
         User = {
+            addProject: function(projectId, userId) {
+                // return users.$child(userId).$child('projects').$child('pid').$set(projectId);
+                return users.$child(userId).$child('projects').$add(projectId);
+            },
             create: function(fbUser, username) {
+                // fbUser.uid = fbUser.email;
+
                 users[fbUser.uid] = {
                     md5Hash: fbUser.md5_hash,
                     username: username,
@@ -59,6 +65,9 @@ angular.module('projiApp')
                 // });
 
                 // return d.promise;
+            },
+            getProjects: function(userId) {
+                return users.$child(userId).$child('projects');
             },
             setCurrentProject: function(uid, projectId) {
                 $rootScope.currentUser.pid = projectId;

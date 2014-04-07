@@ -5,23 +5,28 @@ angular.module('projiApp')
 
 .factory('Sprint', function($firebase, FBURL) {
     'use strict';
-    var ref = new Firebase(FBURL + '/projects'),
-        projects = $firebase(ref),
+    var ref = new Firebase(FBURL + '/sprints'),
+        sprints = $firebase(ref),
         Sprint = {
             all: function(projectId) {
-                return projects.$child(projectId).$child('sprints');
+                return sprints.$child(projectId);
+                // return projects.$child(projectId).$child('sprints');
             },
             create: function(projectId, sprint) {
-                return projects.$child(projectId).$child('sprints').$add(sprint);
+                return sprints.$child(projectId).$add(sprint);
+                // return projects.$child(projectId).$child('sprints').$add(sprint);
             },
             delete: function(projectId, sprintId) {
-                return projects.$child(projectId).$child('sprints').$remove(sprintId);
+                return sprints.$child(projectId).$remove(sprintId);
+                // return projects.$child(projectId).$child('sprints').$remove(sprintId);
             },
             find: function(projectId, sprintId) {
-                return projects.$child(projectId).$child('sprints').$child(sprintId);
+                return sprints.$child(projectId).$child(sprintId);
+                // return projects.$child(projectId).$child('sprints').$child(sprintId);
             },
             update: function(projectId, sprintId, sprint) {
-                return projects.$child(projectId).$child('sprints').$child(sprintId).$set(sprint);
+                return sprints.$child(projectId).$child(sprintId).$set(sprint);
+                // return projects.$child(projectId).$child('sprints').$child(sprintId).$set(sprint);
             }
         };
 

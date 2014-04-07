@@ -8,6 +8,18 @@ angular.module('projiApp')
     $scope.project = Project.find(projectId);
     $scope.sprints = Sprint.all(projectId);
     $scope.sprint = {};
+    $scope.addUser = {};
+
+    $scope.users = Project.getUsers(projectId);
+    console.log($scope.users);
+
+    $scope.inviteUser = function() {
+        Project.addUser(projectId, $scope.addUser.userId);
+    };
+
+    $scope.removeUser = function(userId) {
+        Project.removeUser(projectId, userId);
+    };
 
     $scope.updateProject = function() {
         Project.update(projectId, $scope.project);
