@@ -37,20 +37,13 @@ ideas
 			name
 			description
 			votes?
-
-//osäker på roles.. ska man kunna sätta roller eller ska det finnas ett antal bestämda?
-//sätta roller kräver betydligt mer arbete, men det borde räcka med ett antal bestämda roller..
+comments
+	iid
+		cid
+			text
 roles
 	pid
 		rid
 			name
 			description
 			users = [uid]
-
-
-
-/*
-uid är nu ex. simplelogin:11
-byta till email? borde förenkla och förbättra hantering
-username är nog enklast, men med email agerar username bara screenname och det kan då finnas dubletter av username..
-*/

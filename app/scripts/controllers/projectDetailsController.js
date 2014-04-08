@@ -11,7 +11,6 @@ angular.module('projiApp')
     $scope.addUser = {};
 
     $scope.users = Project.getUsers(projectId);
-    console.log($scope.users);
 
     $scope.inviteUser = function() {
         Project.addUser(projectId, $scope.addUser.userId);

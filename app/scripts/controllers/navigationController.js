@@ -6,7 +6,9 @@ angular.module('projiApp')
 
     //Följande är ett fulhack, jag vet inte hur jag ska lösa det nu, det här fungerar tillsvidare.
     $timeout(function() {
-        $scope.project = Project.find($rootScope.currentUser.pid);
+        if ($rootScope.currentUser) {
+            $scope.project = Project.find($rootScope.currentUser.pid);
+        }
     }, 5000);
 
 

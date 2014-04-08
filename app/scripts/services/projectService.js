@@ -33,6 +33,7 @@ angular.module('projiApp')
                 //Is it possible to solve this using angularfire?
                 usersRef.once('value', function(data) {
                     data.forEach(function(projectId) {
+                        // projects[projectId.$id] = Project.find(projectId.val());
                         projects.push(Project.find(projectId.val()));
                     });
 

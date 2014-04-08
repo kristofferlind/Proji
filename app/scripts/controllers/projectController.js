@@ -11,7 +11,6 @@ angular.module('projiApp')
 
 
     // $scope.projects = Project.all();
-    // console.log($scope.projects);
 
     $scope.project = {
         name: '',

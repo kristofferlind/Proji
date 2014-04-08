@@ -42,6 +42,21 @@ angular.module('projiApp', [
                 templateUrl: 'views/profile.html',
                 controller: 'ProfileController'
             })
+            .when('/ideas', {
+                authRequired: true,
+                templateUrl: 'views/ideas.html',
+                controller: 'IdeaController'
+            })
+            .when('/idea/:ideaId', {
+                authRequired: true,
+                templateUrl: 'views/ideaDetails.html',
+                controller: 'IdeaDetailsController'
+            })
+            .when('/chat', {
+                authRequired: true,
+                templateUrl: 'views/chat.html',
+                controller: 'ChatController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

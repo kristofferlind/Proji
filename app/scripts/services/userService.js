@@ -28,24 +28,7 @@ angular.module('projiApp')
                 }
             },
             getCurrentProject: function() {
-                // return '-JJdmHAigkMeV1JBbYc7';
-                // console.log(users);
-                // console.log($rootScope.currentUser.pid);
                 return $rootScope.currentUser.pid;
-                // return users.$child($rootScope.currentUser.uid).projectId;
-                // $rootScope.currentUser.pid.then(function(data) {
-                //     return data;
-                // });
-
-                // var isSet = function() {
-                //     if ($rootScope.currentUser.pid !== undefined) {
-                //         return $rootScope.currentUser.pid;
-                //     } else {
-                //         $timeout(isSet, 100);
-                //     }
-                // };
-
-                // $timeout(isSet, 100);
             },
             getCurrentUser: function() {
                 // return 'simplelogin:11';
