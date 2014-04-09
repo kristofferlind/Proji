@@ -1,32 +1,50 @@
 angular.module('projiApp')
 
-//Might be more effective to store active projectId and do sprints = $firebase(ref).$child(projectId)
-//Downside is that active project needs to change to change settings for sprints..
-
-.factory('Sprint', function($firebase, FBURL) {
+.factory('Sprint', function($firebase, FBURL, $q) {
     'use strict';
     var ref = new Firebase(FBURL + '/sprints'),
         sprints = $firebase(ref),
         Sprint = {
             all: function(projectId) {
                 return sprints.$child(projectId);
-                // return projects.$child(projectId).$child('sprints');
             },
             create: function(projectId, sprint) {
                 return sprints.$child(projectId).$add(sprint);
-                // return projects.$child(projectId).$child('sprints').$add(sprint);
             },
             delete: function(projectId, sprintId) {
                 return sprints.$child(projectId).$remove(sprintId);
-                // return projects.$child(projectId).$child('sprints').$remove(sprintId);
             },
             find: function(projectId, sprintId) {
                 return sprints.$child(projectId).$child(sprintId);
-                // return projects.$child(projectId).$child('sprints').$child(sprintId);
+            },
+            getCurrent: function(projectId) {
+                var now = new Date().getTime(),
+                    d = $q.defer();
+
+                ref.child('/' + projectId).once('value', function(sprintSnapshot) {
+                    var sprintData = sprintSnapshot;
+
+                    sprintData.forEach(function(data) {
+                        var start = new Date(data.child('start').val()),
+                            end = new Date(data.child('end').val());
+
+                        start.setHours(0);
+                        start.setMinutes(0);
+                        end.setHours(23);
+                        end.setMinutes(59);
+
+                        start = start.getTime();
+                        end = end.getTime();
+
+                        if (now > start && now < end) {
+                            d.resolve(data.name());
+                        }
+                    });
+                });
+                return d.promise;
             },
             update: function(projectId, sprintId, sprint) {
                 return sprints.$child(projectId).$child(sprintId).$set(sprint);
-                // return projects.$child(projectId).$child('sprints').$child(sprintId).$set(sprint);
             }
         };
 

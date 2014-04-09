@@ -1,130 +1,21 @@
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
+/* Tools */
 
-body {
-    padding-top: 50px;
-}
+//@import "tools/..";
 
-/*
- * -- BASE STYLES --
- */
-body {
-    line-height: 1.7em;
-    color: #7f8c8d;
-    font-size: 13px;
-}
+/* Base */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-label {
-    color: #34495e;
-}
+@import "base/base";
 
+/* Layout */
 
-/*
- * -- MENU STYLES --
- * I want to customize how my .pure-menu looks at the top of the page
- */
+@import "layout/menu";
 
-.home-menu {
-    padding: 0.5em;
-    text-align: center;
-    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
-}
-.home-menu.pure-menu-open {
-    background: #000;
-}
-.pure-menu.pure-menu-open.pure-menu-fixed {
-    border-bottom: none;
-    z-index: 4;
-}
+/* Modules */
 
-.home-menu .pure-menu-heading {
-    color: white;
-    font-weight: 400;
-    font-size: 120%;
-}
-
-.home-menu .pure-menu-selected a {
-    color: white;
-}
-
-.home-menu a {
-    color: #AAA;
-}
-.home-menu li a:hover,
-.home-menu li a:focus {
-    background: none;
-    border: none;
-    color: #FFF;
-}
-
-.userimage {
-    height: 25px;
-}
-
-
-/*
- * -- TABLET (AND UP) MEDIA QUERIES --
- * On tablets and other medium-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 48em) {
-
-    /* We increase the body font size */
-    body {
-        font-size: 16px;
-    }
-    /* We want to give the content area some more padding */
-    .content {
-        padding: 1em;
-    }
-
-    /* We can align the menu header to the left, but float the
-    menu items to the right. */
-    .home-menu {
-        text-align: left;
-    }
-        .home-menu ul {
-            float: right;
-        }
-
-}
-
-
-/*Buttons*/
-.pure-button {
-    border-radius: 4px;
-}
-
-.button-success,
-.button-error,
-.button-warning,
-.button-secondary {
-    color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.button-success {
-    background: rgb(28, 184, 65); /* this is a green */
-}
-
-.button-error {
-    background: rgb(202, 60, 60); /* this is a maroon */
-}
-
-.button-warning {
-    background: rgb(223, 117, 20); /* this is an orange */
-}
-
-.button-secondary {
-    background: rgb(66, 184, 221); /* this is a light blue */
-}
+@import "modules/button";
+@import "modules/browsehappy";
+@import "modules/user";
+@import "modules/idea";
+@import "modules/comment";
+@import "modules/event";
+@import "modules/task";

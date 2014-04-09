@@ -1,0 +1,48 @@
+.home-menu {
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+
+.home-menu.pure-menu-open {
+    background: #000;
+}
+
+.pure-menu.pure-menu-open.pure-menu-fixed {
+    border-bottom: none;
+    z-index: 4;
+}
+
+.home-menu .pure-menu-heading {
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+.home-menu .pure-menu-selected a {
+    color: white;
+}
+
+.home-menu a {
+    color: #AAA;
+}
+
+.home-menu li a:hover,
+.home-menu li a:focus {
+    background: none;
+    border: none;
+    color: #FFF;
+}
+
+
+
+@media (min-width: 48em) {
+
+    .home-menu {
+        text-align: left;
+    }
+    .home-menu ul {
+        float: right;
+    }
+
+}

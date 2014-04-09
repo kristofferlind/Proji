@@ -1,0 +1,14 @@
+.task-item {
+	border: 1px solid black;
+	background-color: #eee;
+	width: 90%;
+	margin-top: -1px
+}
+
+.task-item-priority {
+	background-color: red;
+	text-align: center;
+	font-size: 2em;
+	color: #555;
+	line-height: 3em;
+}

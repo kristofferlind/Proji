@@ -14,8 +14,8 @@ angular.module('projiApp', [
         $routeProvider
             .when('/', {
                 authRequired: true,
-                templateUrl: 'views/main.html',
-                controller: 'MainController'
+                templateUrl: 'views/overview.html',
+                controller: 'OverviewController'
             })
             .when('/login', {
                 authRequired: false, // if true, must log in before viewing this page
