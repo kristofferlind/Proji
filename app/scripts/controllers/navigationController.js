@@ -1,18 +1,24 @@
 angular.module('projiApp')
 
-.controller('NavigationController', function($scope, $location, Project, User, $rootScope, $timeout) {
+.controller('NavigationController', function($scope, $location, Project, User) {
     'use strict';
 
 
     //Följande är ett fulhack, jag vet inte hur jag ska lösa det nu, det här fungerar tillsvidare.
-    $timeout(function() {
-        if ($rootScope.currentUser) {
-            $scope.project = Project.find($rootScope.currentUser.pid);
-        }
-    }, 5000);
+    // $timeout(function() {
+    //     if ($rootScope.currentUser) {
+    //         $scope.project = Project.find($rootScope.currentUser.pid);
+    //     }
+    // }, 5000);
+    User.getUserId().then(function(userId) {
+        User.getProjectId(userId).then(function(projectId) {
+            //------
+            $scope.user = User.find(userId);
+            $scope.project = Project.find(projectId);
 
-
-
+            //--------
+        });
+    });
     // $scope.project = Project.find('-JJdmHAigkMeV1JBbYc7');
 
 

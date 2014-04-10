@@ -62,11 +62,11 @@ angular.module('projiApp')
                 return projects.$remove(projectId);
             },
             find: function(projectId) {
-                // if (projectId !== undefined) {
-                return projects.$child(projectId);
-                // } else {
-                //     return 'no active project';
-                // }
+                if (projectId !== undefined) {
+                    return projects.$child(projectId);
+                } else {
+                    return 'no active project';
+                }
             },
             // anyCurrent: function() {
             //     return $rootScope.currentProject !== undefined;
