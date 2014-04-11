@@ -10,6 +10,11 @@ angular.module('projiApp', [
     'angularfire.login',
     'simpleLoginTools'
 ])
+    .run(function(waitForAuth) {
+        //https://gist.github.com/katowulf/7328023
+        //douglascorrea commented 21 days ago
+        //I solve this calling waitForAuth service into app run()
+    })
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {

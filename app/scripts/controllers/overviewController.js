@@ -3,10 +3,10 @@ angular.module('projiApp')
 .controller('OverviewController', function($scope, $rootScope, Project, Idea, Task, Sprint, User) {
     'use strict';
     //----
+
     User.getUserId().then(function(userId) {
         User.getProjectId(userId).then(function(projectId) {
             //------
-
 
             $scope.project = Project.find(projectId);
             $scope.ideas = Idea.all(projectId);
@@ -22,7 +22,6 @@ angular.module('projiApp')
             $scope.voteDown = function(ideaId) {
                 Idea.voteDown(projectId, ideaId, userId);
             };
-
 
             //--------
         });
