@@ -1,0 +1,21 @@
+<h1>Sprint</h1>
+<div class="pure-g-r">
+	<div drop class="pure-u-1-3">
+        <h2>Product backlog</h2>
+        <p>Iterate through items in product backlog.</p>
+        <div ng-repeat="(pbTaskId, pbTask) in pbTasks">
+            <div task-item ng-model="pbTask" drag drag-data="{{pbTask}}" drag-id="{{pbTaskId}}" ng-click="toSprintBacklog(pbTaskId, pbTask)"></div>
+        </div>
+	</div>
+	<div drop on-drop="toSprintBacklog($itemId, $item)" class="pure-u-1-3">
+        <h2>Sprint backlog</h2>
+        <p>Iterate through items in sprint backlog.</p>
+        <div ng-repeat="(sbTaskId, sbTask) in sbTasks">
+            <div task-item ng-model="sbTask" drag drag-data="{{sbTask}}" drag-id="{{sbTaskId}}" ng-click="toProductBacklog(sbTaskId, sbTask)"></div>
+        </div>
+	</div>
+	<div class="pure-u-1-3">
+        <h2>Edit?</h2>
+        <p>create, edit, choose sprint to decide tasks for.</p>
+	</div>
+</div>

@@ -45,6 +45,44 @@ angular.module('projiApp')
             },
             update: function(projectId, sprintId, sprint) {
                 return sprints.$child(projectId).$child(sprintId).$set(sprint);
+            },
+            addTask: function(projectId, sprintId, taskId, task) {
+                return sprints.$child(projectId).$child(sprintId).$child('tasks').$child(taskId).$set(task);
+            },
+            removeTask: function(projectId, sprintId, taskId) {
+                return sprints.$child(projectId).$child(sprintId).$child('tasks').$remove(taskId);
+            },
+            getSprintTasks: function(projectId, sprintId) {
+                //The method for fetching this data destroys autosync?
+                //Maybe i should just store the full taskdata instead of making it complicated.
+                //Making all these lookups slows the application down.
+
+                //Simple, better solution (will require more complex code for deleting a task from product backlog, but should be better)
+                return sprints.$child(projectId).$child(sprintId).$child('tasks');
+
+                //JS
+                // var d = $q.defer(),
+                //     sprintsRef = new Firebase(FBURL + '/sprints/' + projectId + '/' + sprintId + '/tasks');
+
+                // sprintsRef.once('value', function(sprintData) {
+                //     var tasks = {};
+                //     sprintData.forEach(function(taskId) {
+                //         tasks[taskId.name()] = Task.find(projectId, taskId.val());
+                //     });
+                //     $timeout(function() {
+                //         d.resolve(tasks);
+                //     });
+                // });
+                // return d.promise;
+
+                //Angularfire
+                // sprints.$child(projectId).$child(sprintId).$on('loaded', function(sprintData) {
+                //     var tasks = {};
+                //     sprintData.forEach('value', function(taskId) {
+                //         tasks[taskId.name()] = Task.find(projectId, taskId);
+                //     });
+                //     return tasks;
+                // });
             }
         };
 

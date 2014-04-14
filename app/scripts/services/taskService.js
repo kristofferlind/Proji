@@ -7,23 +7,19 @@ angular.module('projiApp')
         Task = {
             all: function(projectId) {
                 return tasks.$child(projectId);
-                // return projects.$child(projectId).$child('tasks');
             },
             create: function(projectId, task) {
                 return tasks.$child(projectId).$add(task);
-                // return projects.$child(projectId).$child('tasks').$add(task);
             },
             delete: function(projectId, taskId) {
                 return tasks.$child(projectId).$remove(taskId);
-                // return projects.$child(projectId).$child('tasks').$remove(taskId);
+                //Also needs to check if the task exists in any sprint and delete it from there
             },
             find: function(projectId, taskId) {
                 return tasks.$child(projectId).$child(taskId);
-                // return projects.$child(projectId).$child('tasks').$child(taskId);
             },
             update: function(projectId, taskId, task) {
                 return tasks.$child(projectId).$child(taskId).$set(task);
-                // return projects.$child(projectId).$child('tasks').$child(taskId).$set(task);
             }
         };
 

@@ -90,6 +90,13 @@ angular.module('projiApp')
             },
             update: function(uid, user) {
                 return users.$child(uid).$update(user);
+            },
+            setTask: function(userId, taskId, task) {
+                // if (users.$child(userId).$child('task').hasChild) {return;}
+                return users.$child(userId).$child('task').$set(task);
+            },
+            getTask: function(userId) {
+                return users.$child(userId).$child('task');
             }
         };
 

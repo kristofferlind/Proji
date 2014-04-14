@@ -3,16 +3,16 @@ projects
 		name
 		description
 		users = [uid] 		//uid lagras nu under ett eget unikt id, borde vara enbart en array av användare?
-		//sprints = [sid]
-		//tasks = [tid]
-		//documents = [did]
-		//ideas = [iid]
 users
 	uid
 		username
 		email
 		projectId	(active project)
 		md5Hash
+		task
+			tid
+				name
+				description
 sprints
 	pid
 		sid
@@ -20,6 +20,10 @@ sprints
 			goal
 			start
 			end
+			tasks
+				tid
+					name
+					description
 tasks
 	pid
 		tid
