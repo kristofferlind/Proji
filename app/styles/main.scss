@@ -9,6 +9,7 @@
 /* Layout */
 
 @import "layout/menu";
+@import "layout/flexlayout";
 
 /* Modules */
 
@@ -20,3 +21,6 @@
 @import "modules/event";
 @import "modules/task";
 @import "modules/sprint";
+@import "modules/color";
+@import	"modules/dropzone";
+@import	"modules/chat";

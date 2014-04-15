@@ -14,7 +14,17 @@ angular.module('projiApp')
             $scope.sprint = {};
             $scope.newSprint = {};
             $scope.newProject = {};
+            $scope.addUser = {};
 
+            $scope.users = Project.getUsers(projectId);
+
+            $scope.inviteUser = function() {
+                Project.addUser(projectId, $scope.addUser.userId);
+            };
+
+            $scope.removeUser = function(userId) {
+                Project.removeUser(projectId, userId);
+            };
             $scope.createProject = function() {
                 Project.create($scope.newProject).then(function(ref) {
                     $location.path('/project/' + ref.name());

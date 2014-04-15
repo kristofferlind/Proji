@@ -36,6 +36,17 @@
 				<li ng-repeat="project in projects"><a href="#/project/{{project.$id}}">{{project.name + ' - ' + project.description}}</a> - <button class="pure-button" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)">Activate</button> - <button class="pure-button" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)">X</button></li>
 			</ul>
 		</div>
+		<div>
+			<h2>Users</h2>
+			<ul>
+				<li ng-repeat="(userId, user) in users">{{user}} - <button class="pure-button pure-button-warning" ng-click="removeUser(userId)">Remove</button></li>
+			</ul>
+			<div class="pure-control-group">
+				<label for="addUser">Add user</label>
+				<input id="addUser" type="text" ng-model="addUser.userId" placeholder="UserId" />
+				<button class="pure-button pure-button-primary" ng-click="inviteUser()">Invite</button>
+			</div>
+		</div>
 	</div>
 	<div class="pure-u-1-3">
 		<h2>Sprints</h2>

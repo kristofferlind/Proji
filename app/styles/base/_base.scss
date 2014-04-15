@@ -15,6 +15,27 @@ label {
     color: #34495e;
 }
 
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: calc(100% - 50px);
+}
+
+.container {
+    height: 100%;
+}
+
+.content {
+    padding: 0.3em;
+}
 
 @media (min-width: 48em) {
 

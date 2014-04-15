@@ -13,6 +13,7 @@
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/pure/pure.css" />
+        <link rel="stylesheet" href="styles/vendor/font-awesome.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css({.tmp,app}) styles/main.css -->
@@ -23,11 +24,14 @@
         <!--[if lt IE 9]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container" ng-controller="RootController">
             <div class="header" ng-include="'views/navigation.html'"></div>
-
-            <div class="content" ng-view=""></div>
-        </div>
+            <div class="container">
+                <div class="flex-main">
+                    <div class="content" ng-view=""></div>                    
+                </div>
+                <div class="flex-panel" ng-include="'views/chat.html'"></div>
+            </div>
+            <!-- <div class="content" ng-view=""></div> -->
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

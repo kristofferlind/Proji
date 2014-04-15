@@ -14,7 +14,15 @@ angular.module('projiApp')
 
                 $scope.workOnTask = function(taskId, task) {
                     task.taskId = taskId;
-                    User.setTask(userId, taskId, task);
+                    User.startTask(userId, taskId, task);
+                };
+
+                $scope.markTaskAsDone = function() {
+                    User.finnishTask(userId, $scope.currentTask.taskId, $scope.currentTask);
+                };
+
+                $scope.stopWorkOnTask = function() {
+                    User.stopTask(userId, $scope.currentTask.taskId, $scope.currentTask);
                 };
             });
             //--------

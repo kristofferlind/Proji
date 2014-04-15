@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.flex-main {
+    flex: 1;
+}
+
+.flex-panel {
+   	flex: none;
+   	height: 100%
+}
+.full-height {
+	height: 100%;
+}

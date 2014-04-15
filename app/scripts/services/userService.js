@@ -91,12 +91,19 @@ angular.module('projiApp')
             update: function(uid, user) {
                 return users.$child(uid).$update(user);
             },
-            setTask: function(userId, taskId, task) {
+            startTask: function(userId, taskId, task) {
                 // if (users.$child(userId).$child('task').hasChild) {return;}
                 return users.$child(userId).$child('task').$set(task);
             },
             getTask: function(userId) {
                 return users.$child(userId).$child('task');
+            },
+            stopTask: function(userId, taskId, task) {
+                return users.$child(userId).$remove('task');
+            },
+            finnishTask: function(userId, taskId, task) {
+                //TODO: should update status
+                return users.$child(userId).$remove('task');
             }
         };
 
@@ -107,7 +114,6 @@ angular.module('projiApp')
     $rootScope.$on('firebaseSimpleLogin:logout', function() {
         delete $rootScope.currentUser;
     });
-
 
     return User;
 });

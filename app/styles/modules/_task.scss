@@ -12,3 +12,10 @@
 	color: #555;
 	line-height: 3em;
 }
+
+.task-item-delete {
+	float: right;
+	margin-right: 0.5em;
+	cursor: pointer;
+	z-index: 5;
+}

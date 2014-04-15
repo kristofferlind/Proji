@@ -17,7 +17,14 @@ angular.module('projiApp')
 
                 $scope.sbTasks = Sprint.getSprintTasks(projectId, sprintId);
 
-                $scope.toProductBacklog = function(taskId) {
+                $scope.toSprintBacklog = function(taskId, task) {
+
+                    Sprint.addTask(projectId, sprintId, taskId, task);
+                    // $scope.sbTasks[taskId] = task;
+                    //Task.update (only change status?)
+                };
+
+                $scope.fromSprintBacklog = function(taskId) {
                     Sprint.removeTask(projectId, sprintId, taskId);
                     //A bit tragic having a timeout here.. (currently needed to give firebase a chance to sync)
                     // $timeout(function() {
@@ -26,17 +33,29 @@ angular.module('projiApp')
                     //Task.update (new status) inactive/active/done? dragging= inactive? checkbox=done?
                 };
 
-                $scope.toSprintBacklog = function(taskId, task) {
-                    console.log(taskId);
-                    console.log(task);
-                    Sprint.addTask(projectId, sprintId, taskId, task);
-                    // $scope.sbTasks[taskId] = task;
-                    //Task.update (only change status?)
+                $scope.showEditTask = function(taskId, task) {
+                    $scope.viewEditTask = true;
+                    $scope.task = task;
+                    $scope.taskId = taskId;
                 };
 
-                $scope.toPB = function(taskId, task) {
-                    console.log(taskId);
-                    console.log(task);
+                $scope.cancelEditTask = function() {
+                    $scope.viewEditTask = false;
+                    // $scope.task = {};
+                };
+
+                $scope.createTask = function() {
+                    Task.create(projectId, $scope.newTask);
+                    $scope.newTask = {};
+                };
+
+                $scope.updateTask = function() {
+                    Task.update(projectId, $scope.taskId, $scope.task);
+                    $scope.cancelEditTask();
+                };
+
+                $scope.deleteTask = function(taskId) {
+                    Task.delete(projectId, taskId);
                 };
             });
             //--------
