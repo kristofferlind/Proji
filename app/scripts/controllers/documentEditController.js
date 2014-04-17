@@ -4,8 +4,10 @@ angular.module('projiApp')
     'use strict';
 
     User.getUserId().then(function(userId) {
+        var user = User.find(userId);
         User.getProjectId(userId).then(function(projectId) {
             //------
+
 
             //// Initialize Firebase.
             var firepadRef = new Firebase(FBURL + '/firepad/' + projectId + '/' + $routeParams.documentId);
@@ -20,6 +22,8 @@ angular.module('projiApp')
                 richTextToolbar: true,
                 richTextShortcuts: true
             });
+
+            var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'), document.getElementById('userlist'), userId, user.username);
 
             //// Initialize contents.
             firepad.on('ready', function() {

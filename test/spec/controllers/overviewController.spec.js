@@ -3,9 +3,13 @@
 describe('Controller: OverviewController', function() {
 
     // load the controller's module
-    beforeEach(module('projiApp'));
-
-
+    beforeEach(function() {
+        module('projiApp');
+        module('projiMocks');
+        // module('projiApp', function($provide) {
+        //     $provide.value('Project', mockProject);
+        // });
+    });
     //I should probably make mocks for all the services seeing as they'll all be used in more than one controller
     //Let's finnish off this one first though
 
@@ -14,7 +18,7 @@ describe('Controller: OverviewController', function() {
     //     //declarations
     // });
 
-    var OverviewController, scope, q, d,
+    var OverviewController, scope, q, d, Project,
         projectData = {
             name: 'name',
             description: 'description'
@@ -45,11 +49,12 @@ describe('Controller: OverviewController', function() {
         userData = {
             userId: 'id',
             projectId: 'id'
-        }, Project = {
-            find: function() {
-                return projectData;
-            }
         },
+        // Project = {
+        //     find: function() {
+        //         return projectData;
+        //     }
+        // },
         Idea = {
             all: function() {
                 return ideasData;
@@ -82,14 +87,21 @@ describe('Controller: OverviewController', function() {
                 return d.promise;
                 // return 'id';
             }
+        },
+        resolver = function() {
+            d.resolve(userData.userId);
+            scope.$digest();
+            d.resolve(userData.projectId);
+            scope.$digest();
         };
+
     // Initialize the controller and a mock scope
-    beforeEach(inject(function($controller, $rootScope, $q) {
+    beforeEach(inject(function($controller, $rootScope, $q, mockProject) {
         q = $q;
         scope = $rootScope.$new();
         OverviewController = $controller('OverviewController', {
             $scope: scope,
-            Project: Project,
+            Project: mockProject,
             Idea: Idea,
             Task: Task,
             Sprint: Sprint,
@@ -103,42 +115,27 @@ describe('Controller: OverviewController', function() {
 
     it('should request Project.find to populate scope.project', function() {
         spyOn(Project, 'find');
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         expect(Project.find).toHaveBeenCalled();
     });
 
     it('should populate $scope.project with a project', function() {
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
-        expect(scope.project).toBe(projectData);
+        resolver();
+        expect(scope.project).toEqual(projectData);
     });
 
     it('should populate $scope.ideas with ideas', function() {
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         expect(scope.ideas).toBe(ideasData);
     });
 
     it('should populate $scope.tasks with tasks', function() {
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         expect(scope.tasks).toBe(tasksData);
     });
 
     it('should populate $scope.sprint with the current sprint', function() {
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         d.resolve(sprintData.id);
         scope.$digest();
         expect(scope.sprint).toBe(sprintData);
@@ -146,10 +143,7 @@ describe('Controller: OverviewController', function() {
 
     it('should call Idea.voteUp on voteUp', function() {
         spyOn(Idea, 'voteUp');
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         scope.voteUp();
         scope.$digest();
         expect(Idea.voteUp).toHaveBeenCalled();
@@ -157,10 +151,7 @@ describe('Controller: OverviewController', function() {
 
     it('should call Idea.voteDown on voteDown', function() {
         spyOn(Idea, 'voteDown');
-        d.resolve(userData.userId);
-        scope.$digest();
-        d.resolve(userData.projectId);
-        scope.$digest();
+        resolver();
         scope.voteDown();
         scope.$digest();
         expect(Idea.voteDown).toHaveBeenCalled();
