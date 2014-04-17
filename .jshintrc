@@ -20,6 +20,8 @@
     "smarttabs": true,
     "globals": {
         "angular": false,
-        "Firebase": false
+        "Firebase": false,
+        "Firepad": false,
+        "CodeMirror": false
     }
 }

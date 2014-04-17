@@ -23,7 +23,7 @@ angular.module('projiApp')
             };
 
             //For some reason ngInclude doesn't dirtycheck, this fixes some errors
-            //Better than doing nothing, but not good enough.
+            //Better than doing nothing, but not good enough. Presents an error in console.log if already running.
             $scope.$digest();
             //--------
         });

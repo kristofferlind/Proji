@@ -42,6 +42,16 @@ angular.module('projiApp', [
             templateUrl: 'views/task.html',
             controller: 'TaskController'
         })
+        .when('/document', {
+            authRequired: true,
+            templateUrl: 'views/document.html',
+            controller: 'DocumentController'
+        })
+        .when('/document/:documentId', {
+            authRequired: true,
+            templateUrl: 'views/documentEdit.html',
+            controller: 'DocumentEditController'
+        })
         .when('/project/:projectId', {
             //This route and below are from prototyping, remove as they become deprecated
             authRequired: true,

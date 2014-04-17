@@ -18,6 +18,8 @@ Detta dokument innehåller idéer och funderingar, dokumentet är inte en del av
 * exportera information? pdf?
 * koppling till github? kunna redigera kod?
 * Du borde ha en checkbox på varje sprint backlog som man markerar när den är klar, så blir sprintbackloggen grön och flyttas till en klar lista :) - anton
+* ändra/ta bort för nära varandra på uppgiftshanteringen i vyn sprint?
+* My task, task is done/stop working on task -> Done/Cancel?
 
 ##Dokumentation
 * hela problemet är vyer, man behöver ett system som presenterar informationen på olika sätt beroende på vad som är intressant.. en vy för att lägga till information.. sen olika vyer för presentation för manager, utvecklare osv..
