@@ -32,6 +32,11 @@ angular.module('projiApp', [
             templateUrl: 'views/project.html',
             controller: 'ProjectController'
         })
+        .when('/project/set', {
+            authRequired: true,
+            templateUrl: 'views/projectSet.html',
+            controller: 'ProjectSetController'
+        })
         .when('/sprint', {
             authRequired: true,
             templateUrl: 'views/sprint.html',
@@ -52,7 +57,11 @@ angular.module('projiApp', [
             templateUrl: 'views/documentEdit.html',
             controller: 'DocumentEditController'
         })
-        .when('/project/:projectId', {
+        .when('/profile', {
+            authRequired: true,
+            templateUrl: 'views/profile.html',
+            controller: 'ProfileController'
+        }).when('/project/:projectId', {
             //This route and below are from prototyping, remove as they become deprecated
             authRequired: true,
             templateUrl: 'views/projectDetails.html',
@@ -62,11 +71,6 @@ angular.module('projiApp', [
             authRequired: true,
             templateUrl: 'views/productbacklog.html',
             controller: 'ProductBacklogController'
-        })
-        .when('/profile', {
-            authRequired: true,
-            templateUrl: 'views/profile.html',
-            controller: 'ProfileController'
         })
         .when('/ideas', {
             authRequired: true,

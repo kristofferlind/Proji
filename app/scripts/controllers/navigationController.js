@@ -13,9 +13,12 @@ angular.module('projiApp')
     User.getUserId().then(function(userId) {
         User.getProjectId(userId).then(function(projectId) {
             //------
-            $scope.user = User.find(userId);
-            $scope.project = Project.find(projectId);
-
+            if (projectId) {
+                $scope.user = User.find(userId);
+                $scope.project = Project.find(projectId);
+            } else {
+                $location.path('/project/set');
+            }
             //--------
         });
     });

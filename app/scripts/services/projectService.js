@@ -49,12 +49,13 @@ angular.module('projiApp')
             //     return projects;
             // },
             create: function(project) {
-                var uid = $rootScope.currentUser.uid;
+                var userId = $rootScope.currentUser.uid;
 
                 projects.$add(project).then(function(data) {
                     var projectId = data.name();
 
-                    projects.$child(projectId).$child('users').$add(uid);
+                    projects.$child(projectId).$child('users').$add(userId);
+                    User.setCurrentProject(userId, projectId);
                 });
                 // return projects.$add(project);
             },

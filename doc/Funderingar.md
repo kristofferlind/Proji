@@ -17,18 +17,20 @@ Detta dokument innehåller idéer och funderingar, dokumentet är inte en del av
 * ska firepad laddas vid behov eller vara med i "första payload"?
 * exportera information? pdf?
 * koppling till github? kunna redigera kod?
-* Du borde ha en checkbox på varje sprint backlog som man markerar när den är klar, så blir sprintbackloggen grön och flyttas till en klar lista :) - anton
+
 * ändra/ta bort för nära varandra på uppgiftshanteringen i vyn sprint?
 * My task, task is done/stop working on task -> Done/Cancel?
 
 ##Dokumentation
 * hela problemet är vyer, man behöver ett system som presenterar informationen på olika sätt beroende på vad som är intressant.. en vy för att lägga till information.. sen olika vyer för presentation för manager, utvecklare osv..
 
-##System
-* Använda node.js/backbone.js?
-
 ##Varningar
 * Tendenser mot vattenfallsmodell
   * välspecificerad kravspec i tidigt skede
   * tid som läggs på ett dokument?
   * separation mellan dokumentation/implementation (endast lösbart om medlemmar har mer välspecificerade roller och även implementation finns lagrat i projektet eller inlänkat på något vis)
+
+###Inlagt i product backlog
+* eddy [11:10 AM] 
+ett tips/önskemål om du hinner är att ha en "show password in plain text"-ruta
+* Du borde ha en checkbox på varje sprint backlog som man markerar när den är klar, så blir sprintbackloggen grön och flyttas till en klar lista :) - anton - typ.. färgmarkeringen iaf

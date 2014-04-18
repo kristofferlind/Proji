@@ -51,7 +51,7 @@ angular.module('projiApp')
                         User.create(user, $scope.username);
                         // console.log($scope.username);
                         // simpleLogin.createProfile(user.uid, user.email);
-                        $location.path('/project');
+                        $location.path('/project/set');
                     });
                 }
             });

@@ -5,7 +5,7 @@ describe('Controller: OverviewController', function() {
     // load the controller's module
     beforeEach(function() {
         module('projiApp');
-        module('projiMocks');
+        // module('projiMocks');
         // module('projiApp', function($provide) {
         //     $provide.value('Project', mockProject);
         // });
@@ -18,7 +18,7 @@ describe('Controller: OverviewController', function() {
     //     //declarations
     // });
 
-    var OverviewController, scope, q, d, Project,
+    var OverviewController, scope, q, d,
         projectData = {
             name: 'name',
             description: 'description'
@@ -50,11 +50,11 @@ describe('Controller: OverviewController', function() {
             userId: 'id',
             projectId: 'id'
         },
-        // Project = {
-        //     find: function() {
-        //         return projectData;
-        //     }
-        // },
+        Project = {
+            find: function() {
+                return projectData;
+            }
+        },
         Idea = {
             all: function() {
                 return ideasData;
@@ -96,12 +96,12 @@ describe('Controller: OverviewController', function() {
         };
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function($controller, $rootScope, $q, mockProject) {
+    beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
         OverviewController = $controller('OverviewController', {
             $scope: scope,
-            Project: mockProject,
+            Project: Project,
             Idea: Idea,
             Task: Task,
             Sprint: Sprint,

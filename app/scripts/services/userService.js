@@ -75,7 +75,7 @@ angular.module('projiApp')
                 return users.$child(userId).$child('projects');
             },
             setCurrentProject: function(userId, projectId) {
-                $rootScope.currentUser.pid = projectId;
+                // $rootScope.currentUser.pid = projectId;
                 return users.$child(userId).$child('projectId').$set(projectId);
             },
             setCurrentUser: function(fbUser) {
