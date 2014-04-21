@@ -26,13 +26,12 @@ angular.module('projiApp')
                 Project.removeUser(projectId, userId);
             };
             $scope.createProject = function() {
-                Project.create($scope.newProject).then(function(ref) {
-                    $location.path('/project/' + ref.name());
-                });
+                Project.create($scope.newProject);
             };
 
             $scope.setCurrentProject = function(projectId) {
                 User.setCurrentProject(userId, projectId);
+                // $rootScope.$apply();
             };
 
             $scope.deleteProject = function(projectId) {
