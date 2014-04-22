@@ -53,11 +53,11 @@ Samtliga användargrupper har också ett intresse för effektiviseringen detta syst
 ##Liknande system
 * freedcamp.com - ingen möjlighet att skapa filer på plats, snarare ett community med möjlighet att ladda upp filer.
 * basecamp.com - klientvisning med restriktioner, sociala kopplingar för att främja diskussion i stora projekt, möjlighet att skapa textfiler - ingen hjälp.
+* trello.com - trevlig uppgiftshantering
 
 ##Baskrav
 * BK1 - Projektmedlemmar ska enkelt och effektivt kunna hjälpas åt att hålla dokumentationen i toppskick
-* BK2 - Kommunikation mellan projektmedlemmar ska främjas
+* BK2 - Kommunikation mellan projektmedlemmar ska främjas (chatt, automatiska utskick, notifieringar, röstkommunikation)
 * BK3 - Projektmedlemmar ska kunna få ut sina idéer i ett samlat format även om det för stunden kanske inte riktigt passar in i någon befintlig dokumentation
 * BK4 - Det finns kontroller som hjälper till att minska risken för misslyckade projekt(ex. tendeser mot arbete i vattenfallsmodell)
 * BK5 - Projektmedlemmar ska kunna få en förbättrad överblick över projektet
-* BK6 - Automatiska utskick av händelser för att hålla konservativa medlemmar uppdaterade
