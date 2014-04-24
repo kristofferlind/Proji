@@ -11,7 +11,7 @@ angular.module('projiApp')
         $scope.newProject = {};
 
         $scope.createProject = function() {
-            Project.create($scope.newProject);
+            Project.create(userId, $scope.newProject);
             // $location.path('/project/');
         };
 

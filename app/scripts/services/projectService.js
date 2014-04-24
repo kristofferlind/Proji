@@ -48,13 +48,14 @@ angular.module('projiApp')
             //     //TODO: return only projects user is a part of..
             //     return projects;
             // },
-            create: function(project) {
-                var userId = $rootScope.currentUser.uid;
+            create: function(userId, project) {
+                // var userId = $rootScope.currentUser.uid;
 
                 projects.$add(project).then(function(data) {
                     var projectId = data.name();
 
                     projects.$child(projectId).$child('users').$add(userId);
+                    User.addProject(projectId, userId);
                     User.setCurrentProject(userId, projectId);
                 });
                 // return projects.$add(project);

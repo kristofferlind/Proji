@@ -66,8 +66,8 @@ describe('Controller: ProjectSetController', function() {
             expect(Project.create).toHaveBeenCalled();
         });
 
-        it('..with {}', function() {
-            expect(Project.create).toHaveBeenCalledWith({});
+        it('..with userId, {}', function() {
+            expect(Project.create).toHaveBeenCalledWith('userId', {});
         });
     });
 

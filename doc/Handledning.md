@@ -1,6 +1,5 @@
 #Handledning v.17
 ##Problem
-* exempeltest mot angularjs.org fungerar, men inte motsvarande test mot egen server
 * nginclude - hade fel tidigare, dirtychecking görs, men $digest där triggas aldrig av ändringar i ngview($rootscope.$digest?)
 * klumpig lösning för att få in userId och projectId i controller; leder till klumpiga tester (resolve?)
 

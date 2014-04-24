@@ -15,6 +15,8 @@ module.exports = function(grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-protractor-runner');
+
     // Define the configuration for all the tasks
     grunt.initConfig({
 
@@ -350,6 +352,20 @@ module.exports = function(grunt) {
                 configFile: 'karma.conf.js',
                 singleRun: true
             }
+        },
+        protractor: {
+            options: {
+                configFile: 'protractor.conf.js', // Default config file
+                keepAlive: true, // If false, the grunt process stops when the test fails.
+                noColor: false, // If true, protractor will not use colors in its output.
+                args: {
+                    seleniumServerJar: 'node_modules/protractor/selenium/selenium-server-standalone-2.41.0.jar',
+                    chromeDriver: 'node_modules/protractor/selenium/chromedriver.exe'
+                }
+            },
+            run: {
+                configFile: 'protractor.conf.js'
+            }
         }
     });
 
@@ -380,6 +396,16 @@ module.exports = function(grunt) {
         'autoprefixer',
         'connect:test',
         'karma'
+    ]);
+
+    // grunt.registerTask('e2e', function() {
+    //     grunt.task.run([
+    //         'protractor'
+    //     ]);
+    // });
+
+    grunt.registerTask('e2e', [
+        'protractor:run'
     ]);
 
     grunt.registerTask('build', [
