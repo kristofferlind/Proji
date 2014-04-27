@@ -12,7 +12,7 @@ exports.config = {
         'browserName': 'chrome'
     },
 
-    baseUrl: 'http://127.0.0.1:9000/',
+    baseUrl: 'http://www.proji.se/',
 
     framework: 'jasmine',
 

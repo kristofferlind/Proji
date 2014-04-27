@@ -365,6 +365,9 @@ module.exports = function(grunt) {
             },
             run: {
                 configFile: 'protractor.conf.js'
+            },
+            live: {
+                configFile: 'protractor.live.conf.js'
             }
         }
     });
@@ -398,15 +401,14 @@ module.exports = function(grunt) {
         'karma'
     ]);
 
-    // grunt.registerTask('e2e', function() {
-    //     grunt.task.run([
-    //         'protractor'
-    //     ]);
-    // });
-
     grunt.registerTask('e2e', [
         'protractor:run'
     ]);
+
+    grunt.registerTask('e2e-live', [
+        'protractor:live'
+    ]);
+
 
     grunt.registerTask('build', [
         'clean:dist',

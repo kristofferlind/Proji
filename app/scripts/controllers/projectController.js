@@ -31,7 +31,7 @@ angular.module('projiApp')
 
             $scope.setCurrentProject = function(projectId) {
                 User.setCurrentProject(userId, projectId);
-                // $rootScope.$apply();
+                // $rootScope.$digest();
             };
 
             $scope.deleteProject = function(projectId) {
