@@ -6,15 +6,19 @@ angular.module('projiApp')
     User.getUserId().then(function(userId) {
         User.getProjectId(userId).then(function(projectId) {
             //------
-            Project.all().then(function(data) {
-                $scope.projects = data;
-            });
+            var fetchProjects = (function() {
+                Project.all().then(function(data) {
+                    $scope.projects = data;
+                });
+            }());
+
             $scope.project = Project.find(projectId);
             $scope.sprints = Sprint.all(projectId);
             $scope.sprint = {};
             $scope.newSprint = {};
             $scope.newProject = {};
             $scope.addUser = {};
+            $scope.createProject = false;
 
             $scope.users = Project.getUsers(projectId);
 
@@ -25,8 +29,11 @@ angular.module('projiApp')
             $scope.removeUser = function(userId) {
                 Project.removeUser(projectId, userId);
             };
-            $scope.createProject = function() {
-                Project.create($scope.newProject);
+
+            $scope.makeProject = function() {
+                Project.create(userId, $scope.newProject);
+                fetchProjects();
+                $scope.createProject = false;
             };
 
             $scope.setCurrentProject = function(projectId) {
@@ -35,7 +42,7 @@ angular.module('projiApp')
             };
 
             $scope.deleteProject = function(projectId) {
-                Project.delete(projectId);
+                Project.delete(userId, projectId);
             };
 
             $scope.createSprint = function() {

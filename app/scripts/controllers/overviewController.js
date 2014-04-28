@@ -12,6 +12,8 @@ angular.module('projiApp')
             $scope.ideas = Idea.all(projectId);
             $scope.tasks = Task.all(projectId);
 
+            $scope.showAddIdea = false;
+
             Sprint.getCurrent(projectId).then(function(sprintId) {
                 $scope.sprint = Sprint.find(projectId, sprintId);
             });
@@ -23,6 +25,18 @@ angular.module('projiApp')
                 Idea.voteDown(projectId, ideaId, userId);
             };
 
+
+            $scope.newIdea = {};
+
+            $scope.addIdea = function() {
+                $scope.newIdea.score = 0;
+                Idea.create(projectId, $scope.newIdea);
+                $scope.newIdea = {};
+                $scope.showAddIdea = false;
+            };
+            // $scope.deleteIdea = function(ideaId) {
+            //     Idea.delete(projectId, ideaId);
+            // };
             //--------
         });
     });

@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('Idea', function($firebase, FBURL) {
+.factory('Idea', function($firebase, FBURL, User) {
     'use strict';
     var ref = new Firebase(FBURL + '/ideas'),
         ideas = $firebase(ref),
@@ -35,22 +35,56 @@ angular.module('projiApp')
             },
             //Voting for ideas
             voteUp: function(projectId, ideaId, userId) {
-                ideas.$child(projectId).$child(ideaId).$child('score').$transaction(function(score) {
-                    if (score === undefined) {
-                        return 1;
+                var idea = ideas.$child(projectId).$child(ideaId),
+                    vote = function(amount) {
+                        idea.$child('up').$child(userId).$set(userId).then(function() {
+                            User.voteUp(userId, ideaId);
+                            idea.$child('down').$remove(userId);
+
+                            ideas.$child(projectId).$child(ideaId).$child('score').$transaction(function(score) {
+                                if (score === undefined) {
+                                    return +1;
+                                } else {
+                                    return score + amount;
+                                }
+                            });
+                        });
+
+                    };
+
+                if (!idea.$child('up').hasOwnProperty(userId)) {
+                    if (idea.$child('down').hasOwnProperty(userId)) {
+                        vote(2);
                     } else {
-                        return score + 1;
+                        vote(1);
                     }
-                });
+                }
             },
             voteDown: function(projectId, ideaId, userId) {
-                ideas.$child(projectId).$child(ideaId).$child('score').$transaction(function(score) {
-                    if (score === undefined) {
-                        return -1;
+                var idea = ideas.$child(projectId).$child(ideaId),
+                    vote = function(amount) {
+                        idea.$child('down').$child(userId).$set(userId).then(function() {
+                            User.voteDown(userId, ideaId);
+                            idea.$child('up').$remove(userId);
+
+                            ideas.$child(projectId).$child(ideaId).$child('score').$transaction(function(score) {
+                                if (score === undefined) {
+                                    return -1;
+                                } else {
+                                    return score - amount;
+                                }
+                            });
+                        });
+
+                    };
+
+                if (!idea.$child('down').hasOwnProperty(userId)) {
+                    if (idea.$child('up').hasOwnProperty(userId)) {
+                        vote(2);
                     } else {
-                        return score - 1;
+                        vote(1);
                     }
-                });
+                }
             }
         };
 

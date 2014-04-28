@@ -21,6 +21,7 @@ Detta dokument innehåller idéer och funderingar, dokumentet är inte en del av
 * ändra/ta bort för nära varandra på uppgiftshanteringen i vyn sprint?
 * My task, task is done/stop working on task -> Done/Cancel?
 * documentedit, profilbild istället för färgrutan och namnet i den färg ens cursor har..
+* Alltid ha en sopkorg i ett hörn för radering?
 
 ##Dokumentation
 * hela problemet är vyer, man behöver ett system som presenterar informationen på olika sätt beroende på vad som är intressant.. en vy för att lägga till information.. sen olika vyer för presentation för manager, utvecklare osv..

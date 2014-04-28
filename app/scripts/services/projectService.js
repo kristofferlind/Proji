@@ -3,7 +3,9 @@ angular.module('projiApp')
 .factory('Project', function($firebase, FBURL, User, $rootScope, $q, $timeout) {
     'use strict';
     var ref = new Firebase(FBURL + '/projects'),
+        ref2 = new Firebase(FBURL + '/users'),
         projects = $firebase(ref),
+        users = $firebase(ref2),
         Project = {
             addUser: function(projectId, userId) {
                 //which way is better?
@@ -60,8 +62,10 @@ angular.module('projiApp')
                 });
                 // return projects.$add(project);
             },
-            delete: function(projectId) {
-                return projects.$remove(projectId);
+            delete: function(userId, projectId) {
+                users.$child(userId).$child('projects').$remove(projectId);
+                projects.$remove(projectId);
+                //TODO remove for all users
             },
             find: function(projectId) {
                 if (projectId !== undefined) {

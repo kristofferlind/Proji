@@ -6,7 +6,7 @@ angular.module('projiApp')
         users = $firebase(ref),
         User = {
             addProject: function(projectId, userId) {
-                return users.$child(userId).$child('projects').$add(projectId);
+                return users.$child(userId).$child('projects').$child(projectId).$set(projectId);
             },
             create: function(fbUser, username) {
                 users[fbUser.uid] = {
@@ -104,6 +104,19 @@ angular.module('projiApp')
             finnishTask: function(userId, taskId, task) {
                 //TODO: should update status
                 return users.$child(userId).$remove('task');
+            },
+            voteUp: function(userId, ideaId) {
+                users.$child(userId).$child('ideas').$child('up').$child(ideaId);
+                users.$child(userId).$child('ideas').$child('down').$remove(ideaId);
+
+                //set user/ideas/up/ideaId
+                //remove user/ideas/down/ideaId
+            },
+            voteDown: function(userId, ideaId) {
+                users.$child(userId).$child('ideas').$child('down').$child(ideaId);
+                users.$child(userId).$child('ideas').$child('up').$remove(ideaId);
+                //set user/ideas/down/ideaId
+                //remove user/ideas/up/ideaId
             }
         };
 
