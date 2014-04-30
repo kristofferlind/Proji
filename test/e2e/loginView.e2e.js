@@ -133,7 +133,7 @@ describe('View: /login', function() {
 
             $('button.pure-button.pure-button-primary').click();
             browser.waitForAngular();
-            browser.sleep(3000);
+            browser.sleep(5000);
             expect($('.content h1').getText()).toEqual('Overview');
         });
     });
