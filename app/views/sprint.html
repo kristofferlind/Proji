@@ -1,6 +1,6 @@
 <h1>Sprint</h1>
 <div class="pure-g-r">
-	<div drop drop-type="sb" on-drop="fromSprintBacklog($itemId, $item)" class="pure-u-1-3">
+	<div drop drop-type="sb" on-drop="fromSprintBacklog($itemId, $item)" class="pure-u-1-3 productbacklog">
         <h2>Product backlog</h2>
         <p>Iterate through items in product backlog.</p>
         <div ng-repeat="(pbTaskId, pbTask) in pbTasks">
@@ -10,7 +10,8 @@
             </div>
         </div>
 	</div>
-	<div drop drop-type="pb" on-drop="toSprintBacklog($itemId, $item)" class="pure-u-1-3">
+	<div drop drop-type="pb" on-drop="toSprintBacklog($itemId, $item)" class="pure-u-1-3 sprintbacklog">
+        <input type="range" name="points" min="1" max="10" value="1">
         <h2>Sprint backlog</h2>
         <p>Iterate through items in sprint backlog.</p>
         <div ng-repeat="(sbTaskId, sbTask) in sbTasks">

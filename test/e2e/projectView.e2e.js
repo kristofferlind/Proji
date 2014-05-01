@@ -1,6 +1,6 @@
 'use strict';
 
-// describe('View: /overview', function() {
+// describe('View: /project', function() {
 
 //     beforeEach(function() {
 //         browser.ignoreSynchronization = true;
