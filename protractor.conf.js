@@ -9,7 +9,7 @@ exports.config = {
     ],
 
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome' //firefox, chrome
     },
 
     baseUrl: 'http://127.0.0.1:9000/',
