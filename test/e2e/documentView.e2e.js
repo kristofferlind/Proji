@@ -53,4 +53,50 @@ describe('View: document', function() {
             });
         });
     });
+
+    describe('Feature: Edit document', function() {
+
+        it('should view the edit view of document', function() {
+            element.all(by.repeater('(documentId, document) in documents')).then(function(documents) {
+                var editButton = documents[1].findElement(by.css('td:nth-child(3) a'));
+
+                editButton.click();
+                browser.sleep(3000);
+
+                var header = element(by.css('h1'));
+
+                expect(header.getText()).toEqual('Document');
+            });
+        });
+    });
+});
+
+describe('View: edit document', function() {
+
+    beforeEach(function() {
+        browser.ignoreSynchronization = true;
+    });
+
+    afterEach(function() {
+        browser.ignoreSynchronization = false;
+    });
+
+    describe('Feature: Editing', function() {
+
+        it('should save edited text', function() {
+            var pad = element(by.css('#firepad textarea')),
+                testValue = 'testText' + Math.floor(Math.random() * 1001);
+
+            browser.sleep(3000);
+
+            pad.clear();
+            pad.sendKeys(testValue);
+
+            browser.navigate().refresh();
+            browser.sleep(3000);
+
+            expect(pad.getText()).toEqual(testValue);
+        });
+    });
+
 });

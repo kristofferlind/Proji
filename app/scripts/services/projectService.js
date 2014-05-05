@@ -7,24 +7,51 @@ angular.module('projiApp')
         projects = $firebase(ref),
         users = $firebase(ref2),
         Project = {
-            addUser: function(projectId, userId) {
-                //which way is better?
-                User.addProject(projectId, userId);
-                projects.$child(projectId).$child('users').$add(userId);
-            },
-            // all: function() {
-            //     var userId = $rootScope.currentUser.uid,
-            //         projects = [],
-            //         usersRef = new Firebase(FBURL + '/users/' + userId + '/projects');
+            addUser: function(projectId, email) {
+                //old stuff
+                // User.addProject(projectId, userId);
+                // projects.$child(projectId).$child('users').$add(userId);
 
-            //     usersRef.once('value', function(data) {
-            //         data.forEach(function(projectId) {
-            //             projects.push(Project.find(projectId.val()));
-            //         });
-            //         console.log(projects);
-            //         return projects;
-            //     });
-            // },
+
+                //which way is better?
+                /* 
+                Find user id by email
+                    get all users
+                    check email for each
+                    grab user with matching email
+                add user id to projects
+                add project id to user
+
+                if user is not found by email
+                now: just say user does not exist
+
+                later:
+                    ask if we should invite
+                    invite (send email via postmark api)
+                        link to adduserregistration which will then add
+                        or
+                        check for email in projects on register? 
+                 */
+
+
+                var userId,
+                    usersRef = new Firebase(FBURL + '/users/');
+
+                usersRef.once('value', function(users) {
+                    users.forEach(function(user) {
+                        if (user.child('email').val() === email) {
+                            userId = user.name();
+                            User.addProject(projectId, userId);
+                            projects.$child('users').$add(userId);
+                        }
+                    });
+                    if (userId === undefined) {
+                        console.log('user does not exist, invite?');
+                    }
+                });
+
+
+            },
             all: function() {
                 var userId = $rootScope.currentUser.uid,
                     projects = [],
@@ -32,7 +59,7 @@ angular.module('projiApp')
 
                 var d = $q.defer();
 
-                //Is it possible to solve this using angularfire?
+                //Is it possible to solve this using angularfire? ($on loaded)
                 usersRef.once('value', function(data) {
                     data.forEach(function(projectId) {
                         // projects[projectId.$id] = Project.find(projectId.val());
@@ -46,13 +73,7 @@ angular.module('projiApp')
 
                 return d.promise;
             },
-            // all: function() {
-            //     //TODO: return only projects user is a part of..
-            //     return projects;
-            // },
             create: function(userId, project) {
-                // var userId = $rootScope.currentUser.uid;
-
                 projects.$add(project).then(function(data) {
                     var projectId = data.name();
 
@@ -60,7 +81,6 @@ angular.module('projiApp')
                     User.addProject(projectId, userId);
                     User.setCurrentProject(userId, projectId);
                 });
-                // return projects.$add(project);
             },
             delete: function(userId, projectId) {
                 users.$child(userId).$child('projects').$remove(projectId);
@@ -74,18 +94,12 @@ angular.module('projiApp')
                     return 'no active project';
                 }
             },
-            // anyCurrent: function() {
-            //     return $rootScope.currentProject !== undefined;
-            // },
             getCurrent: function() {
                 return projects.$child(User.getCurrentProject());
             },
             getUsers: function(projectId) {
                 return projects.$child(projectId).$child('users');
             },
-            // setCurrent: function(projectId) {
-            //     $rootScope.currentProject = projectId;
-            // },
             removeUser: function(projectId, userId) {
                 return projects.$child(projectId).$child('users').$remove(userId);
             },

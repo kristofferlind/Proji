@@ -29,6 +29,7 @@ tasks
 		tid
 			name
 			description
+			status			complete/in progress/not started
 documents
 	pid
 		did

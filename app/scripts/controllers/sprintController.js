@@ -16,6 +16,7 @@ angular.module('projiApp')
                 // });
 
                 $scope.sbTasks = Sprint.getSprintTasks(projectId, sprintId);
+                console.log($scope.sbTasks);
 
                 $scope.toSprintBacklog = function(taskId, task) {
 

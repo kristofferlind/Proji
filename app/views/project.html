@@ -43,9 +43,11 @@
 				<li ng-repeat="(userId, user) in users"><span>{{user}}</span> - <button class="pure-button button-warning" ng-click="removeUser(userId)">Remove</button></li>
 			</ul>
 			<div class="pure-control-group">
-				<label for="addUser">Add user</label>
-				<input id="addUser" type="text" ng-model="addUser.userId" placeholder="UserId" />
-				<button id="inviteUser" class="pure-button pure-button-primary" ng-click="inviteUser()">Invite</button>
+				<form name="inviteUserForm" ng-submit="inviteUser()">
+					<label for="addUser">Add user</label>
+					<input required id="addUser" type="email" ng-model="addUser.email" placeholder="email" />
+					<button id="inviteUser" ng-disabled="!inviteUserForm.$valid" type="submit" class="pure-button pure-button-primary">Invite</button>
+				</form>
 			</div>
 		</div>
 	</div>

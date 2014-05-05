@@ -6,7 +6,6 @@
 }
 
 .task-item-priority {
-	background-color: red;
 	text-align: center;
 	font-size: 2em;
 	color: #555;
@@ -18,4 +17,15 @@
 	margin-right: 0.5em;
 	cursor: pointer;
 	z-index: 5;
+}
+
+//status
+.task-item .not-started {
+	background-color: #ffcccc;
+}
+.task-item .in-progress {
+	background-color: #ccccff;
+}
+.task-item .completed {
+	background-color: #ccffcc;
 }

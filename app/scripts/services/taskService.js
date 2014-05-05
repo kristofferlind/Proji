@@ -20,6 +20,14 @@ angular.module('projiApp')
             },
             update: function(projectId, taskId, task) {
                 return tasks.$child(projectId).$child(taskId).$set(task);
+            },
+            setStatus: function(projectId, sprintId, taskId, task, status) {
+                var sprintRef = new Firebase(FBURL + '/sprints/' + projectId + '/' + sprintId + '/tasks'),
+                    sprintTasks = $firebase(sprintRef);
+
+                task.status = status;
+                tasks.$child(projectId).$child(taskId).$update(task);
+                sprintTasks.$child(taskId).$update(task);
             }
         };
 

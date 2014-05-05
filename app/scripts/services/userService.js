@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout) {
+.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task) {
     'use strict';
     var ref = new Firebase(FBURL + '/users'),
         users = $firebase(ref),
@@ -75,7 +75,6 @@ angular.module('projiApp')
                 return users.$child(userId).$child('projects');
             },
             setCurrentProject: function(userId, projectId) {
-                // $rootScope.currentUser.pid = projectId;
                 return users.$child(userId).$child('projectId').$set(projectId);
             },
             setCurrentUser: function(fbUser) {
@@ -83,40 +82,34 @@ angular.module('projiApp')
                     email: fbUser.email,
                     uid: fbUser.uid,
                     md5Hash: fbUser.md5_hash,
-                    // pid: User.getCurrentProject(),
-                    // username: User.getUsername(fbUser.uid)
                 };
-                // $rootScope.$broadcast('currentUser-set');
             },
             update: function(uid, user) {
                 return users.$child(uid).$update(user);
             },
-            startTask: function(userId, taskId, task) {
-                // if (users.$child(userId).$child('task').hasChild) {return;}
+            startTask: function(projectId, sprintId, userId, taskId, task) {
+                task.status = 'In Progress';
+                Task.setStatus(projectId, sprintId, taskId, task, 'In Progress');
                 return users.$child(userId).$child('task').$set(task);
             },
             getTask: function(userId) {
                 return users.$child(userId).$child('task');
             },
-            stopTask: function(userId, taskId, task) {
+            stopTask: function(projectId, sprintId, userId, taskId, task) {
+                Task.setStatus(projectId, sprintId, taskId, task, 'Not Started');
                 return users.$child(userId).$remove('task');
             },
-            finnishTask: function(userId, taskId, task) {
-                //TODO: should update status
+            finnishTask: function(projectId, sprintId, userId, taskId, task) {
+                Task.setStatus(projectId, sprintId, taskId, task, 'Completed');
                 return users.$child(userId).$remove('task');
             },
             voteUp: function(userId, ideaId) {
                 users.$child(userId).$child('ideas').$child('up').$child(ideaId);
                 users.$child(userId).$child('ideas').$child('down').$remove(ideaId);
-
-                //set user/ideas/up/ideaId
-                //remove user/ideas/down/ideaId
             },
             voteDown: function(userId, ideaId) {
                 users.$child(userId).$child('ideas').$child('down').$child(ideaId);
                 users.$child(userId).$child('ideas').$child('up').$remove(ideaId);
-                //set user/ideas/down/ideaId
-                //remove user/ideas/up/ideaId
             }
         };
 

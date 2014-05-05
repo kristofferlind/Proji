@@ -11,12 +11,7 @@
 			<h2>Tasks</h2>
 			<p>List 5 highest priority tasks noone is working on in the current sprint (priority not implemented)</p>
 			<!-- Priority not implemented, just show a list of tasks for now -->
-			<div class="task-item pure-g" ng-repeat="(taskId, task) in tasks">
-				<div class="pure-u-1-6 task-item-priority">?</div>
-				<div class="pure-u-5-6 task-item-body" ng-click="show=!show">
-					<p><b>{{task.name}}</b> - {{task.description}}</p>                          
-				</div>
-			</div>
+				<div task-item ng-model="task" ng-repeat="task in tasks | toArray | orderBy: 'points':true | filter: 'Not Started' | limitTo: 5"></div>
 		</div>
 	</div>
 	<div class="pure-u-1-3 ideas">

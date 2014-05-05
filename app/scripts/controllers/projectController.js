@@ -23,7 +23,7 @@ angular.module('projiApp')
             $scope.users = Project.getUsers(projectId);
 
             $scope.inviteUser = function() {
-                Project.addUser(projectId, $scope.addUser.userId);
+                Project.addUser(projectId, $scope.addUser.email);
             };
 
             $scope.removeUser = function(userId) {

@@ -23,13 +23,21 @@
 
                     <div class="pure-control-group">
                         <label for="password">Password</label>
-                        <input id="password" type="password" ng-model="pass" />
+                        <input id="password" ng-hide="showPass" type="password" ng-model="pass" />
+                        <input id="password" ng-show="showPass" type="text" ng-model="pass" />
                     </div>
 
                     <div class="pure-control-group" ng-show="createMode">
                         <label for="confirm">Confirm password</label>
-                        <input id="confirm" type="password" ng-model="confirm" />
+                        <input id="confirm" ng-hide="showPass" type="password" ng-model="confirm" />
+                        <input id="confirm" ng-show="showPass" type="text" ng-model="confirm" />
                     </div>
+
+                    <div class="pure-control-group">
+                        <label for="showPass">Show password</label>
+                        <input id="showPass" type="checkbox" ng-model="showPass">
+                    </div>
+
                     <div class="pure-controls">
                     <button class="pure-button pure-button-primary" ng-click="loginPassword()" ng-hide="createMode">Log In</button>
                     <button class="pure-button" ng-click="createMode = true" ng-hide="createMode">Register</button>
