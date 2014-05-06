@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task) {
+.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task, Sprint) {
     'use strict';
     var ref = new Firebase(FBURL + '/users'),
         users = $firebase(ref),
@@ -24,14 +24,23 @@ angular.module('projiApp')
                     return users.$child(userId);
                 }
             },
-            getCurrentProject: function(userId) {
-                var user = $rootScope.currentUser;
+            getCurrentProject: function() {
+                User.getUserId().then(function(userId) {
+                    var user = $rootScope.currentUser,
+                        d = $q.defer(),
+                        projectId;
 
-                if (user && user.pid !== undefined) {
-                    return user.pid;
-                } else {
-                    return users.$child(userId).projectId;
-                }
+                    if (user && user.pid !== undefined) {
+                        d.resolve(user.pid);
+                    } else {
+                        projectId = users.$child(userId).projectId;
+                        $rootScope.currentUser.pid = projectId;
+                        d.resolve(projectId);
+                    }
+
+                    return d.promise;
+                });
+
             },
             getUserId: function() {
                 var d = $q.defer();
@@ -49,14 +58,17 @@ angular.module('projiApp')
                 return d.promise;
             },
             getProjectId: function(userId) {
-                // return users.$child(userId).projectId;
-
                 var d = $q.defer();
 
                 var projectId = users.$child(userId).projectId;
                 users.$on('loaded', function() {
                     d.resolve(projectId);
                 });
+
+                users.$on('change', function() {
+                    d.resolve(projectId);
+                });
+
                 return d.promise;
             },
             getCurrentUser: function() {
@@ -75,6 +87,9 @@ angular.module('projiApp')
                 return users.$child(userId).$child('projects');
             },
             setCurrentProject: function(userId, projectId) {
+                $rootScope.currentUser.pid = projectId;
+                localStorage.pid = projectId;
+                $rootScope.$broadcast('projectChange');
                 return users.$child(userId).$child('projectId').$set(projectId);
             },
             setCurrentUser: function(fbUser) {
@@ -82,7 +97,26 @@ angular.module('projiApp')
                     email: fbUser.email,
                     uid: fbUser.uid,
                     md5Hash: fbUser.md5_hash,
+                    pid: localStorage.pid || null,
+                    sid: localStorage.sid || null
                 };
+
+                User.getProjectId(fbUser.uid).then(function(pid) {
+                    if (pid) {
+                        console.log('setCurrentUser pid: ' + pid);
+                        $rootScope.currentUser.pid = pid;
+                        localStorage.pid = pid;
+
+                        Sprint.getCurrent(pid).then(function(sid) {
+                            if (sid) {
+                                console.log('setCurrentUser sid: ' + sid);
+                                $rootScope.currentUser.sid = sid;
+                                localStorage.sid = sid;
+                            }
+                        });
+                    }
+                });
+
             },
             update: function(uid, user) {
                 return users.$child(uid).$update(user);

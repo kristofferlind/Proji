@@ -5,7 +5,7 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
     simpleLogin.init();
 })
 
-.factory('simpleLogin', function($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) {
+.factory('simpleLogin', function($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout, FBURL) {
     function assertAuth() {
         if (auth === null) {
             throw new Error('Must call loginService.init() before using its methods');
@@ -39,6 +39,19 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
                 rememberMe: true
             }).then(function(user) {
                 if (callback) {
+                    // var ref = new Firebase(FBURL + '/users'),
+                    //     users = $firebase(ref);
+
+                    // user.pid = users.$child(user.uid).projectId;
+
+                    // users.$on('loaded', function() {
+                    //     $timeout(function() {
+                    //         callback(null, user);
+                    //     });
+
+
+                    // });
+
                     //todo-bug https://github.com/firebase/angularFire/issues/199
                     $timeout(function() {
                         callback(null, user);

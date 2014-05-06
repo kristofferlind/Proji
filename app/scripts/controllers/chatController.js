@@ -3,29 +3,32 @@ angular.module('projiApp')
 .controller('ChatController', function($scope, $rootScope, User, $firebase, FBURL) {
     'use strict';
 
-    User.getUserId().then(function(userId) {
-        User.getProjectId(userId).then(function(projectId) {
-            //------
-            $scope.messages = $firebase(new Firebase(FBURL + '/chat/' + projectId + '/messages'));
+    $scope.sendMessage = function() {
+        $scope.messages.$add($scope.message);
+        $scope.message.text = '';
+    };
 
-            $scope.user = User.find(userId);
-
+    var updateView = function() {
+        if ($rootScope.currentUser && $rootScope.currentUser.pid) {
+            $scope.messages = $firebase(new Firebase(FBURL + '/chat/' + $rootScope.currentUser.pid + '/messages'));
+            $scope.user = User.find($rootScope.currentUser.uid);
             $scope.message = {
-                md5Hash: $scope.user.md5Hash,
-                uid: userId,
+                md5Hash: $rootScope.currentUser.md5Hash,
+                uid: $rootScope.currentUser.uid,
                 username: $scope.user.username,
                 text: ''
             };
+        }
+    }, loggedIn = function() {
+            $scope.loggedIn = true;
+            updateView();
+        }, loggedOut = function() {
+            $scope.loggedIn = false;
+        };
 
-            $scope.sendMessage = function() {
-                $scope.messages.$add($scope.message);
-                $scope.message.text = '';
-            };
-
-            //For some reason ngInclude doesn't dirtycheck, this fixes some errors
-            //Better than doing nothing, but not good enough. Presents an error in console.log if already running.
-            // $scope.$digest();
-            //--------
-        });
-    });
+    $rootScope.$watch($rootScope.currentUser, updateView);
+    $rootScope.$on('$firebaseSimpleLogin:login', loggedIn);
+    $rootScope.$on('$firebaseSimpleLogin:logout', loggedOut);
+    $rootScope.$on('resolved', updateView);
+    $rootScope.$on('projectChange', updateView);
 });

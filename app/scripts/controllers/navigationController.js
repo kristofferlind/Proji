@@ -1,18 +1,23 @@
 angular.module('projiApp')
 
-.controller('NavigationController', function($scope, $location, Project, User) {
+.controller('NavigationController', function($scope, $location, Project, User, $rootScope) {
     'use strict';
 
-    User.getUserId().then(function(userId) {
-        User.getProjectId(userId).then(function(projectId) {
-            //------
-            if (projectId) {
-                $scope.user = User.find(userId);
-                $scope.project = Project.find(projectId);
-            } else {
-                $location.path('/project/set');
-            }
-            //--------
-        });
-    });
+    var updateView = function() {
+        if ($rootScope.currentUser && $rootScope.currentUser.pid) {
+            $scope.user = User.find($rootScope.currentUser.uid);
+            $scope.project = Project.find($rootScope.currentUser.pid);
+        }
+    }, loggedIn = function() {
+            $scope.loggedIn = true;
+            updateView();
+        }, loggedOut = function() {
+            $scope.loggedIn = false;
+        };
+
+    $rootScope.$watch($rootScope.currentUser, updateView);
+    $rootScope.$on('$firebaseSimpleLogin:login', loggedIn);
+    $rootScope.$on('$firebaseSimpleLogin:logout', loggedOut);
+    $rootScope.$on('resolved', updateView);
+    $rootScope.$on('projectChange', updateView);
 });

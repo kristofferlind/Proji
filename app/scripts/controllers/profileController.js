@@ -2,12 +2,12 @@ angular.module('projiApp')
 
 .controller('ProfileController', function($scope, $rootScope, User) {
     'use strict';
-    User.getUserId().then(function(userId) {
+    var userId = $rootScope.currentUser.uid,
+        projectId = $rootScope.currentUser.pid;
 
-        $scope.user = User.find(userId);
+    $scope.user = User.find(userId);
 
-        $scope.update = function() {
-            User.update(userId, $scope.user);
-        };
-    });
+    $scope.update = function() {
+        User.update(userId, $scope.user);
+    };
 });

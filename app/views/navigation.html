@@ -3,10 +3,10 @@
     <span ng-click="update()" ng-model="project.name">{{project.name}}</span>
     <ul>
         <li class="pure-menu-selected"><a href="#">Overview</a></li>
-        <li><a href="#/project">Project</a></li>
-        <li><a href="#/sprint">Sprint</a></li>
-        <li><a href="#/task">Task</a></li>
-        <li><a href="#/document">Document</a></li>
+        <li><a href="#/project">Plan Project</a></li>
+        <li><a href="#/sprint">Plan Sprint</a></li>
+        <li><a href="#/task">My Task</a></li>
+        <li><a href="#/document">Documents</a></li>
         <li><a ng-href="#/profile"><img class="userimage" ng-src="http://www.gravatar.com/avatar/{{user.md5Hash}}" > {{user.username}}</a></li>
         <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
     </ul>
