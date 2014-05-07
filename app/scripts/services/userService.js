@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task, Sprint) {
+.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task, Sprint, Notify, $location) {
     'use strict';
     var ref = new Firebase(FBURL + '/users'),
         users = $firebase(ref),
@@ -16,7 +16,8 @@ angular.module('projiApp')
                 };
 
                 users.$save(fbUser.uid).then(function() {
-                    User.setCurrentUser(fbUser.uid);
+                    User.setCurrentUser(fbUser);
+                    Notify.success('User created');
                 });
             },
             find: function(userId) {
@@ -89,16 +90,23 @@ angular.module('projiApp')
             setCurrentProject: function(userId, projectId) {
                 $rootScope.currentUser.pid = projectId;
                 localStorage.pid = projectId;
+                $rootScope.currentUser.sid = undefined;
+                localStorage.removeItem('sid');
+
                 $rootScope.$broadcast('projectChange');
-                return users.$child(userId).$child('projectId').$set(projectId);
+
+                users.$child(userId).$child('projectId').$set(projectId).then(function() {
+                    Notify.success('Project activated');
+                    $location.path('/overview');
+                });
             },
             setCurrentUser: function(fbUser) {
                 $rootScope.currentUser = {
                     email: fbUser.email,
                     uid: fbUser.uid,
                     md5Hash: fbUser.md5_hash,
-                    pid: localStorage.pid || null,
-                    sid: localStorage.sid || null
+                    pid: localStorage.pid || undefined,
+                    sid: localStorage.sid || undefined
                 };
 
                 User.getProjectId(fbUser.uid).then(function(pid) {

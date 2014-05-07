@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.controller('ProjectSetController', function($scope, User, Project, $location) {
+.controller('ProjectSetController', function($scope, User, Project) {
     'use strict';
     User.getUserId().then(function(userId) {
         //------
@@ -12,12 +12,10 @@ angular.module('projiApp')
 
         $scope.createProject = function() {
             Project.create(userId, $scope.newProject);
-            // $location.path('/project/');
         };
 
         $scope.setCurrentProject = function(projectId) {
             User.setCurrentProject(userId, projectId);
-            $location.path('/project');
         };
     });
 });

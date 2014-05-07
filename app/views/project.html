@@ -33,15 +33,22 @@
 		</div>
 		<div>
 			<h2>My projects</h2>
-			<ul>
-				<li ng-repeat="project in projects"><a href="#/project/{{project.$id}}">{{project.name}} - {{project.description}}</a> - <button class="pure-button pure-button-primary" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)">Activate</button> - <button class="pure-button button-warning" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)">X</button></li>
-			</ul>
+			<table class="pure-table pure-table-horizontal">
+				<tr ng-repeat="project in projects">
+					<td><b>{{project.name}}: </b>{{project.description}}</td>
+					<td><button class="pure-button pure-button-primary" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)">Activate</button></td>
+					<td><button class="pure-button button-warning" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)">X</button></td>
+				</tr>
+			</table>
 		</div>
 		<div>
 			<h2>Users</h2>
-			<ul>
-				<li ng-repeat="(userId, user) in users"><span>{{user}}</span> - <button class="pure-button button-warning" ng-click="removeUser(userId)">Remove</button></li>
-			</ul>
+			<table class="pure-table pure-table-horizontal">
+				<tr ng-repeat="(userId, user) in users">
+					<td>{{user}}</td>
+					<td><button class="pure-button button-warning" ng-click="removeUser(userId)">Remove</button></td>
+				</tr>
+			</table>
 			<div class="pure-control-group">
 				<form name="inviteUserForm" ng-submit="inviteUser()">
 					<label for="addUser">Add user</label>

@@ -9,6 +9,7 @@ angular.module('projiApp')
                 return tasks.$child(projectId);
             },
             create: function(projectId, task) {
+                task.status = 'Not Started';
                 return tasks.$child(projectId).$add(task);
             },
             delete: function(projectId, taskId) {

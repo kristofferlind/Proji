@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('Project', function($firebase, FBURL, User, $rootScope, $q, $timeout) {
+.factory('Project', function($firebase, FBURL, User, $rootScope, $q, $timeout, Notify) {
     'use strict';
     var ref = new Firebase(FBURL + '/projects'),
         ref2 = new Firebase(FBURL + '/users'),
@@ -42,11 +42,14 @@ angular.module('projiApp')
                         if (user.child('email').val() === email) {
                             userId = user.name();
                             User.addProject(projectId, userId);
-                            projects.$child('users').$add(userId);
+                            // projects.$child(projectId).$child('users').$add(userId);
+                            projects.$child(projectId).$child('users').$child(userId).$set(email).then(function() {
+                                Notify.success('User added');
+                            });
                         }
                     });
                     if (userId === undefined) {
-                        console.log('user does not exist, invite?');
+                        Notify.error('User doesn\'t exist');
                     }
                 });
 
@@ -77,9 +80,12 @@ angular.module('projiApp')
                 projects.$add(project).then(function(data) {
                     var projectId = data.name();
 
-                    projects.$child(projectId).$child('users').$add(userId);
-                    User.addProject(projectId, userId);
-                    User.setCurrentProject(userId, projectId);
+                    projects.$child(projectId).$child('users').$add(userId).then(function() {
+                        Notify.success('Project created');
+                        User.addProject(projectId, userId);
+                        User.setCurrentProject(userId, projectId);
+                    });
+
                 });
             },
             delete: function(userId, projectId) {

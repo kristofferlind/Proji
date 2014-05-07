@@ -22,7 +22,8 @@ angular.module('projiApp')
                     d = $q.defer();
 
                 ref.child('/' + projectId).once('value', function(sprintSnapshot) {
-                    var sprintData = sprintSnapshot;
+                    var sprintData = sprintSnapshot,
+                        found = false;
 
                     sprintData.forEach(function(data) {
                         var start = new Date(data.child('start').val()),
@@ -37,9 +38,13 @@ angular.module('projiApp')
                         end = end.getTime();
 
                         if (now > start && now < end) {
+                            found = true;
                             d.resolve(data.name());
                         }
                     });
+                    if (!found) {
+                        d.reject('no matching sprint');
+                    }
                 });
                 return d.promise;
             },

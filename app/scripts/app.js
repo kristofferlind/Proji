@@ -16,48 +16,21 @@ angular.module('projiApp', [
 })
 
 .config(function($routeProvider) {
-    var getPid = function($q, $timeout, User, $rootScope, $firebaseSimpleLogin, $location) {
-        var d = $q.defer(),
-            tries = 0,
-            isDone = function() {
-                if ($rootScope.currentUser && $rootScope.currentUser.pid) {
-                    $rootScope.$broadcast('resolved');
-                    d.resolve($rootScope.currentUser.pid);
-                } else {
-                    if (localStorage.pid) {
-                        d.resolve(localStorage.pid);
-                    } else {
-                        if (tries > 10) {
-                            $location.path('/project/set');
-                        } else {
-                            tries++;
-                            $timeout(isDone, 25);
-                        }
-                    }
-                }
-            };
-
-        isDone();
-
-        return d.promise;
-    }, getSid = function($rootScope, $q, $location, Sprint, $timeout) {
+    var getPid = ['$q', '$timeout', 'User', '$rootScope', '$location',
+        function($q, $timeout, User, $rootScope, $location) {
             var d = $q.defer(),
                 tries = 0,
                 isDone = function() {
-                    if ($rootScope.currentUser && $rootScope.currentUser.sid) {
-                        d.resolve($rootScope.currentUser.sid);
+                    if ($rootScope.currentUser && $rootScope.currentUser.pid) {
+                        $rootScope.$broadcast('resolved');
+                        d.resolve($rootScope.currentUser.pid);
                     } else {
-                        if ($rootScope.currentUser && $rootScope.currentUser.pid) {
-                            Sprint.getCurrent($rootScope.currentUser.pid).then(function(sid) {
-                                $rootScope.currentUser.sid = sid;
-                                localStorage.sid = sid;
-                                d.resolve(sid);
-                            });
+                        if (localStorage.pid) {
+                            d.resolve(localStorage.pid);
                         } else {
                             if (tries > 10) {
-                                $location.path('/project');
+                                $location.path('/project/set');
                             } else {
-                                console.log('try again');
                                 tries++;
                                 $timeout(isDone, 25);
                             }
@@ -68,7 +41,47 @@ angular.module('projiApp', [
             isDone();
 
             return d.promise;
-        };
+        }
+    ],
+        getSid = ['$rootScope', '$q', '$location', 'Sprint', '$timeout', 'Notify',
+            function($rootScope, $q, $location, Sprint, $timeout, Notify) {
+                var d = $q.defer(),
+                    tries = 0,
+                    isDone = function() {
+                        if ($rootScope.currentUser && $rootScope.currentUser.sid) {
+                            d.resolve($rootScope.currentUser.sid);
+                        } else {
+                            if ($rootScope.currentUser && $rootScope.currentUser.pid) {
+                                Sprint.getCurrent($rootScope.currentUser.pid).then(function(sid) {
+                                    if (sid) {
+                                        $rootScope.currentUser.sid = sid;
+                                        localStorage.sid = sid;
+                                        d.resolve(sid);
+                                    } else {
+                                        Notify.warning('There is no sprint for the current date.');
+                                        $location.path('/project');
+                                    }
+                                }, function() {
+                                    Notify.warning('There is no sprint for the current date.');
+                                    $location.path('/project');
+                                });
+                            } else {
+                                if (tries > 10) {
+                                    Notify.warning('There is no sprint for the current date.');
+                                    $location.path('/project');
+                                } else {
+                                    tries++;
+                                    $timeout(isDone, 25);
+                                }
+                            }
+                        }
+                    };
+
+                isDone();
+
+                return d.promise;
+            }
+        ];
 
     $routeProvider
         .when('/', {
@@ -143,33 +156,3 @@ angular.module('projiApp', [
             redirectTo: '/'
         });
 });
-
-
-
-
-//.when('/project/:projectId', {
-//This route and below are from prototyping, remove as they become deprecated
-//     authRequired: true,
-//     templateUrl: 'views/projectDetails.html',
-//     controller: 'ProjectDetailsController'
-// })
-// .when('/productbacklog', {
-//     authRequired: true,
-//     templateUrl: 'views/productbacklog.html',
-//     controller: 'ProductBacklogController'
-// })
-// .when('/ideas', {
-//     authRequired: true,
-//     templateUrl: 'views/ideas.html',
-//     controller: 'IdeaController'
-// })
-// .when('/idea/:ideaId', {
-//     authRequired: true,
-//     templateUrl: 'views/ideaDetails.html',
-//     controller: 'IdeaDetailsController'
-// })
-// .when('/chat', {
-//     authRequired: true,
-//     templateUrl: 'views/chat.html',
-//     controller: 'ChatController'
-// })
