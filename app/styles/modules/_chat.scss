@@ -1,13 +1,17 @@
 .chat-collapsed {
 	height: 100%;
+	margin-top: -7px;
 }
 .chat-uncollapsed {
 	width: 400px;
 	height: 100%;
+	background-color: #eee;
+	margin-top: -7px;
 }
 .chat {
 	display: absolute;
 	height: 100%;
+
 }
 .chat-messages {
 	clear: both;
@@ -15,12 +19,15 @@
 	padding-left: 0;
 	list-style-type: none;
 	overflow-y: auto;
+	color: #555;
 }
 .chat-send {
 	width: 400px;
 	height: 90px;
 	margin: 0;
 	padding: 0;
+	position: fixed;
+	bottom: 0;
 }
 
 .chat-message {

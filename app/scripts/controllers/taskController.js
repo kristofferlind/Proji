@@ -7,6 +7,7 @@ angular.module('projiApp')
 
     Sprint.getCurrent(projectId).then(function(sprintId) {
 
+        $scope.sbStatus = 'Not Started';
         $scope.sbTasks = Sprint.getSprintTasks(projectId, sprintId);
 
         $scope.currentTask = User.getTask(userId);

@@ -3,10 +3,7 @@ angular.module('projiApp')
 .controller('ChatController', function($scope, $rootScope, User, $firebase, FBURL) {
     'use strict';
 
-    $scope.sendMessage = function() {
-        $scope.messages.$add($scope.message);
-        $scope.message.text = '';
-    };
+
 
     var updateView = function() {
         if ($rootScope.currentUser && $rootScope.currentUser.pid) {
@@ -18,8 +15,16 @@ angular.module('projiApp')
                 username: $scope.user.username,
                 text: ''
             };
+            $scope.sendMessage = function($event) {
+                if ($event.keyCode === 13) {
+                    $event.preventDefault();
+                    $scope.messages.$add($scope.message);
+                    $scope.message.text = '';
+                }
+            };
         }
-    }, loggedIn = function() {
+    },
+        loggedIn = function() {
             $scope.loggedIn = true;
             updateView();
         }, loggedOut = function() {

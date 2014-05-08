@@ -18,6 +18,7 @@ angular.module('projiApp')
     $scope.newProject = {};
     $scope.addUser = {};
     $scope.createProject = false;
+    $scope.showEditProject = false;
 
     $scope.users = Project.getUsers(projectId);
 
@@ -51,7 +52,16 @@ angular.module('projiApp')
     $scope.editSprint = function(sprintId) {
         $scope.sprint = Sprint.find(projectId, sprintId);
         $scope.sprintId = sprintId;
-        $scope.viewEditSprint = true;
+        $scope.showEditSprint = true;
+    };
+
+    $scope.editProject = function(projectId) {
+        $scope.changeProject = Project.find(projectId);
+        $scope.showEditProject = true;
+    };
+
+    $scope.updateProject = function() {
+        Project.update($scope.editProject.$id, $scope.editProject);
     };
 
     $scope.updateSprint = function() {

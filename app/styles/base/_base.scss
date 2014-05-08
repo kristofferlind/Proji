@@ -37,6 +37,7 @@ body {
     padding: 0.3em;
 }
 
+
 @media (min-width: 48em) {
 
     /* We increase the body font size */
@@ -46,5 +47,11 @@ body {
     /* We want to give the content area some more padding */
     .content {
         padding: 1em;
+    }
+
+    .pure-u-1-3 {
+        box-sizing: border-box;
+        padding: 1em;
+        min-width: 350px;
     }
 }

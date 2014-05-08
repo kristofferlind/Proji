@@ -5,12 +5,12 @@
 	</div>
 	<div class="chat-uncollapsed" ng-hide="collapsed">
 		<div class="chat">
-			<ul class="chat-messages">
+			<ul class="chat-messages" scroll-bottom ng-model="messages">
 				<li class="chat-message" ng-repeat="message in messages"><img class="userimage" ng-src="http://www.gravatar.com/avatar/{{message.md5Hash}}"><b>{{message.username}}:</b> {{message.text}}</li>
 			</ul>
-			<form class="pure-form" ng-submit="sendMessage()">
+			<form class="pure-form">
 				<!-- <div class="pure-control-group"> -->
-					<input class="chat-send" type="text" ng-model="message.text">
+					<textarea class="chat-send" type="text" ng-model="message.text" ng-keyup="sendMessage($event)"></textarea>
 					<!-- <button type="submit" class="pure-button pure-button-primary">Send</button> -->
 				<!-- </div> -->
 			</form>

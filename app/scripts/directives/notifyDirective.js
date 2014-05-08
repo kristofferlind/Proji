@@ -13,7 +13,7 @@ angular.module('projiApp')
                 $scope.notifications.push(notification);
                 $timeout(function() {
                     $scope.deleteNotification(notification);
-                }, 1500);
+                }, 2500);
             };
 
             $scope.notifications = [];

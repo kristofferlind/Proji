@@ -1,30 +1,11 @@
 <h1>Documents</h1>
 <div class="pure-g-r">
-    <div class="pure-u-1-3">
-        <h2>Create document</h2>
-        <form role="form" class="pure-form pure-form-aligned" ng-submit="createDocument()">
-            <fieldset>
-                <div class="pure-control-group">
-                    <label for="name">Name</label>
-                    <input id="name" type="text" ng-model="document.name">
-                </div>
-                <div class="pure-control-group">
-                    <label for="description">Description</label>
-                    <input id="description" type="text" ng-model="document.description">
-                </div>
-                <div class="pure-controls">
-                    <button class="pure-button pure-button-primary" type="submit">Create</button>
-                </div>
-            </fieldset>
-        </form>
-        <div>
-            <h2>Templates</h2>
-            <p>List templates, add, remove, edit.</p>
-        </div>
-    </div>
     <div class="pure-u-2-3">
         <h2>Documents</h2>
-        <table class="pure-table pure-table-horizontal">
+        <ul class="list-toolbar">
+            <li><a ng-click="showAddDocument=true"><i class="fa fa-plus"></i> Add</a></li>
+        </ul>
+        <table class="pure-table pure-table-horizontal pure-u-1-1">
             <tr>
                 <th>Name</th>
                 <th>Description</th>
@@ -37,5 +18,34 @@
                 <td><a ng-click="deleteDocument(documentId)"><i class="fa fa-times"></i></a></td>
             </tr>
         </table>
+        <div modal show="showAddDocument">
+            <h2>Create document</h2>
+            <form role="form" class="pure-form pure-form-aligned" ng-submit="createDocument()">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" ng-model="document.name">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="description">Description</label>
+                        <input id="description" type="text" ng-model="document.description">
+                    </div>
+                    <div class="pure-controls">
+                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+                    </div>
+                </fieldset>
+            </form>            
+        </div>
+    </div>
+    <div class="pure-u-1-3">
+        <div>
+            <h2>Templates</h2>
+            <p>List templates, add, remove, edit.</p>
+        </div>
     </div>
 </div>
+
+
+
+
+

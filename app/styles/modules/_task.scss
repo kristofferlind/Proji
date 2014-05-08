@@ -1,7 +1,6 @@
 .task-item {
 	border: 1px solid black;
 	background-color: #eee;
-	width: 90%;
 	margin-top: -1px
 }
 
@@ -20,12 +19,12 @@
 }
 
 //status
-.task-item .not-started {
+.not-started {
 	background-color: #ffcccc;
 }
-.task-item .in-progress {
+.in-progress {
 	background-color: #ccccff;
 }
-.task-item .completed {
+.completed {
 	background-color: #ccffcc;
 }

@@ -1,6 +1,12 @@
 <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" ng-controller="NavigationController">
     <a class="pure-menu-heading" href="">Proji</a>
-    <span ng-click="update()" ng-model="project.name">{{project.name}}</span>
+    <span ng-click="showDetails=!showDetails" ng-model="project.name">{{project.name}}</span>
+        <div class="project-details-drop" ng-show="showDetails">
+            <h2>{{project.name}}</h2>
+            <p><b>Description:</b> {{project.description}}</p>
+            <p><b>Sprint:</b> {{sprint.name + ' (' + sprint.start + ' - ' + sprint.end + ')'}}</p>
+            <p><b>Sprint goal:</b> {{sprint.goal}}</p>
+        </div>
     <ul>
         <li class="pure-menu-selected"><a href="#">Overview</a></li>
         <li><a href="#/project">Plan Project</a></li>
