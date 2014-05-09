@@ -9,3 +9,5 @@ Product backlog är uppdelad i olika blad baserat på kategori.
 
 Funderingar.md kommer innehålla idéer och liknande, gisningsvis kommer det att bli ett ganska rörigt dokument. Det kommer bara användas för att skriva ner tankar som dyker upp för att kunna släppa dem för stunden.
 Resterande dokument kommer troligen försvinna, det är dokumentationen från tidigare kurs.
+
+Jag har sedan start planerat lägga 300h istället för de tänkta 240h, därför jag planerat 30h/sprint.

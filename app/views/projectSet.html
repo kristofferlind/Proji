@@ -1,38 +1,65 @@
-<h1>No active project</h1>
-<div class="pure-g-r">
-	<div class="pure-u-1-3">
-		<p>It seems you have no active project, pick one from the list(if any) or create one to continue.</p>
-	</div>
-	<div class="pure-u-1-3">
-		<div>
-			<h2>Create project</h2>
-			<form role="form" class="pure-form pure-form-aligned" ng-submit="createProject()">
-				<fieldset>
-					<div class="pure-control-group">
-						<label for="name">Name</label>
-						<input id="name" type="text" ng-model="newProject.name">
-					</div>
-					<div class="pure-control-group">
-						<label for="description">Description</label>
-						<input id="description" type="text" ng-model="newProject.description">
-					</div>
-					<div class="pure-controls">
-						<button class="pure-button pure-button-primary" type="submit">Create</button>
-					</div>
-				</fieldset>
-			</form>
-			<br />
-			<div class="alert alert-danger" ng-show="err">
-				{{err}}
-			</div>
-		</div>
-	</div>
-	<div class="pure-u-1-3">
-		<div>
-			<h2>My projects</h2>
-			<ul>
-				<li ng-repeat="project in projects"><a href="#/project/{{project.$id}}">{{project.name + ' - ' + project.description}}</a> - <button class="pure-button" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)">Activate</button> - <button class="pure-button" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)">X</button></li>
-			</ul>
-		</div>
+<div class="backdrop">
+	<div class="box">
+		<h1>No Project</h1>
+        <p>It seems you have no active project, create/select one to continue.</p>
+
+        <h2>My projects</h2>
+        <ul class="list-toolbar">
+            <li><a ng-click="showAddProject=true"><i class="fa fa-plus"></i> Add</a></li>
+        </ul>
+        <table class="pure-table pure-table-horizontal">
+            <tr ng-repeat="project in projects">
+                <td><b>{{project.name}}: </b>{{project.description}}</td>
+                <td class="button-group-inline"><button class="pure-button button-success button-small" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)"><i class="fa fa-check"></i></button>
+                <button class="pure-button button-secondary button-small" ng-show="currentUser.pid !== project.$id" ng-click="editProject(project.$id)"><i class="fa fa-cog"></i></button>
+                <button class="pure-button button-small button-error" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)"><i class="fa fa-trash-o"></i></button></td>
+            </tr>
+        </table>
+        <div modal show="showAddProject">
+            <h2>Create project</h2>
+            <form role="form" name="createProjectForm" class="pure-form pure-form-aligned" ng-submit="makeProject()">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="name">Name</label>
+                        <input required id="name" type="text" ng-model="newProject.name">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="description">Description</label>
+                        <input required id="description" type="text" ng-model="newProject.description">
+                    </div>
+                    <div class="pure-controls">
+                        <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+                    </div>
+                </fieldset>
+            </form>
+
+            <br />
+            <div class="alert alert-danger" ng-show="err">
+                {{err}}
+            </div>
+        </div>
+        <div modal show="showEditProject">
+            <h2>Edit project</h2>
+            <form role="form" name="editProjectForm" class="pure-form pure-form-aligned" ng-submit="updateProject()">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="name">Name</label>
+                        <input required id="name" type="text" ng-model="changeProject.name">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="description">Description</label>
+                        <input required id="description" type="text" ng-model="changeProject.description">
+                    </div>
+                    <div class="pure-controls">
+                        <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+                    </div>
+                </fieldset>
+            </form>
+
+            <br />
+            <div class="alert alert-danger" ng-show="err">
+                {{err}}
+            </div>
+        </div>
 	</div>
 </div>

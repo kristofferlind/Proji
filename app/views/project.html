@@ -14,52 +14,52 @@
 		</div>
         <div modal show="showAddSprint">
             <h2>Create sprint</h2>
-            <form role="form" class="pure-form pure-form-aligned" ng-submit="createSprint()">
+            <form role="form" name="addSprintForm" class="pure-form pure-form-aligned" ng-submit="createSprint()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" ng-model="newSprint.name">
+                        <input required id="name" type="text" ng-model="newSprint.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Goal</label>
-                        <input id="description" type="text" ng-model="newSprint.goal">
+                        <input required id="description" type="text" ng-model="newSprint.goal">
                     </div>
                     <div class="pure-control-group">
                         <label for="start">Start</label>
-                        <input id="start" type="date" ng-model="newSprint.start">
+                        <input required id="start" type="date" ng-model="newSprint.start">
                     </div>
                     <div class="pure-control-group">
                         <label for="end">End</label>
-                        <input id="end" type="date" ng-model="newSprint.end">
+                        <input required id="end" type="date" ng-model="newSprint.end">
                     </div>
                     <div class="pure-controls">
-                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="addSprintForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>
         </div>
         <div modal show="showEditSprint">
             <h2>Edit sprint</h2>
-            <form role="form" class="pure-form pure-form-aligned" ng-submit="updateSprint()">
+            <form role="form" name="editSprintForm" class="pure-form pure-form-aligned" ng-submit="updateSprint()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" ng-model="sprint.name">
+                        <input required id="name" type="text" ng-model="sprint.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Goal</label>
-                        <input id="description" type="text" ng-model="sprint.goal">
+                        <input required id="description" type="text" ng-model="sprint.goal">
                     </div>
                     <div class="pure-control-group">
                         <label for="start">Start</label>
-                        <input id="start" type="date" ng-model="sprint.start">
+                        <input required id="start" type="date" ng-model="sprint.start">
                     </div>
                     <div class="pure-control-group">
                         <label for="end">End</label>
-                        <input id="end" type="date" ng-model="sprint.end">
+                        <input required id="end" type="date" ng-model="sprint.end">
                     </div>
                     <div class="pure-controls">
-                        <button class="pure-button pure-button-primary" type="submit">Update</button>
+                        <button ng-disabled="editSprintForm.$invalid" class="pure-button pure-button-primary" type="submit">Update</button>
                         <button class="pure-button" ng-click="hideEditSprint()">Cancel</button>
                     </div>
                 </fieldset>
@@ -76,14 +76,14 @@
                 <form name="inviteUserForm" ng-submit="inviteUser()">
                     <label for="addUser">Add user</label>
                     <input required id="addUser" type="email" ng-model="addUser.email" placeholder="email" />
-                    <button id="inviteUser" ng-disabled="!inviteUserForm.$valid" type="submit" class="pure-button pure-button-primary">Invite</button>
+                    <button id="inviteUser" ng-disabled="inviteUserForm.$invalid" type="submit" class="pure-button pure-button-primary">Invite</button>
                 </form>
             </div>
         </div>
         <table class="pure-table pure-table-horizontal user-list">
             <tr ng-repeat="(userId, user) in users">
                 <td>{{user}}</td>
-                <td><button class="pure-button button-error" ng-click="removeUser(userId)"><i class="fa fa-trash-o"></i></button></td>
+                <td><button class="pure-button button-error button-small" ng-click="removeUser(userId)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
         </table>
     </div>
@@ -95,25 +95,25 @@
         <table class="pure-table pure-table-horizontal">
             <tr ng-repeat="project in projects">
                 <td><b>{{project.name}}: </b>{{project.description}}</td>
-                <td><button class="pure-button button-success" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)"><i class="fa fa-check"></i></button></td>
-                <td><button class="pure-button button-secondary" ng-show="currentUser.pid !== project.$id" ng-click="editProject(project.$id)"><i class="fa fa-cog"></i></button></td>
-                <td><button class="pure-button button-small button-error" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)"><i class="fa fa-trash-o"></i></button></td>
+                <td class="button-group-inline"><button class="pure-button button-success button-small" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)"><i class="fa fa-check"></i></button>
+                <button class="pure-button button-secondary button-small" ng-show="currentUser.pid !== project.$id" ng-click="editProject(project.$id)"><i class="fa fa-cog"></i></button>
+                <button class="pure-button button-small button-error" ng-show="currentUser.pid !== project.$id" ng-click="deleteProject(project.$id)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
         </table>
         <div modal show="showAddProject">
             <h2>Create project</h2>
-            <form role="form" class="pure-form pure-form-aligned" ng-submit="makeProject()">
+            <form role="form" name="createProjectForm" class="pure-form pure-form-aligned" ng-submit="makeProject()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" ng-model="newProject.name">
+                        <input required id="name" type="text" ng-model="newProject.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input id="description" type="text" ng-model="newProject.description">
+                        <input required id="description" type="text" ng-model="newProject.description">
                     </div>
                     <div class="pure-controls">
-                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>
@@ -125,18 +125,18 @@
         </div>
         <div modal show="showEditProject">
             <h2>Edit project</h2>
-            <form role="form" class="pure-form pure-form-aligned" ng-submit="updateProject()">
+            <form role="form" name="editProjectForm" class="pure-form pure-form-aligned" ng-submit="updateProject()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" ng-model="changeProject.name">
+                        <input required id="name" type="text" ng-model="changeProject.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input id="description" type="text" ng-model="changeProject.description">
+                        <input required id="description" type="text" ng-model="changeProject.description">
                     </div>
                     <div class="pure-controls">
-                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>
@@ -145,11 +145,6 @@
             <div class="alert alert-danger" ng-show="err">
                 {{err}}
             </div>
-            <!-- <div class="editProject">
-                <h2 contenteditable ng-model="editProject.name"></h2>
-                <p contenteditable ng-model="editProject.description"></p>
-                <button class="pure-button pure-button-primary" ng-click="updateProject()">Save changes</button>
-            </div> -->
         </div>
     </div>
 </div>

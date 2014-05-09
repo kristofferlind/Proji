@@ -5,33 +5,33 @@
         <ul class="list-toolbar">
             <li><a ng-click="showAddDocument=true"><i class="fa fa-plus"></i> Add</a></li>
         </ul>
-        <table class="pure-table pure-table-horizontal pure-u-1-1">
+        <table class="pure-table pure-table-horizontal pure-u-1-1 document-list">
             <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th colspan="2">Edit</th>
+                <th>Edit</th>
             </tr>
             <tr ng-repeat="(documentId, document) in documents">
-                <td>{{document.name}}</td>
+                <td><a href="#/document/{{documentId}}">{{document.name}}</a></td>
                 <td>{{document.description}}</td>
-                <td><a href="#/document/{{documentId}}"><i class="fa fa-pencil"></i></a></td>
-                <td><a ng-click="deleteDocument(documentId)"><i class="fa fa-times"></i></a></td>
+                <td class="button-group-inline"><a href="#/document/{{documentId}}"><button class="pure-button button-small pure-button-primary"><i class="fa fa-pencil"></i></button></a>
+                <button class="pure-button button-small button-error" ng-click="deleteDocument(documentId)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
         </table>
         <div modal show="showAddDocument">
             <h2>Create document</h2>
-            <form role="form" class="pure-form pure-form-aligned" ng-submit="createDocument()">
+            <form role="form" name="createDocForm" class="pure-form pure-form-aligned" ng-submit="createDocument()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input id="name" type="text" ng-model="document.name">
+                        <input required id="name" type="text" ng-model="document.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input id="description" type="text" ng-model="document.description">
+                        <input required id="description" type="text" ng-model="document.description">
                     </div>
                     <div class="pure-controls">
-                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="createDocForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>            
@@ -44,8 +44,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-

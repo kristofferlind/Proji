@@ -9,22 +9,22 @@
 				</ul>
 		        <div modal show="showAddTask">
 		            <h2>Create task</h2>
-		            <form role="form" class="pure-form pure-form-aligned" ng-submit="createTask()">
+		            <form role="form" name="taskForm" class="pure-form pure-form-aligned" ng-submit="createTask()">
 		                <fieldset>
 		                    <div class="pure-control-group">
 		                        <label for="name">Name</label>
-		                        <input id="name" type="text" ng-model="newTask.name">
+		                        <input id="name" required type="text" ng-model="newTask.name">
 		                    </div>
 		                    <div class="pure-control-group">
 		                        <label for="description">Description</label>
-		                        <input id="description" type="text" ng-model="newTask.description">
+		                        <input id="description" required type="text" ng-model="newTask.description">
 		                    </div>
 		                    <div class="pure-control-group">
 		                        <label for="points">Points</label>
-		                        <input id="points" type="range" min="0" max="100" value="4" ng-model="newTask.points">
+		                        <input id="points" required type="range" min="0" max="100" value="4" ng-model="newTask.points">
 		                    </div>
 		                    <div class="pure-controls">
-		                        <button class="pure-button pure-button-primary" type="submit">Create</button>
+		                        <button ng-disabled="taskForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
 		                    </div>
 		                </fieldset>
 		            </form>
@@ -42,18 +42,18 @@
 		<div modal show="showAddIdea">
 			<div class="pure-u-1-2">
 				<h2>Add idea</h2>
-				<form role="form" class="pure-form pure-form-aligned" ng-submit="addIdea()">
+				<form role="form" name="ideaForm" class="pure-form pure-form-aligned" ng-submit="addIdea()">
 					<fieldset>
 						<div class="pure-control-group">
 							<label for="name">Name</label>
-							<input id="name" type="text" ng-model="newIdea.name">
+							<input id="name" required type="text" ng-model="newIdea.name">
 						</div>
 						<div class="pure-control-group">
 							<label for="description">Description</label>
-							<input id="description" type="text" ng-model="newIdea.description">
+							<input id="description" required type="text" ng-model="newIdea.description">
 						</div>
 						<div class="pure-controls">
-							<button class="pure-button pure-button-primary" type="submit">Add</button>
+							<button ng-disabled="ideaForm.$invalid" class="pure-button pure-button-primary" type="submit">Add</button>
 						</div>
 					</fieldset>
 				</form>

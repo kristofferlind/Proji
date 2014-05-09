@@ -25,3 +25,15 @@
 .button-secondary {
     background: rgb(66, 184, 221); /* this is a light blue */
 }
+
+button.not-started, button.in-progress, button.completed, button.status-all {
+	padding: 4px;	
+}
+
+.button-small {
+	padding: 4px;
+}
+
+.button-group-inline {
+	white-space: nowrap;
+}

@@ -1,7 +1,8 @@
 .task-item {
 	border: 1px solid black;
 	background-color: #eee;
-	margin-top: -1px
+	margin-top: -1px;
+	cursor: move;
 }
 
 .task-item-priority {
@@ -9,6 +10,7 @@
 	font-size: 2em;
 	color: #555;
 	line-height: 3em;
+	background-color: rgba(0,0,0,0.1)
 }
 
 .task-item-delete {
@@ -16,6 +18,15 @@
 	margin-right: 0.5em;
 	cursor: pointer;
 	z-index: 5;
+}
+
+.task-item-body {
+	padding: 4px;
+	box-sizing: border-box;
+}
+
+.task-item-body p {
+	margin: 0;
 }
 
 //status
@@ -27,4 +38,14 @@
 }
 .completed {
 	background-color: #ccffcc;
+}
+
+.not-started:hover {
+	background-color: #ffbbbb;
+}
+.in-progress:hover {
+	background-color: #bbbbff;
+}
+.completed:hover {
+	background-color: #bbffbb;
 }

@@ -6,6 +6,7 @@ angular.module('projiApp')
         projectId = $rootScope.currentUser.pid;
 
     $scope.pbTasks = Task.all(projectId);
+    $scope.pbStatus = 'Not Started';
 
 
     Sprint.getCurrent(projectId).then(function(sprintId) {

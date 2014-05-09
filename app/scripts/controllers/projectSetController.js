@@ -17,5 +17,19 @@ angular.module('projiApp')
         $scope.setCurrentProject = function(projectId) {
             User.setCurrentProject(userId, projectId);
         };
+
+        $scope.deleteProject = function(projectId) {
+            Project.delete(userId, projectId);
+        };
+
+        $scope.editProject = function(projectId) {
+            $scope.changeProject = Project.find(projectId);
+            $scope.showEditProject = true;
+        };
+
+        $scope.updateProject = function() {
+            Project.update($scope.editProject.$id, $scope.editProject);
+        };
+
     });
 });
