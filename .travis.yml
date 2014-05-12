@@ -4,5 +4,7 @@ node_js:
 before_script:
   - 'gem install compass'
   - 'npm install -g bower grunt-cli'
+  - 'npm install karma-jasmine'
+  - 'npm install karma-chrome-launcher'
   - 'bower install'
   - 'grunt build'
