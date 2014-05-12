@@ -34,7 +34,9 @@
         "karma-html-reporter": "^0.2.3",
         "karma-coverage": "^0.2.1",
         "protractor": "^0.22.0",
-        "grunt-protractor-runner": "^0.2.4"
+        "grunt-protractor-runner": "^0.2.4",
+        "phantomjs": "^1.9.7-5",
+        "karma-phantomjs-launcher": "^0.1.4"
     },
     "engines": {
         "node": ">=0.8.0"
