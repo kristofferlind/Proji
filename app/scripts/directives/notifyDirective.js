@@ -10,10 +10,11 @@ angular.module('projiApp')
         transclude: true,
         controller: function($scope, $timeout, $rootScope) {
             var addNotification = function(notification) {
+                var ttl = 1000 + notification.text.length * 45;
                 $scope.notifications.push(notification);
                 $timeout(function() {
                     $scope.deleteNotification(notification);
-                }, 2500);
+                }, ttl);
             };
 
             $scope.notifications = [];
@@ -26,7 +27,13 @@ angular.module('projiApp')
             };
 
             $rootScope.$on('NotificationMessage', function(event, notification) {
-                addNotification(notification);
+                if (!$scope.$$phase) {
+                    $scope.$apply(function() {
+                        addNotification(notification);
+                    });
+                } else {
+                    addNotification(notification);
+                }
             });
         },
     };

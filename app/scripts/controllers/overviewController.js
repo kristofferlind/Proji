@@ -9,6 +9,7 @@ angular.module('projiApp')
     $scope.project = Project.find(projectId);
     $scope.ideas = Idea.all(projectId);
     $scope.tasks = Task.all(projectId);
+    $scope.newTask = {};
 
     $scope.showAddIdea = false;
 
@@ -21,6 +22,12 @@ angular.module('projiApp')
     };
     $scope.voteDown = function(ideaId) {
         Idea.voteDown(projectId, ideaId, userId);
+    };
+
+    $scope.createTask = function() {
+        Task.create(projectId, $scope.newTask);
+        $scope.newTask = {};
+        $scope.showAddTask = false;
     };
 
 

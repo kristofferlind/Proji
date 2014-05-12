@@ -1,9 +1,12 @@
 angular.module('projiApp')
 
-.controller('ProjectSetController', function($scope, User, Project) {
+.controller('ProjectSetController', function($scope, $rootScope, User, Project) {
     'use strict';
     User.getUserId().then(function(userId) {
         //------
+
+        var email = $rootScope.currentUser.email;
+
         Project.all().then(function(data) {
             $scope.projects = data;
         });
@@ -11,7 +14,7 @@ angular.module('projiApp')
         $scope.newProject = {};
 
         $scope.createProject = function() {
-            Project.create(userId, $scope.newProject);
+            Project.create(userId, email, $scope.newProject);
         };
 
         $scope.setCurrentProject = function(projectId) {

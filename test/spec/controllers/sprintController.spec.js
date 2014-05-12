@@ -6,16 +6,6 @@ describe('Controller: SprintController', function() {
     });
 
     var SprintController, scope, q, d,
-        User = {
-            getUserId: function() {
-                d = q.defer();
-                return d.promise;
-            },
-            getProjectId: function() {
-                d = q.defer();
-                return d.promise;
-            }
-        },
         Sprint = {
             all: jasmine.createSpy('all'),
             create: jasmine.createSpy('create'),
@@ -34,25 +24,24 @@ describe('Controller: SprintController', function() {
             all: jasmine.createSpy('all'),
             update: jasmine.createSpy('update'),
             create: jasmine.createSpy('create'),
-            delete: jasmine.createSpy('delete')
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projectId');
-            scope.$digest();
-            // d.resolve('sprintId');
-            // scope.$digest();
+            delete: jasmine.createSpy('delete'),
+            find: jasmine.createSpy('find')
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username',
+            sid: 'sprintId'
+        };
         SprintController = $controller('SprintController', {
             $scope: scope,
             Sprint: Sprint,
-            User: User,
             Task: Task
         });
     }));
@@ -61,28 +50,20 @@ describe('Controller: SprintController', function() {
         expect(SprintController).toBeDefined();
     });
 
-    // beforeEach(function() {
-    //     resolver();
-    // });
-
     it('should call Task.all to populate $scope.pbTasks', function() {
-        resolver();
         expect(Task.all).toHaveBeenCalled();
     });
 
     it('should call Sprint.getSprintTasks to populate $scope.sbTasks', function() {
-        resolver();
-        d.resolve('sprintId');
-        scope.$digest();
         expect(Sprint.getSprintTasks).toHaveBeenCalled();
     });
 
     describe('$scope.toSprintBacklog(taskId, task)', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
-            scope.toSprintBacklog();
+            var task = {
+                points: 15
+            };
+            scope.toSprintBacklog('taskId', task);
         });
 
         it('should call Sprint.addTask', function() {
@@ -92,9 +73,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.fromSprintBacklog(taskId)', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.fromSprintBacklog();
         });
 
@@ -105,9 +83,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.showEditTask(taskId, task)', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.showEditTask('taskId', 'task');
         });
 
@@ -116,7 +91,7 @@ describe('Controller: SprintController', function() {
         });
 
         it('should set scope.task', function() {
-            expect(scope.task).toBe('task');
+            expect(Task.find).toHaveBeenCalled();
         });
 
         it('should set scope.taskId', function() {
@@ -126,9 +101,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.cancelEditTask()', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.cancelEditTask();
         });
 
@@ -139,9 +111,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.createTask()', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.createTask();
         });
 
@@ -152,9 +121,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.updateTask()', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.updateTask();
         });
 
@@ -165,9 +131,6 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.deleteTask(taskId)', function() {
         beforeEach(function() {
-            resolver();
-            d.resolve('sprintId');
-            scope.$digest();
             scope.deleteTask('taskId');
         });
 

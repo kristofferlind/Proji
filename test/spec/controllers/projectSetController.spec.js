@@ -19,26 +19,27 @@ describe('Controller: ProjectSetController', function() {
                 return d.promise;
             },
             create: jasmine.createSpy('create')
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projects');
-            scope.$digest();
-            // d.resolve('sprintId');
-            // scope.$digest();
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q, $location) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username',
+            email: 'email'
+        };
         ProjectSetController = $controller('ProjectSetController', {
             $scope: scope,
             Project: Project,
             User: User,
             location: $location
         });
+        d.resolve('userId');
+        scope.$digest();
     }));
 
     it('should be defined', function() {
@@ -46,18 +47,17 @@ describe('Controller: ProjectSetController', function() {
     });
 
     describe('$scope.projects', function() {
-        beforeEach(function() {
-            resolver();
-        });
+        beforeEach(function() {});
 
         it('should be populated by projects', function() {
+            d.resolve('projects');
+            scope.$digest();
             expect(scope.projects).toBe('projects');
         });
     });
 
     describe('$scope.createProject', function() {
         beforeEach(function() {
-            resolver();
             scope.newProject = {};
             scope.createProject();
         });
@@ -67,13 +67,12 @@ describe('Controller: ProjectSetController', function() {
         });
 
         it('..with userId, {}', function() {
-            expect(Project.create).toHaveBeenCalledWith('userId', {});
+            expect(Project.create).toHaveBeenCalledWith('userId', 'email', {});
         });
     });
 
     describe('$scope.setCurrentProject', function() {
         beforeEach(function() {
-            resolver();
             scope.setCurrentProject('projectId');
         });
 
@@ -84,7 +83,5 @@ describe('Controller: ProjectSetController', function() {
         it('..with userId, projectId', function() {
             expect(User.setCurrentProject).toHaveBeenCalledWith('userId', 'projectId');
         });
-
     });
-
 });

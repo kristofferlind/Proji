@@ -76,11 +76,11 @@ angular.module('projiApp')
 
                 return d.promise;
             },
-            create: function(userId, project) {
+            create: function(userId, email, project) {
                 projects.$add(project).then(function(data) {
                     var projectId = data.name();
 
-                    projects.$child(projectId).$child('users').$add(userId).then(function() {
+                    projects.$child(projectId).$child('users').$child(userId).$set(email).then(function() {
                         Notify.success('Project created');
                         User.addProject(projectId, userId);
                         User.setCurrentProject(userId, projectId);

@@ -89,7 +89,14 @@ angular.module('projiApp', [
             templateUrl: 'views/overview.html',
             controller: 'OverviewController',
             resolve: {
-                pid: getPid
+                pid: getPid,
+                // slow: function($q, $timeout) {
+                //     var d = $q.defer();
+                //     $timeout(function() {
+                //         d.resolve();
+                //     }, 5000);
+                //     return d.promise;
+                // }
             }
         })
         .when('/login', {

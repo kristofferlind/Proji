@@ -20,23 +20,24 @@ describe('Controller: DocumentController', function() {
             all: jasmine.createSpy('all'),
             create: jasmine.createSpy('create'),
             delete: jasmine.createSpy('delete')
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projectId');
-            scope.$digest();
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         DocumentController = $controller('DocumentController', {
             $scope: scope,
             User: User,
             Document: Document
         });
+
     }));
 
     it('should be defined', function() {
@@ -44,9 +45,7 @@ describe('Controller: DocumentController', function() {
     });
 
     describe('$scope.documents', function() {
-        beforeEach(function() {
-            resolver();
-        });
+        beforeEach(function() {});
 
         it('should call Document.all', function() {
             expect(Document.all).toHaveBeenCalled();
@@ -58,9 +57,7 @@ describe('Controller: DocumentController', function() {
     });
 
     describe('$scope.document', function() {
-        beforeEach(function() {
-            resolver();
-        });
+        beforeEach(function() {});
 
         it('should be defined', function() {
             expect(scope.document).toBeDefined();
@@ -73,7 +70,6 @@ describe('Controller: DocumentController', function() {
 
     describe('$scope.createDocument', function() {
         beforeEach(function() {
-            resolver();
             scope.createDocument();
         });
 
@@ -88,7 +84,6 @@ describe('Controller: DocumentController', function() {
 
     describe('$scope.deleteDocument', function() {
         beforeEach(function() {
-            resolver();
             scope.deleteDocument('documentId');
         });
 

@@ -3,8 +3,6 @@ angular.module('projiApp')
 .controller('ChatController', function($scope, $rootScope, User, $firebase, FBURL) {
     'use strict';
 
-
-
     var updateView = function() {
         if ($rootScope.currentUser && $rootScope.currentUser.pid) {
             $scope.messages = $firebase(new Firebase(FBURL + '/chat/' + $rootScope.currentUser.pid + '/messages'));

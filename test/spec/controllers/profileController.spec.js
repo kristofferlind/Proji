@@ -13,16 +13,18 @@ describe('Controller: ProfileController', function() {
             },
             find: jasmine.createSpy('find'),
             update: jasmine.createSpy('update')
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         ProfileController = $controller('ProfileController', {
             $scope: scope,
             User: User
@@ -34,9 +36,7 @@ describe('Controller: ProfileController', function() {
     });
 
     describe('$scope.user', function() {
-        beforeEach(function() {
-            resolver();
-        });
+        beforeEach(function() {});
 
         it('should call User.find', function() {
             expect(User.find).toHaveBeenCalled();
@@ -49,7 +49,6 @@ describe('Controller: ProfileController', function() {
 
     describe('$scope.update', function() {
         beforeEach(function() {
-            resolver();
             scope.user = {};
             scope.update();
         });

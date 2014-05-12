@@ -28,18 +28,18 @@ describe('Controller: NavigationController', function() {
         },
         location = {
             path: jasmine.createSpy('location')
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projectId');
-            scope.$digest();
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         NavigationController = $controller('NavigationController', {
             $scope: scope,
             User: User,
@@ -55,7 +55,6 @@ describe('Controller: NavigationController', function() {
     describe('$scope.user', function() {
         beforeEach(function() {
             spyOn(User, 'find').and.callThrough();
-            resolver();
         });
 
         it('should call User.find', function() {
@@ -68,9 +67,7 @@ describe('Controller: NavigationController', function() {
     });
 
     describe('$scope.project', function() {
-        beforeEach(function() {
-            resolver();
-        });
+        beforeEach(function() {});
 
         it('should call User.find', function() {
             expect(Project.find).toHaveBeenCalled();
@@ -84,10 +81,6 @@ describe('Controller: NavigationController', function() {
     describe('In case of no projectId', function() {
         beforeEach(function() {
             // spyOn(location, 'path');
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve(false);
-            scope.$digest();
         });
 
         it('should redirect user', function() {

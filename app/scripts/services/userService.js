@@ -111,13 +111,11 @@ angular.module('projiApp')
 
                 User.getProjectId(fbUser.uid).then(function(pid) {
                     if (pid) {
-                        console.log('setCurrentUser pid: ' + pid);
                         $rootScope.currentUser.pid = pid;
                         localStorage.pid = pid;
 
                         Sprint.getCurrent(pid).then(function(sid) {
                             if (sid) {
-                                console.log('setCurrentUser sid: ' + sid);
                                 $rootScope.currentUser.sid = sid;
                                 localStorage.sid = sid;
                             }

@@ -51,9 +51,7 @@ describe('Controller: OverviewController', function() {
             projectId: 'id'
         },
         Project = {
-            find: function() {
-                return projectData;
-            }
+            find: jasmine.createSpy('find').and.returnValue(projectData)
         },
         Idea = {
             all: function() {
@@ -87,18 +85,18 @@ describe('Controller: OverviewController', function() {
                 return d.promise;
                 // return 'id';
             }
-        },
-        resolver = function() {
-            d.resolve(userData.userId);
-            scope.$digest();
-            d.resolve(userData.projectId);
-            scope.$digest();
         };
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         OverviewController = $controller('OverviewController', {
             $scope: scope,
             Project: Project,
@@ -114,28 +112,23 @@ describe('Controller: OverviewController', function() {
     });
 
     it('should request Project.find to populate scope.project', function() {
-        spyOn(Project, 'find');
-        resolver();
+        // spyOn(Project, 'find');
         expect(Project.find).toHaveBeenCalled();
     });
 
     it('should populate $scope.project with a project', function() {
-        resolver();
         expect(scope.project).toEqual(projectData);
     });
 
     it('should populate $scope.ideas with ideas', function() {
-        resolver();
         expect(scope.ideas).toBe(ideasData);
     });
 
     it('should populate $scope.tasks with tasks', function() {
-        resolver();
         expect(scope.tasks).toBe(tasksData);
     });
 
     it('should populate $scope.sprint with the current sprint', function() {
-        resolver();
         d.resolve(sprintData.id);
         scope.$digest();
         expect(scope.sprint).toBe(sprintData);
@@ -143,7 +136,6 @@ describe('Controller: OverviewController', function() {
 
     it('should call Idea.voteUp on voteUp', function() {
         spyOn(Idea, 'voteUp');
-        resolver();
         scope.voteUp();
         scope.$digest();
         expect(Idea.voteUp).toHaveBeenCalled();
@@ -151,7 +143,6 @@ describe('Controller: OverviewController', function() {
 
     it('should call Idea.voteDown on voteDown', function() {
         spyOn(Idea, 'voteDown');
-        resolver();
         scope.voteDown();
         scope.$digest();
         expect(Idea.voteDown).toHaveBeenCalled();

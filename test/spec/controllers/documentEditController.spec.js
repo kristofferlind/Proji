@@ -15,18 +15,18 @@ describe('Controller: DocumentEditController', function() {
                 d = q.defer();
                 return d.promise;
             }
-        },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projectId');
-            scope.$digest();
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         DocumentEditController = $controller('DocumentEditController', {
             $scope: scope,
             User: User

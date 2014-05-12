@@ -1,20 +1,12 @@
 'use strict';
 
-describe('Controller: ChatController', function() {
+ddescribe('Controller: ChatController', function() {
     beforeEach(function() {
         module('projiApp');
     });
 
-    var ChatController, scope, q, d,
+    var ChatController, scope, q,
         User = {
-            getUserId: function() {
-                d = q.defer();
-                return d.promise;
-            },
-            getProjectId: function() {
-                d = q.defer();
-                return d.promise;
-            },
             find: function(userId) {
                 return {
                     md5Hash: 'md5Hash',
@@ -23,20 +15,26 @@ describe('Controller: ChatController', function() {
                 };
             }
         },
-        resolver = function() {
-            d.resolve('userId');
-            scope.$digest();
-            d.resolve('projectId');
-            scope.$digest();
+        firebase = {
+            $add: function() {
+                return;
+            }
         };
 
 
     beforeEach(inject(function($controller, $rootScope, $q) {
         q = $q;
         scope = $rootScope.$new();
+        $rootScope.currentUser = {
+            pid: 'projectId',
+            uid: 'userId',
+            md5Hash: 'hash',
+            username: 'username'
+        };
         ChatController = $controller('ChatController', {
             $scope: scope,
-            User: User
+            User: User,
+            $firebase: firebase
         });
     }));
 
@@ -45,9 +43,10 @@ describe('Controller: ChatController', function() {
     });
 
     describe('$scope.user', function() {
-        beforeEach(function() {
+        beforeEach(function($rootScope) {
             spyOn(User, 'find').and.callThrough();
-            resolver();
+            $rootScope.$broadcast('resolved');
+            scope.$digest();
         });
 
         it('should call User.find', function() {
@@ -60,10 +59,13 @@ describe('Controller: ChatController', function() {
     });
 
     describe('$scope.sendMessage', function() {
-        beforeEach(function() {
-            resolver();
+        beforeEach(function($rootScope) {
+            $rootScope.$broadcast('resolved');
             scope.messages.$add = jasmine.createSpy('$add');
-            scope.sendMessage();
+            var fakeEvent = {
+                keyCode: 13
+            };
+            scope.sendMessage(fakeEvent);
         });
 
         it('should call $scope.messages.$add', function() {

@@ -5,6 +5,7 @@ angular.module('projiApp')
 
     var userId = $rootScope.currentUser.uid,
         projectId = $rootScope.currentUser.pid,
+        email = $rootScope.currentUser.email,
         fetchProjects = (function() {
             Project.all().then(function(data) {
                 $scope.projects = data;
@@ -13,7 +14,7 @@ angular.module('projiApp')
 
     $scope.project = Project.find(projectId);
     $scope.sprints = Sprint.all(projectId);
-    $scope.sprint = {};
+    $scope.editedSprint = {};
     $scope.newSprint = {};
     $scope.newProject = {};
     $scope.addUser = {};
@@ -31,8 +32,8 @@ angular.module('projiApp')
     };
 
     $scope.makeProject = function() {
-        Project.create(userId, $scope.newProject);
-        fetchProjects();
+        Project.create(userId, email, $scope.newProject);
+        // fetchProjects();
         $scope.createProject = false;
     };
 
@@ -50,22 +51,22 @@ angular.module('projiApp')
     };
 
     $scope.editSprint = function(sprintId) {
-        $scope.sprint = Sprint.find(projectId, sprintId);
+        $scope.editedSprint = Sprint.find(projectId, sprintId);
         $scope.sprintId = sprintId;
         $scope.showEditSprint = true;
     };
 
     $scope.editProject = function(projectId) {
-        $scope.changeProject = Project.find(projectId);
+        $scope.editedProject = Project.find(projectId);
         $scope.showEditProject = true;
     };
 
     $scope.updateProject = function() {
-        Project.update($scope.editProject.$id, $scope.editProject);
+        Project.update($scope.editedProject.$id, $scope.editedProject);
     };
 
     $scope.updateSprint = function() {
-        Sprint.update(projectId, $scope.sprintId, $scope.sprint);
+        Sprint.update(projectId, $scope.sprintId, $scope.editedSprint);
     };
 
     $scope.deleteSprint = function(sprintId) {

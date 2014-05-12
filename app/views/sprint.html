@@ -16,10 +16,10 @@
                 <i class="fa fa-asterisk"></i>
             </button>
         </p>
-        <div ng-repeat="(pbTaskId, pbTask) in pbTasks | toArray | orderBy: 'points':true | filter: pbFilter | filter: pbStatus">
+        <div ng-repeat="(pbTaskId, pbTask) in pbTasks | toArray | orderBy: 'priority':true | filter: pbFilter | filter: pbStatus">
             <div task-item ng-model="pbTask" drag drag-data="{{pbTask}}" drag-type="pb" drag-id="{{pbTask.Id}}" >
                 <a ng-click="showEditTask(pbTask.Id, pbTask)"><i class="fa fa-cog"></i></a>
-                <a ng-click="deleteTask(pbTask.Id)"><i class="fa fa-times"></i></a>
+                <a dialog-confirm dialog-message="Are you sure you want to remove this task?" on-confirm="deleteTask(pbTask.Id)"><i class="fa fa-times"></i></a>
             </div>
         </div>
 	</div>
@@ -39,7 +39,7 @@
                 <i class="fa fa-asterisk"></i>
             </button>
         </p>
-        <div ng-repeat="(sbTaskId, sbTask) in sbTasks | toArray | orderBy: 'points':true | filter: sbFilter | filter: sbStatus">
+        <div ng-repeat="(sbTaskId, sbTask) in sbTasks | toArray | orderBy: 'priority':true | filter: sbFilter | filter: sbStatus">
             <div task-item ng-model="sbTask" drag drag-data="{{sbTask}}" drag-type="sb" drag-id="{{sbTask.Id}}"></div>
         </div>
 	</div>
@@ -57,8 +57,16 @@
                         <input required id="description" type="text" ng-model="newTask.description">
                     </div>
                     <div class="pure-control-group">
+                        <label for="tags">Tags</label>
+                        <input id="tags" type="text" ng-model="newTask.tags">
+                    </div>
+                    <div class="pure-control-group">
                         <label for="points">Points</label>
-                        <input required id="points" type="range" min="0" max="100" value="4" ng-model="newTask.points">
+                        <input id="points" type="range" min="0" max="100" value="4" ng-model="newTask.points">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="points">Priority</label>
+                        <input id="points" type="range" min="0" max="100" value="4" ng-model="newTask.priority">
                     </div>
                     <div class="pure-controls">
                         <button ng-disabled="createTaskForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
@@ -72,16 +80,25 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="task.name">
+                        <input required id="name" type="text" ng-model="editedTask.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="task.description">
+                        <input required id="description" type="text" ng-model="editedTask.description">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="tags">Tags</label>
+                        <input id="tags" type="text" ng-model="editedtask.tags">
                     </div>
                     <div class="pure-control-group">
                         <label for="points">Points</label>
-                        <input required id="points" type="range" min="0" max="100" value="4" ng-model="task.points">
+                        <input id="points" type="range" min="0" max="100" value="4" ng-model="editedTask.points">
                     </div>
+                    <div class="pure-control-group">
+                        <label for="points">Priority</label>
+                        <input id="points" type="range" min="0" max="100" value="4" ng-model="editedTask.priority">
+                    </div>
+
                     <div class="pure-controls">
                         <button ng-disabled="editTaskForm.$invalid" class="pure-button pure-button-primary" type="submit">Update</button>
                         <button class="pure-button" ng-click="cancelEditTask()">Cancel</button>

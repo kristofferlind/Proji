@@ -15,7 +15,7 @@
                 <td><a href="#/document/{{documentId}}">{{document.name}}</a></td>
                 <td>{{document.description}}</td>
                 <td class="button-group-inline"><a href="#/document/{{documentId}}"><button class="pure-button button-small pure-button-primary"><i class="fa fa-pencil"></i></button></a>
-                <button class="pure-button button-small button-error" ng-click="deleteDocument(documentId)"><i class="fa fa-trash-o"></i></button></td>
+                <button class="pure-button button-small button-error" dialog-confirm dialog-message="Are you sure you want to delete this document?" on-confirm="deleteDocument(documentId)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
         </table>
         <div modal show="showAddDocument">
