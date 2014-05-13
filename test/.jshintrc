@@ -34,7 +34,8 @@
     "spyOn": false,
     "element": false,
     "by": false,
-    "$": false
+    "$": false,
+    "protractor": false
   }
 }
 

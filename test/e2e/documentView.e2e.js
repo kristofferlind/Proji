@@ -2,54 +2,40 @@
 
 describe('View: document', function() {
 
-    beforeEach(function() {
-        browser.ignoreSynchronization = true;
-        browser.get('#/document/');
-    });
+    var documentView = require('./documentView.pom.js'),
+        documentEditView = require('./documentEditView.pom.js');
 
-    afterEach(function() {
-        browser.ignoreSynchronization = false;
+    beforeEach(function() {
+        documentView.get();
     });
 
     describe('Feature: Create document', function() {
 
         it('should create a document on success', function() {
-            var nameInput = element(by.css('form input#name')),
-                descriptionInput = element(by.css('form input#description')),
-                createButton = element(by.css('form .pure-button-primary')),
-                lastRowName = element(by.css('table tr:last-child td:first-child')),
-                lastRowDescription = element(by.css('table tr:last-child td:nth-child(2)')),
-                testName = 'testName' + Math.floor(Math.random() * 1001),
-                testDescription = 'testDescription' + Math.floor(Math.random() * 1001);
-
-            nameInput.sendKeys(testName);
-            descriptionInput.sendKeys(testDescription);
-            createButton.click();
-
-            browser.sleep(500);
-
-            expect(lastRowName.getText()).toEqual(testName);
-            expect(lastRowDescription.getText()).toEqual(testDescription);
+            documentView.createDocument('testName', 'testDescription');
+            expect(documentView.lastDocumentName.getText()).toEqual('testName');
+            expect(documentView.lastDocumentDescription.getText()).toEqual('testDescription');
         });
     });
 
     describe('Feature: Templates', function() {
 
+        it('should contain a list of templates');
+
+        it('should create template on create');
+
+        it('should delete template on delete');
     });
 
     describe('Feature: Documents', function() {
 
         it('should remove document on clicking delete', function() {
-            element.all(by.repeater('(documentId, document) in documents')).then(function(documents) {
-                var deleteButton = documents[1].findElement(by.css('td:last-child a'));
+            documentView.deleteDocument();
 
-                deleteButton.click();
-
-                documents[1].getText().then(function() {
-                    expect('error').toEqual('stale element reference');
-                }, function(err) {
-                    expect(err.state).toEqual('stale element reference');
-                });
+            documentView.document2.getText().then(function() {
+                expect('error').toEqual('stale element reference');
+            }, function(err) {
+                expect(err.state).toEqual('stale element reference');
             });
         });
     });
@@ -57,46 +43,25 @@ describe('View: document', function() {
     describe('Feature: Edit document', function() {
 
         it('should view the edit view of document', function() {
-            element.all(by.repeater('(documentId, document) in documents')).then(function(documents) {
-                var editButton = documents[1].findElement(by.css('td:nth-child(3) a'));
-
-                editButton.click();
-                browser.sleep(3000);
-
-                var header = element(by.css('h1'));
-
-                expect(header.getText()).toEqual('Document');
-            });
+            documentView.editDocument();
+            expect(documentEditView.header.getText()).toEqual('Document');
         });
     });
 });
 
 describe('View: edit document', function() {
-
-    beforeEach(function() {
-        browser.ignoreSynchronization = true;
-    });
-
-    afterEach(function() {
-        browser.ignoreSynchronization = false;
-    });
+    var documentEditView = require('./documentEditView.pom.js');
 
     describe('Feature: Editing', function() {
 
-        it('should save edited text', function() {
-            var pad = element(by.css('#firepad textarea')),
-                testValue = 'testText' + Math.floor(Math.random() * 1001);
+        it('should edit text', function() {
+            documentEditView.editDocument('testText');
+            expect(documentEditView.textDocument.getText()).toEqual('testText');
+        });
 
-            browser.sleep(3000);
-
-            pad.clear();
-            pad.sendKeys(testValue);
-
-            browser.navigate().refresh();
-            browser.sleep(3000);
-
-            expect(pad.getText()).toEqual(testValue);
+        it('should save text', function() {
+            documentEditView.refresh();
+            expect(documentEditView.textDocument.getText()).toEqual('testText');
         });
     });
-
 });

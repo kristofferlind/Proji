@@ -11,7 +11,10 @@ describe('Service: User', function() {
         $provide.value('$firebaseSimpleLogin', authStub());
     }));
 
-    var User,
+    var User, localStorage, rootscope, q,
+        task = {
+            status: 'Not Started',
+        },
         customSpy = function(obj, method, fn) {
             obj[method] = fn;
             spyOn(obj, method).and.callThrough();
@@ -40,12 +43,17 @@ describe('Service: User', function() {
                 $remove: jasmine.createSpy('$remove'),
                 callbackVal: null,
                 $transaction: jasmine.createSpy('$transaction'),
-                $update: jasmine.createSpy('$update')
+                $update: jasmine.createSpy('$update'),
+                $set: function() {
+                    var d = q.defer();
+                    d.resolve(FirebaseStub.fns.callbackVal);
+                    return d.promise;
+                }
             };
 
-            customSpy(FirebaseStub.fns, '$set', function(value, cb) {
-                cb && cb(FirebaseStub.fns.callbackVal);
-            });
+            // customSpy(FirebaseStub.fns, '$set', function(value, cb) {
+            //     cb && cb(FirebaseStub.fns.callbackVal);
+            // });
 
             customSpy(FirebaseStub.fns, '$child', function() {
                 return FirebaseStub.fns;
@@ -56,9 +64,19 @@ describe('Service: User', function() {
 
 
     beforeEach(function() {
-        inject(function(_User_) {
+        inject(function(_User_, $rootScope, $q) {
+            q = $q;
             User = _User_;
             Firebase = firebaseStub();
+            localStorage = {
+                pid: jasmine.createSpy('pid').and.returnValue('projectId'),
+                sid: jasmine.createSpy('sid').and.returnValue('sprintId')
+            };
+            rootscope = $rootScope;
+            rootscope.currentUser = {
+                pid: jasmine.createSpy('pid').and.returnValue('projectId'),
+                sid: jasmine.createSpy('sid').and.returnValue('sprintId')
+            };
         });
     });
 
@@ -171,6 +189,10 @@ describe('Service: User', function() {
         });
 
         it('should make a db call', function() {
+            // $rootScope.currentUser = {
+            //     pid: 'projectId',
+            //     sid: 'sprintId'
+            // };
             User.setCurrentProject('userId', 'projectId');
             expect(Firebase.fns.$child().$child().$child().$child).toHaveBeenCalled();
         });
@@ -204,7 +226,7 @@ describe('Service: User', function() {
         });
 
         it('should make a db call', function() {
-            User.startTask('userId', 'taskId', 'task');
+            User.startTask('projectId', 'sprintId', 'userId', 'taskId', task);
             expect(Firebase.fns.$child().$child().$child().$child).toHaveBeenCalled();
         });
     });
@@ -228,7 +250,7 @@ describe('Service: User', function() {
         });
 
         it('should make a db call', function() {
-            User.stopTask('userId', 'taskId', 'task');
+            User.stopTask('projectId', 'sprintId', 'userId', 'taskId', task);
             expect(Firebase.fns.$child().$child().$child).toHaveBeenCalled();
         });
 
@@ -242,7 +264,7 @@ describe('Service: User', function() {
         });
 
         it('should make a db call', function() {
-            User.finnishTask('userId', 'taskId', 'task');
+            User.finnishTask('projectId', 'sprintId', 'userId', 'taskId', task);
             expect(Firebase.fns.$child().$child().$child).toHaveBeenCalled();
         });
 

@@ -2,23 +2,14 @@
 
 describe('View: chatPanel', function() {
 
-    beforeEach(function() {
-        browser.ignoreSynchronization = true;
-        browser.get('#');
-    });
+    var chatView = require('./chatView.pom.js');
 
-    afterEach(function() {
-        browser.ignoreSynchronization = false;
+    beforeEach(function() {
+        chatView.get();
     });
 
     it('should send a message on enter', function() {
-        var messageInput = element(by.css('.chat-send')),
-            lastMessage = element(by.css('.chat-message:last-child')),
-            testMessage = 'testMessage' + Math.floor(Math.random() * 1001);
-
-        messageInput.sendKeys(testMessage);
-        messageInput.sendKeys(protractor.Key.ENTER);
-
-        expect(lastMessage.getText()).toEqual('e2eUser: ' + testMessage);
+        chatView.sendMessage('testMessage');
+        expect(chatView.lastMessage.getText()).toEqual('e2eUser: testMessage');
     });
 });

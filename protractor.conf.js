@@ -5,11 +5,11 @@ exports.config = {
 
     specs: [
         'test/e2e/loginView.e2e.js',
-        'test/e2e/*.js'
+        'test/e2e/*.e2e.js'
     ],
 
     capabilities: {
-        'browserName': 'chrome' //firefox, chrome
+        'browserName': 'firefox' //firefox, chrome
     },
 
     baseUrl: 'http://127.0.0.1:9000/',

@@ -34,6 +34,32 @@ describe('Controller: TaskController', function() {
         });
     }));
 
+    // var $scope, $rootScope, $controller;
+
+    // beforeEach(inject(function($injector) {
+    //     $scope = $injector.get('$scope');
+    //     $rootScope = $injector.get('$rootScope');
+    //     q = $injector.get('$q');
+    //     $controller = $injector.get('$controller');
+
+    //     scope = $rootScope.$new();
+    //     $rootScope.currentUser = {
+    //         pid: 'projectId',
+    //         uid: 'userId',
+    //         md5Hash: 'hash',
+    //         username: 'username',
+    //         sid: 'sprintId'
+    //     };
+
+    //     TaskController = function() {
+    //         return $controller('TaskController', {
+    //             '$scope': scope,
+    //             'Sprint': Sprint,
+    //             'User': User
+    //         });
+    //     };
+    // }));
+
     it('should be defined', function() {
         expect(TaskController).toBeDefined();
     });

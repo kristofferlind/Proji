@@ -1,6 +1,6 @@
 angular.module('projiApp')
 
-.factory('Sprint', function($firebase, FBURL, $q) {
+.factory('Sprint', function($firebase, FBURL, $q, Notify) {
     'use strict';
     var ref = new Firebase(FBURL + '/sprints'),
         sprints = $firebase(ref),
@@ -52,7 +52,11 @@ angular.module('projiApp')
                 return sprints.$child(projectId).$child(sprintId).$set(sprint);
             },
             addTask: function(projectId, sprintId, taskId, task) {
-                return sprints.$child(projectId).$child(sprintId).$child('tasks').$child(taskId).$set(task);
+                if (task.points) {
+                    return sprints.$child(projectId).$child(sprintId).$child('tasks').$child(taskId).$set(task);
+                } else {
+                    Notify.warning('Task needs to have points specified to be placed in sprint backlog.');
+                }
             },
             removeTask: function(projectId, sprintId, taskId) {
                 return sprints.$child(projectId).$child(sprintId).$child('tasks').$remove(taskId);

@@ -3,8 +3,7 @@ angular.module('projiApp')
 .controller('DocumentController', function(FBURL, User, $scope, Document, $rootScope) {
     'use strict';
 
-    var userId = $rootScope.currentUser.uid,
-        projectId = $rootScope.currentUser.pid;
+    var projectId = $rootScope.currentUser.pid;
 
     $scope.documents = Document.all(projectId);
     $scope.document = {};

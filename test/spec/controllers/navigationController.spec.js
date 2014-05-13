@@ -5,6 +5,12 @@ describe('Controller: NavigationController', function() {
         module('projiApp');
     });
 
+    beforeEach(module(function($provide) {
+        $provide.value('Firebase', firebaseStub());
+        $provide.value('$firebase', firebaseStub());
+        $provide.value('$firebaseSimpleLogin', authStub());
+    }));
+
     var NavigationController, scope, q, d,
         User = {
             getUserId: function() {
@@ -28,6 +34,45 @@ describe('Controller: NavigationController', function() {
         },
         location = {
             path: jasmine.createSpy('location')
+        },
+        customSpy = function(obj, method, fn) {
+            obj[method] = fn;
+            spyOn(obj, method).and.callThrough();
+        },
+        stub = function() {
+            var out = {};
+            angular.forEach(arguments, function(method) {
+                out[method] = jasmine.createSpy();
+            });
+            return out;
+        },
+        authStub = function() {
+            var AuthStub = function() {
+                return AuthStub.fns;
+            };
+            AuthStub.fns = stub('$login', '$logout');
+            return AuthStub;
+        },
+        firebaseStub = function() {
+            var FirebaseStub = function() {
+                return FirebaseStub.fns;
+            };
+
+            FirebaseStub.fns = {
+                $add: jasmine.createSpy('$add'),
+                $remove: jasmine.createSpy('$remove'),
+                callbackVal: null
+            };
+
+            customSpy(FirebaseStub.fns, '$set', function(value, cb) {
+                cb && cb(FirebaseStub.fns.callbackVal);
+            });
+
+            customSpy(FirebaseStub.fns, '$child', function() {
+                return FirebaseStub.fns;
+            });
+
+            return FirebaseStub;
         };
 
 
@@ -55,6 +100,7 @@ describe('Controller: NavigationController', function() {
     describe('$scope.user', function() {
         beforeEach(function() {
             spyOn(User, 'find').and.callThrough();
+            scope.init();
         });
 
         it('should call User.find', function() {
@@ -75,20 +121,6 @@ describe('Controller: NavigationController', function() {
 
         it('..with userId', function() {
             expect(Project.find).toHaveBeenCalledWith('projectId');
-        });
-    });
-
-    describe('In case of no projectId', function() {
-        beforeEach(function() {
-            // spyOn(location, 'path');
-        });
-
-        it('should redirect user', function() {
-            expect(location.path).toHaveBeenCalled();
-        });
-
-        it('..to /project/set', function() {
-            expect(location.path).toHaveBeenCalledWith('/project/set');
         });
     });
 });

@@ -11,7 +11,7 @@ describe('Service: Idea', function() {
         $provide.value('$firebaseSimpleLogin', authStub());
     }));
 
-    var Idea,
+    var Idea, q,
         customSpy = function(obj, method, fn) {
             obj[method] = fn;
             spyOn(obj, method).and.callThrough();
@@ -39,7 +39,13 @@ describe('Service: Idea', function() {
                 $add: jasmine.createSpy('$add'),
                 $remove: jasmine.createSpy('$remove'),
                 callbackVal: null,
-                $transaction: jasmine.createSpy('$transaction')
+                $transaction: jasmine.createSpy('$transaction'),
+                $set: function() {
+                    var d = q.defer();
+                    d.resolve(FirebaseStub.fns.callbackVal);
+                    return d.promise;
+                },
+                userId: 'userId'
             };
 
             customSpy(FirebaseStub.fns, '$set', function(value, cb) {
@@ -55,9 +61,10 @@ describe('Service: Idea', function() {
 
 
     beforeEach(function() {
-        inject(function(_Idea_) {
+        inject(function(_Idea_, $q) {
             Idea = _Idea_;
             Firebase = firebaseStub();
+            q = $q;
         });
     });
 

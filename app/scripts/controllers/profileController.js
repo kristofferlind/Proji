@@ -2,8 +2,7 @@ angular.module('projiApp')
 
 .controller('ProfileController', function($scope, $rootScope, User) {
     'use strict';
-    var userId = $rootScope.currentUser.uid,
-        projectId = $rootScope.currentUser.pid;
+    var userId = $rootScope.currentUser.uid;
 
     $scope.user = User.find(userId);
 

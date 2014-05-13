@@ -1,3 +1,5 @@
+/* jshint unused:false */
+
 'use strict';
 
 angular.module('projiApp', [
@@ -26,6 +28,7 @@ angular.module('projiApp', [
                         d.resolve($rootScope.currentUser.pid);
                     } else {
                         if (localStorage.pid) {
+                            $rootScope.$broadcast('resolved');
                             d.resolve(localStorage.pid);
                         } else {
                             if (tries > 10) {

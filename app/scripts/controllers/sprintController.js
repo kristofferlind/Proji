@@ -1,9 +1,8 @@
 angular.module('projiApp')
 
-.controller('SprintController', function($scope, User, Sprint, Task, $rootScope, Notify) {
+.controller('SprintController', function($scope, Sprint, Task, $rootScope) {
     'use strict';
-    var userId = $rootScope.currentUser.uid,
-        projectId = $rootScope.currentUser.pid,
+    var projectId = $rootScope.currentUser.pid,
         sprintId = $rootScope.currentUser.sid;
 
     $scope.pbTasks = Task.all(projectId);
@@ -12,18 +11,14 @@ angular.module('projiApp')
     $scope.sbTasks = Sprint.getSprintTasks(projectId, sprintId);
 
     $scope.toSprintBacklog = function(taskId, task) {
-        if (task.points) {
-            Sprint.addTask(projectId, sprintId, taskId, task);
-        } else {
-            Notify.warning('Task needs to have points specified to be placed in sprint backlog.');
-        }
+        Sprint.addTask(projectId, sprintId, taskId, task);
     };
 
     $scope.fromSprintBacklog = function(taskId) {
         Sprint.removeTask(projectId, sprintId, taskId);
     };
 
-    $scope.showEditTask = function(taskId, task) {
+    $scope.showEditTask = function(taskId) {
         $scope.viewEditTask = true;
         $scope.editedTask = Task.find(projectId, taskId);
         $scope.taskId = taskId;

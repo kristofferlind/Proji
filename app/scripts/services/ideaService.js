@@ -49,7 +49,6 @@ angular.module('projiApp')
                                 }
                             });
                         });
-
                     };
 
                 if (!idea.$child('up').hasOwnProperty(userId)) {
@@ -75,7 +74,6 @@ angular.module('projiApp')
                                 }
                             });
                         });
-
                     };
 
                 if (!idea.$child('down').hasOwnProperty(userId)) {

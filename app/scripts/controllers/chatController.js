@@ -34,4 +34,8 @@ angular.module('projiApp')
     $rootScope.$on('$firebaseSimpleLogin:logout', loggedOut);
     $rootScope.$on('resolved', updateView);
     $rootScope.$on('projectChange', updateView);
+
+    $scope.init = function() {
+        updateView();
+    };
 });

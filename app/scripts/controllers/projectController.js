@@ -6,11 +6,13 @@ angular.module('projiApp')
     var userId = $rootScope.currentUser.uid,
         projectId = $rootScope.currentUser.pid,
         email = $rootScope.currentUser.email,
-        fetchProjects = (function() {
+        fetchProjects = function() {
             Project.all().then(function(data) {
                 $scope.projects = data;
             });
-        }());
+        };
+
+    fetchProjects();
 
     $scope.project = Project.find(projectId);
     $scope.sprints = Sprint.all(projectId);

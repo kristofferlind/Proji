@@ -1,3 +1,5 @@
+/* jshint undef:false, unused:false */
+
 angular.module('projiApp')
 
 .controller('DocumentEditController', function(FBURL, User, $scope, $routeParams, $rootScope) {
@@ -10,7 +12,7 @@ angular.module('projiApp')
     var firepadRef = new Firebase(FBURL + '/firepad/' + projectId + '/' + $routeParams.documentId);
 
     //// Create CodeMirror (with lineWrapping on).
-    var codeMirror = CodeMirror(document.getElementById('firepad'), {
+    var codeMirror = new CodeMirror(document.getElementById('firepad'), {
         lineWrapping: true
     });
 
@@ -20,7 +22,7 @@ angular.module('projiApp')
         richTextShortcuts: true
     });
 
-    var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'), document.getElementById('userlist'), userId, user.username);
+    var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'), document.getElementById('userlist'), userId, $rootScope.currentUser.username);
 
     //// Initialize contents.
     firepad.on('ready', function() {
