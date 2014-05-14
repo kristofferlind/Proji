@@ -87,6 +87,16 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            e2e: {
+                options: {
+                    port: 9000,
+                    base: [
+                        '.tmp',
+                        'test',
+                        '<%= yeoman.app %>'
+                    ]
+                }
+            },
             dist: {
                 options: {
                     base: '<%= yeoman.dist %>'
@@ -398,7 +408,9 @@ module.exports = function(grunt) {
         'concurrent:test',
         'autoprefixer',
         'connect:test',
-        'karma'
+        'karma',
+        'connect:e2e',
+        'protractor:run'
     ]);
 
     grunt.registerTask('e2e', [

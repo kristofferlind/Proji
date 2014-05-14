@@ -45,7 +45,6 @@
         "node": ">=0.8.0"
     },
     "scripts": {
-        "test": "grunt test",
-        "e2e": "grunt e2e"
+        "test": "grunt test"
     }
 }
