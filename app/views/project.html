@@ -1,4 +1,4 @@
-<h1>Project</h1>
+<h1>Plan Project</h1>
 <div class="pure-g-r">
 	<div class="pure-u-1-3">
 		<h2>Sprints</h2>
@@ -95,7 +95,7 @@
         </ul>
         <table class="pure-table pure-table-horizontal">
             <tr ng-repeat="project in projects">
-                <td><b>{{project.name}}: </b>{{project.description}}</td>
+                <td><b>{{project.name}}</b>: {{project.description}}</td>
                 <td class="button-group-inline"><button class="pure-button button-success button-small" ng-show="currentUser.pid !== project.$id" ng-click="setCurrentProject(project.$id)"><i class="fa fa-check"></i></button>
                 <button class="pure-button button-secondary button-small" ng-show="currentUser.pid !== project.$id" ng-click="editProject(project.$id)"><i class="fa fa-cog"></i></button>
                 <button class="pure-button button-small button-error" ng-show="currentUser.pid !== project.$id" dialog-confirm dialog-message="Are you sure you want to delete this project and all it's data?" on-confirm="deleteProject(project.$id)"><i class="fa fa-trash-o"></i></button></td>

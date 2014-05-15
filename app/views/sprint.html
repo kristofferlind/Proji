@@ -1,4 +1,4 @@
-<h1>Sprint</h1>
+<h1>Plan Sprint</h1>
 <div class="pure-g-r">
 	<div drop drop-type="sb" on-drop="fromSprintBacklog($itemId, $item)" class="pure-u-1-3 productbacklog">
         <h2>Product backlog</h2>
@@ -46,6 +46,7 @@
 	<div class="pure-u-1-3">
         <div ng-hide="viewEditTask">
             <h2>Create task</h2>
+            <p>Put another task in product backlog.</p>
             <form role="form" name="createTaskForm" class="pure-form pure-form-aligned" ng-submit="createTask()">
                 <fieldset>
                     <div class="pure-control-group">
@@ -76,7 +77,8 @@
         </div>
         <div ng-show="viewEditTask">
             <h2>Edit task</h2>
-                        <form role="form" name="editTaskForm" class="pure-form pure-form-aligned" ng-submit="updateTask()">
+            <p>Values for points/priority are intentionally left out.</p>
+            <form role="form" name="editTaskForm" class="pure-form pure-form-aligned" ng-submit="updateTask()">
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
