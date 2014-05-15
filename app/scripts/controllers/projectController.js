@@ -27,6 +27,7 @@ angular.module('projiApp')
 
     $scope.inviteUser = function() {
         Project.addUser(projectId, $scope.addUser.email);
+        $scope.showAddUser = false;
     };
 
     $scope.removeUser = function(userId) {
@@ -37,6 +38,7 @@ angular.module('projiApp')
         Project.create(userId, email, $scope.newProject);
         // fetchProjects();
         $scope.createProject = false;
+        $scope.showAddProject = false;
     };
 
     $scope.setCurrentProject = function(projectId) {
@@ -65,10 +67,13 @@ angular.module('projiApp')
 
     $scope.updateProject = function() {
         Project.update($scope.editedProject.$id, $scope.editedProject);
+        $scope.showEditProject = false;
+        $scope.showAddSprint = false;
     };
 
     $scope.updateSprint = function() {
         Sprint.update(projectId, $scope.sprintId, $scope.editedSprint);
+        $scope.showEditSprint = false;
     };
 
     $scope.deleteSprint = function(sprintId) {

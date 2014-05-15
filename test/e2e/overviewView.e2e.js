@@ -8,7 +8,6 @@ describe('View: /overview', function() {
     //     overviewView.get();
     // });
 
-    overviewView.get();
 
     //TODO: put this in navtest
     // describe('Feature: Project info', function() {
@@ -29,6 +28,8 @@ describe('View: /overview', function() {
     describe('Feature: Tasks', function() {
 
         it('should show 5 tasks', function() {
+            overviewView.get();
+
             expect(overviewView.tasks.count()).toBe(5);
         });
 

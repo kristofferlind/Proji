@@ -2,8 +2,10 @@ var documentEditView = function() {
     'use strict';
 
     var documentEditView = {
+        textDocumentWrapper: element(by.css('.CodeMirror-wrap')),
         textDocument: element(by.css('#firepad textarea')),
         editDocument: function(text) {
+            documentEditView.textDocumentWrapper.click();
             documentEditView.textDocument.clear();
             browser.waitForAngular();
             documentEditView.textDocument.sendKeys(text);

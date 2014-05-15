@@ -8,10 +8,10 @@ exports.config = {
         // 'test/e2e/chatView.e2e.js',
         // 'test/e2e/documentView.e2e.js',
         // 'test/e2e/overviewView.e2e.js',
-        'test/e2e/projectView.e2e.js',
+        // 'test/e2e/projectView.e2e.js',
         // 'test/e2e/sprintView.e2e.js',
         // 'test/e2e/taskView.e2e.js',
-        // 'test/e2e/*.e2e.js'
+        'test/e2e/*.e2e.js'
     ],
 
     capabilities: {

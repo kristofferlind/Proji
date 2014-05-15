@@ -16,7 +16,12 @@ angular.module('projiApp')
             $scope.err = 'Please enter a password';
         } else {
             simpleLogin.loginPassword($scope.email, $scope.pass, function(err, user) {
-                $scope.err = err ? err + '' : null;
+                if (err) {
+                    $scope.err = err ? err + '' : null;
+                    if (err.message === 'FirebaseSimpleLogin: The specified password is incorrect.') {
+                        $scope.err = 'Password is incorrect';
+                    }
+                }
                 if (!err && cb) {
                     cb(user);
                 }
@@ -45,6 +50,9 @@ angular.module('projiApp')
             simpleLogin.createAccount($scope.email, $scope.pass, function(err, user) {
                 if (err) {
                     $scope.err = err ? err + '' : null;
+                    if (err.message === 'FirebaseSimpleLogin: The specified email address is already in use.') {
+                        $scope.err = 'Email address is already in use';
+                    }
                 } else {
                     // must be logged in before I can write to my profile
                     $scope.loginPassword(function() {

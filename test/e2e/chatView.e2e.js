@@ -10,6 +10,6 @@ describe('View: chatPanel', function() {
 
     it('should send a message on enter', function() {
         chatView.sendMessage('testMessage');
-        expect(chatView.lastMessage.getText()).toEqual('e2eUser: testMessage');
+        expect(chatView.messages.last().getText()).toEqual('e2eUser: testMessage');
     });
 });

@@ -11,24 +11,29 @@ var loginView = function() {
         loginView = {
             errorMessage: element(by.binding('err')),
             get: function() {
+                // browser.waitForAngular();
                 browser.get('#/login');
                 browser.waitForAngular();
             },
-            login: function(email, password) {
+            login: function(email, password, waitForResponse) {
                 emailInput.sendKeys(email);
                 passwordInput.sendKeys(password);
                 loginButton.click();
-                browser.sleep(5000); //wait for firebase :(
+                if (waitForResponse) {
+                    browser.sleep(5000); //wait for firebase :(
+                }
                 browser.waitForAngular();
             },
-            register: function(username, email, password, confirm) {
+            register: function(username, email, password, confirm, waitForResponse) {
                 registerButton.click();
                 usernameInput.sendKeys(username);
                 emailInput.sendKeys(email);
                 passwordInput.sendKeys(password);
                 confirmInput.sendKeys(confirm);
                 createButton.click();
-                browser.sleep(5000); //wait for firebase :(
+                if (waitForResponse) {
+                    browser.sleep(5000); //wait for firebase :(
+                }
                 browser.waitForAngular();
             }
         };

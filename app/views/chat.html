@@ -10,7 +10,7 @@
 			</ul>
 			<form class="pure-form">
 				<!-- <div class="pure-control-group"> -->
-					<textarea class="chat-send" type="text" ng-model="message.text" ng-keyup="sendMessage($event)"></textarea>
+					<textarea class="chat-send" type="text" ng-model="message.text" ng-keydown="sendMessage($event)"></textarea>
 					<!-- <button type="submit" class="pure-button pure-button-primary">Send</button> -->
 				<!-- </div> -->
 			</form>

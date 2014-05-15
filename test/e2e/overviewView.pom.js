@@ -33,9 +33,14 @@ var overviewView = function() {
         tasks: element.all(by.css('.task-item')),
         //Actions
         get: function() {
-            browser.get('#/');
-            sleep();
+            element(by.css('a[href="#/project"]')).click();
             browser.waitForAngular();
+            element(by.css('a[href="#/"]')).click();
+            browser.waitForAngular();
+
+            // browser.get('#/');
+            // sleep();
+            // browser.waitForAngular();
         },
         createIdea: function(name, description) {
             ideaAddButton.click();

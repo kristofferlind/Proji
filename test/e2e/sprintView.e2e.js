@@ -1,84 +1,46 @@
 'use strict';
 
 describe('View: /sprint', function() {
+    var sprintView = require('./sprintView.pom.js');
+
+    // browser.get('#/sprint');
+    // browser.sleep(2000);
 
     beforeEach(function() {
-        browser.ignoreSynchronization = true;
-        browser.get('#/sprint/');
+        sprintView.get();
     });
 
-    afterEach(function() {
-        browser.ignoreSynchronization = false;
-    });
+    describe('Feature: Tasks', function() {
 
-    describe('Feature: Product backlog', function() {
+        describe('Create task', function() {
 
-        it('should put task in sprint backlog on drag', function() {
-            var pbItem = element(by.css('.productbacklog div[task-item]')),
-                sbDrop = element(by.css('.sprintbacklog')),
-                sbItem = element(by.css('.sprintbacklog div[task-item] .task-item-body'));
-
-            browser.actions().dragAndDrop(pbItem, sbDrop).perform();
-
-            browser.sleep(1000);
-
-            expect(sbItem.getText()).toEqual('Task1 - Task1Description');
-        });
-
-        it('should be possible to create a task', function() {
-            var nameInput = element(by.model('newTask.name')),
-                descriptionInput = element(by.model('newTask.description')),
-                createButton = element(by.css('form[ng-submit="createTask()"] button.pure-button-primary'));
-
-            nameInput.sendKeys('testTask');
-            descriptionInput.sendKeys('testDescription');
-            createButton.click();
-
-            browser.sleep(500);
-
-            element.all(by.css('div[task-item] .task-item-body')).then(function(tasks) {
-                expect(tasks[5].getText()).toEqual('testTask - testDescription');
+            it('should create task on success', function() {
+                sprintView.createTask('testName', 'testDescription', 'e2eTestTag', 1, 1);
+                expect(sprintView.pbTasks.last().getText()).toEqual('1\ntestName - testDescription');
             });
         });
 
-        it('should be possible to edit a task', function() {
-            element.all(by.css('div[task-item] .task-item-body')).then(function(tasks) {
-                var taskItem = tasks[5],
-                    cogButton = tasks[5].findElement(by.css('.task-item-delete a:first-child'));
+        describe('Edit task', function() {
 
-                cogButton.click();
-
-                var nameInput = element(by.model('task.name')),
-                    descriptionInput = element(by.model('task.description')),
-                    updateButton = element(by.css('form[ng-submit="updateTask()"] button:first-child'));
-
-                nameInput.sendKeys('1');
-                descriptionInput.sendKeys('1');
-
-                updateButton.click();
-
-                expect(taskItem.getText()).toEqual('testTask1 - testDescription1');
+            it('should update task on success', function() {
+                sprintView.editLastTask('testName2', 'testDescription2', 'e2eTestTag', 1, 1);
+                expect(sprintView.pbTasks.last().getText()).toEqual('1\ntestName2 - testDescription2');
             });
         });
+        describe('Delete task', function() {
 
-        it('should be possible to remove a task', function() {
-            element.all(by.css('div[task-item] .task-item-body')).then(function(tasks) {
-                var taskItem = tasks[5],
-                    deleteButton = tasks[5].findElement(by.css('.task-item-delete a:last-child'));
-
-                deleteButton.click();
-
-                taskItem.getText().then(function() {
-                    expect('error').toEqual('stale element reference');
-                }, function(err) {
-                    expect(err.state).toEqual('stale element reference');
-                });
+            it('should delete task on success', function() {
+                sprintView.deleteLastTask();
+                expect(sprintView.pbTasks.last().getText()).not.toEqual('1\ntestName2 - testDescription2');
             });
         });
     });
 
-    describe('Feature: Sprint backlog', function() {
+    //drag & drop testing is really buggy, skip testing this for now..
+    describe('Feature: Backlogs', function() {
 
-        it('should remove task from sprint backlog on drag to product backlog');
+        it('should put task in sprint backlog on drag from product to sprint backlog');
+
+        it('should put task in product backlog on drag from sprint to product backlog');
     });
 });

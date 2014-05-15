@@ -11,6 +11,7 @@ angular.module('projiApp')
     $scope.createDocument = function() {
         Document.create(projectId, $scope.document);
         $scope.document = {};
+        $scope.showAddDocument = false;
     };
 
     $scope.deleteDocument = function(documentId) {
