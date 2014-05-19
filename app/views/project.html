@@ -5,14 +5,22 @@
         <ul class="list-toolbar">
             <li><a ng-click="showAddSprint=true"><i class="fa fa-plus"></i> Add</a></li>
         </ul>
-		<div class="sprint-item" ng-repeat="(sprintId, sprint) in sprints">
+<!-- 		<div class="sprint-item" ng-repeat="(sprintId, sprint) in sprints">
 			<span class="sprint-item-close"><button class="pure-button button-secondary button-small" ng-click="editSprint(sprintId)"><i class="fa fa-cog"></i></button>
             <button class="pure-button button-error button-small" dialog-confirm dialog-message="Removing this sprint will make all it's data unavailable, are you sure this is what you want to do?" on-confirm="deleteSprint(sprintId)"><i class="fa fa-trash-o"></i></button></span>
 			<div>
 				<p><b>{{sprint.name}}</b> <span>({{sprint.start}} - {{sprint.end}})</span> <br />
 				<b>Goal:</b> <span>{{sprint.goal}}</span></p>
 			</div>
-		</div>
+		</div> -->
+        <div ng-repeat="(sprintId, sprint) in sprints">
+            <div sprint-item ng-model="sprint">
+                <button class="pure-button button-secondary button-small" ng-click="editSprint(sprintId)"><i class="fa fa-cog"></i></button>
+                <button class="pure-button button-error button-small" dialog-confirm dialog-message="Removing this sprint will make all it's data unavailable, are you sure this is what you want to do?" on-confirm="deleteSprint(sprintId)"><i class="fa fa-trash-o"></i></button>
+            </div>            
+        </div>
+
+
         <div modal show="showAddSprint">
             <h2>Create sprint</h2>
             <form role="form" name="addSprintForm" class="pure-form pure-form-aligned" ng-submit="createSprint()">
@@ -34,7 +42,7 @@
                         <input required id="end" type="date" ng-model="newSprint.end">
                     </div>
                     <div class="pure-controls">
-                        <button ng-disabled="addSprintForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="addSprintForm.$invalid" class="pure-u-1-1 pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>
@@ -60,7 +68,7 @@
                         <input required id="end" type="date" ng-model="editedSprint.end">
                     </div>
                     <div class="pure-controls">
-                        <button ng-disabled="editSprintForm.$invalid" class="pure-button pure-button-primary" type="submit">Update</button>
+                        <button ng-disabled="editSprintForm.$invalid" class="pure-u-1-1 pure-button pure-button-primary" type="submit">Update</button>
                     </div>
                 </fieldset>
             </form>
@@ -72,11 +80,18 @@
             <li><a ng-click="showAddUser=true"><i class="fa fa-plus"></i> Add</a></li>
         </ul>
         <div modal show="showAddUser">
+            <h2>Invite user</h2>
             <div class="pure-control-group">
-                <form name="inviteUserForm" ng-submit="inviteUser()">
+                <form name="inviteUserForm" class="pure-form pure-form-aligned" ng-submit="inviteUser()">
+                <fieldset>
+                <div class="pure-control-group">
                     <label for="addUser">Add user</label>
                     <input required id="addUser" type="email" ng-model="addUser.email" placeholder="email" />
-                    <button id="inviteUser" ng-disabled="inviteUserForm.$invalid" type="submit" class="pure-button pure-button-primary">Invite</button>
+                    </div>
+                    <div class="pure-controls">
+                    <button id="inviteUser" ng-disabled="inviteUserForm.$invalid" type="submit" class="pure-u-1-1 pure-button pure-button-primary">Invite</button>
+                    </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -111,10 +126,10 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="newProject.description">
+                        <textarea required id="description" type="text" ng-model="newProject.description"></textarea>
                     </div>
                     <div class="pure-controls">
-                        <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+                        <button ng-disabled="createProjectForm.$invalid" class="pure-u-1-1 pure-button pure-button-primary" type="submit">Create</button>
                     </div>
                 </fieldset>
             </form>
@@ -134,10 +149,10 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="editedProject.description">
+                        <textarea required id="description" type="text" ng-model="editedProject.description"></textarea>
                     </div>
                     <div class="pure-controls">
-                        <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Update</button>
+                        <button ng-disabled="editProjectForm.$invalid" class="pure-u-1-1 pure-button pure-button-primary" type="submit">Update</button>
                     </div>
                 </fieldset>
             </form>

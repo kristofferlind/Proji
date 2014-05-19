@@ -52,6 +52,7 @@ angular.module('projiApp')
     $scope.createSprint = function() {
         Sprint.create(projectId, $scope.newSprint);
         $scope.newSprint = {};
+        $scope.showAddSprint = false;
     };
 
     $scope.editSprint = function(sprintId) {
@@ -68,7 +69,6 @@ angular.module('projiApp')
     $scope.updateProject = function() {
         Project.update($scope.editedProject.$id, $scope.editedProject);
         $scope.showEditProject = false;
-        $scope.showAddSprint = false;
     };
 
     $scope.updateSprint = function() {

@@ -1,5 +1,5 @@
 <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" ng-controller="NavigationController">
-    <a class="pure-menu-heading" href="">Proji</a>
+    <a class="pure-menu-heading" href="">Projise</a>
     <span ng-click="showDetails=!showDetails" ng-model="project.name">{{project.name}}</span>
         <div class="project-details-drop" ng-show="showDetails">
             <h2>{{project.name}}</h2>
@@ -7,6 +7,8 @@
             <p><b>Sprint:</b> {{sprint.name + ' (' + sprint.start + ' - ' + sprint.end + ')'}}</p>
             <p><b>Sprint goal:</b> {{sprint.goal}}</p>
         </div>
+    <label for="menu-button">&#9776; Menu</label>
+    <input id="menu-button" type="checkbox">
     <ul>
         <li><a link-active href="#/">Overview</a></li>
         <li><a link-active href="#/project">Plan Project</a></li>

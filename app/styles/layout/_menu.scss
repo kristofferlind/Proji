@@ -33,7 +33,32 @@
     color: #FFF;
 }
 
+.home-menu #menu-button, .home-menu label[for="menu-button"] {
+    display: none;
+}
 
+@media (max-width: 768px) {
+    .home-menu>span {
+        display: none;
+    }
+
+    .home-menu li {
+        display: none;
+    }
+
+    .home-menu label[for="menu-button"] {
+        display: inline-block;
+        text-align: rigth;
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    .home-menu #menu-button:checked + ul > li {
+        display: block;
+        width: 100%;
+    }
+
+}
 
 @media (min-width: 48em) {
 
@@ -42,6 +67,12 @@
     }
     .home-menu ul {
         float: right;
+    }
+
+    .pure-menu-heading {
+        background-image: url('../images/logosmall.png');
+        text-indent: -9999px;
+        width: 31px;
     }
 
 }

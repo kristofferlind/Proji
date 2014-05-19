@@ -3,7 +3,8 @@
     <div ng-show-auth="error,logout">
         <div class="login-backdrop">
             <div class="login">
-                <h1>Login</h1>
+                <h1 ng-hide="createMode">Login</h1>
+                <h1 ng-show="createMode">Register</h1>
                 <form role="form" class="pure-form pure-form-aligned">
                     <fielset>
                             <div class="pure-control-group" ng-show="createMode">

@@ -2,6 +2,7 @@
 	height: 100%;
 	margin-top: -7px;
 }
+
 .chat-uncollapsed {
 	width: 400px;
 	height: 100%;
@@ -15,11 +16,12 @@
 }
 .chat-messages {
 	clear: both;
-	max-height: calc(100% - 140px);
+	max-height: calc(100% - 83px);
 	padding-left: 0;
 	list-style-type: none;
 	overflow-y: auto;
 	color: #555;
+	margin-top: -7px;
 }
 .chat-send {
 	width: 400px;
@@ -36,4 +38,7 @@
 .chat-options {
 	float: right;
 	margin-right: 0.5em;
+	position: absolute;
+	right: 0;
+	top: 50px;
 }

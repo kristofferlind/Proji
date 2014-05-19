@@ -15,6 +15,7 @@
             <button class="pure-button status-all" ng-click="pbStatus=''">
                 <i class="fa fa-asterisk"></i>
             </button>
+             - Points: {{pbPoints}}
         </p>
         <div ng-repeat="(pbTaskId, pbTask) in pbTasks | toArray | orderBy: 'priority':true | filter: pbFilter | filter: pbStatus">
             <div task-item ng-model="pbTask" drag drag-data="{{pbTask}}" drag-type="pb" drag-id="{{pbTask.Id}}" >
@@ -38,6 +39,7 @@
             <button class="pure-button status-all" ng-click="sbStatus=''">
                 <i class="fa fa-asterisk"></i>
             </button>
+             - Points: {{sbPoints}}
         </p>
         <div ng-repeat="(sbTaskId, sbTask) in sbTasks | toArray | orderBy: 'priority':true | filter: sbFilter | filter: sbStatus">
             <div task-item ng-model="sbTask" drag drag-data="{{sbTask}}" drag-type="sb" drag-id="{{sbTask.Id}}"></div>
@@ -55,7 +57,7 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="newTask.description">
+                        <textarea required id="description" type="text" ng-model="newTask.description"></textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="tags">Tags</label>
@@ -86,7 +88,7 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="editedTask.description">
+                        <textarea required id="description" type="text" ng-model="editedTask.description"></textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="tags">Tags</label>
