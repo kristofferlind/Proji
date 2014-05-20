@@ -3,7 +3,7 @@ var documentView2 = function() {
 
     var addDocumentButton = element(by.css('a[ng-click="showAddDocument=true"]')), //element(by.css('a[ng-click="showAddDocument=true"]')),
         nameInput = element(by.css('form input#name')),
-        descriptionInput = element(by.css('form input#description')),
+        descriptionInput = element(by.css('form textarea#description')),
         createButton = element(by.css('form .pure-button-primary')),
         deleteButtons = element.all(by.css('button[on-confirm="deleteDocument(documentId)"]')),
         editButtons = element.all(by.css('.fa-pencil')),

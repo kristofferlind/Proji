@@ -153,7 +153,7 @@ describe('Service: Sprint', function() {
         });
 
         it('should call removeTask', function() {
-            Sprint.removeTask('projectId', 'sprintId', 'taskId');
+            Sprint.removeTask('projectId', 'sprintId', 'taskId', 'task');
             expect(Firebase.fns.$child().$child().$child().$child().$child().$child).toHaveBeenCalled();
         });
     });

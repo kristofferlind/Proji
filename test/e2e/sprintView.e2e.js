@@ -6,6 +6,13 @@ describe('View: /sprint', function() {
     // browser.get('#/sprint');
     // browser.sleep(2000);
 
+    //testing..
+    // it('DEBUG: login only', function() {
+    //     var loginView = require('./loginView.pom.js');
+    //     loginView.get();
+    //     loginView.login('test@example.com', 'Password!', true);
+    // });
+
     beforeEach(function() {
         sprintView.get();
     });
@@ -15,6 +22,7 @@ describe('View: /sprint', function() {
         describe('Create task', function() {
 
             it('should create task on success', function() {
+                // sprintView.get();
                 sprintView.createTask('testName', 'testDescription', 'e2eTestTag', 1, 1);
                 expect(sprintView.pbTasks.last().getText()).toEqual('1\ntestName - testDescription');
             });

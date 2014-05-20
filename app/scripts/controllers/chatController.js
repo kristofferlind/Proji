@@ -14,10 +14,22 @@ angular.module('projiApp')
                 text: ''
             };
             $scope.sendMessage = function($event) {
-                if ($event.keyCode === 13) {
-                    $event.preventDefault();
-                    $scope.messages.$add($scope.message);
-                    $scope.message.text = '';
+                console.log($event);
+                if ($event.keyCode === 13 && $event.shiftKey) {
+                    return false;
+                } else {
+
+                    if ($event.keyCode === 13 && !$event.shiftKey) {
+                        if ($scope.message.text === '') {
+                            $event.preventDefault();
+                            return false;
+                        }
+                        $event.preventDefault();
+                        $scope.messages.$add($scope.message);
+                        $scope.message.text = '';
+                    }
+
+
                 }
             };
         }

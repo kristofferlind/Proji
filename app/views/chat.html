@@ -6,7 +6,7 @@
 	<div class="chat-uncollapsed" ng-hide="collapsed">
 		<div class="chat">
 			<ul class="chat-messages" scroll-bottom ng-model="messages">
-				<li class="chat-message" ng-repeat="message in messages"><img class="userimage" ng-src="http://www.gravatar.com/avatar/{{message.md5Hash}}"><b>{{message.username}}:</b> <span ng-bind-html="message.text | linky:'_blank'"></span></li>
+				<li class="chat-message" ng-repeat="message in messages"><img class="userimage" ng-src="http://www.gravatar.com/avatar/{{message.md5Hash}}"><div class="chat-message-body"><b>{{message.username}}:</b> <span ng-bind-html="message.text | linky:'_blank' | lineBreak"></span></div></li>
 				<!-- {{message.text}}</li> -->
 			</ul>
 			<form class="pure-form">

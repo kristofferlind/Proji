@@ -11,9 +11,11 @@ angular.module('projiApp')
             //taskId: '=taskId',
             task: '=ngModel'
         }, // {} = isolate, true = child, false/undefined = no change
-        // controller: function($scope, $element, $attrs, $transclude) {
-        //     console.log($scope.task);
-        // },
+        controller: function($scope, $rootScope, $attrs) {
+            if ($attrs.dragType === 'pb' && $scope.task.sprintId && $scope.task.sprintId === $rootScope.currentUser.sid) {
+                $scope.activeSprint = 'task-in-sprint';
+            }
+        },
         // require: '?ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
         restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
         //template: '<h4>test</h4>',

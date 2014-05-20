@@ -131,7 +131,7 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.deleteTask(taskId)', function() {
         beforeEach(function() {
-            scope.deleteTask('taskId');
+            scope.deleteTask('taskId', 'task');
         });
 
         it('should call Task.delete', function() {
@@ -139,7 +139,7 @@ describe('Controller: SprintController', function() {
         });
 
         it('should call Task.delete with projectId, taskId', function() {
-            expect(Task.delete).toHaveBeenCalledWith('projectId', 'taskId');
+            expect(Task.delete).toHaveBeenCalledWith('projectId', 'taskId', 'task');
         });
     });
 

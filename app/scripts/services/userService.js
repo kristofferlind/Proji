@@ -128,20 +128,27 @@ angular.module('projiApp')
                 return users.$child(uid).$update(user);
             },
             startTask: function(projectId, sprintId, userId, taskId, task) {
+                task.userId = userId;
                 task.status = 'In Progress';
                 Task.setStatus(projectId, sprintId, taskId, task, 'In Progress');
-                return users.$child(userId).$child('task').$set(task);
+                return users.$child(userId).$child(projectId).$child('task').$set(task);
             },
-            getTask: function(userId) {
-                return users.$child(userId).$child('task');
+            getTask: function(projectId, userId) {
+                return users.$child(userId).$child(projectId).$child('task');
             },
             stopTask: function(projectId, sprintId, userId, taskId, task) {
+                if (task.userId) {
+                    delete task.userId;
+                }
                 Task.setStatus(projectId, sprintId, taskId, task, 'Not Started');
-                return users.$child(userId).$remove('task');
+                return users.$child(userId).$child(projectId).$remove('task');
             },
             finnishTask: function(projectId, sprintId, userId, taskId, task) {
+                if (task.userId) {
+                    delete task.userId;
+                }
                 Task.setStatus(projectId, sprintId, taskId, task, 'Completed');
-                return users.$child(userId).$remove('task');
+                return users.$child(userId).$child(projectId).$remove('task');
             },
             voteUp: function(userId, ideaId) {
                 users.$child(userId).$child('ideas').$child('up').$child(ideaId);

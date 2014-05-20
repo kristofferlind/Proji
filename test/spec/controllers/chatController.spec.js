@@ -17,7 +17,7 @@ describe('Controller: ChatController', function() {
                 return {
                     md5Hash: 'md5Hash',
                     uid: userId,
-                    username: 'username'
+                    username: 'username',
                 };
             }
         },
@@ -108,6 +108,7 @@ describe('Controller: ChatController', function() {
                     return;
                 }
             };
+            scope.message.text = 'test';
             scope.sendMessage(fakeEvent);
         });
 

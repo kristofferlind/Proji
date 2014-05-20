@@ -28,27 +28,35 @@
 	margin: 0;
 }
 
+.task-item.task-in-sprint {
+	border: 1px black dashed;
+}
+
+/*.task-item.task-in-sprint .task-item-body {
+	background-color: rgba(0,0,0,0.05);
+}
+*/
 div[drag] {
 	cursor: move;
 }
 
 //status
 .not-started {
-	background-color: #ffcccc;
+	background-color: #ffeecc; /* #ffcccc; */
 }
 .in-progress {
-	background-color: #ccccff;
+	background-color: #ccccff; /* #ccccff; */
 }
 .completed {
-	background-color: #ccffcc;
+	background-color: #ccffcc; /* #ccffcc; */
 }
 
 .not-started:hover {
-	background-color: #ffbbbb;
+	background-color: #ffeeaa; /* #ffbbbb; */
 }
 .in-progress:hover {
-	background-color: #bbbbff;
+	background-color: #bbbbff; /* #bbbbff; */
 }
 .completed:hover {
-	background-color: #bbffbb;
+	background-color: #bbffbb; /* #bbffbb; */
 }

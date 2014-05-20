@@ -9,11 +9,12 @@
 	background-color: #eee;
 	margin-top: -7px;
 }
+
 .chat {
 	display: absolute;
 	height: 100%;
-
 }
+
 .chat-messages {
 	clear: both;
 	max-height: calc(100% - 83px);
@@ -23,6 +24,7 @@
 	color: #555;
 	margin-top: -7px;
 }
+
 .chat-send {
 	width: 400px;
 	height: 90px;
@@ -34,11 +36,24 @@
 
 .chat-message {
 	word-wrap: break-word;
+	margin-top: 4px;
 }
+
 .chat-options {
 	float: right;
 	margin-right: 0.5em;
 	position: absolute;
 	right: 0;
 	top: 50px;
+}
+
+.chat-message .userimage {
+	float: left;
+	margin-left: 4px;
+}
+
+.chat-message-body {
+	display: inline-block;
+	margin-left: 4px;
+	width: 350px;
 }

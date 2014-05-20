@@ -9,7 +9,7 @@ angular.module('projiApp')
     $scope.sbStatus = 'Not Started';
     $scope.sbTasks = Sprint.getSprintTasks(projectId, sprintId);
 
-    $scope.currentTask = User.getTask(userId);
+    $scope.currentTask = User.getTask(projectId, userId);
 
     $scope.workOnTask = function(taskId, task) {
         task.taskId = taskId;

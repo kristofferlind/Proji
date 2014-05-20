@@ -7,14 +7,14 @@ var sprintView = function() {
         taskPointsInput = element(by.model('newTask.points')),
         taskPriorityInput = element(by.model('newTask.priority')),
         taskCreateButton = element(by.css('form[name="createTaskForm"] button[type="submit"]')),
-        editTaskButtons = element.all(by.css('a[ng-click="showEditTask(pbTask.Id, pbTask)"]')),
+        editTaskButtons = element.all(by.css('button[ng-click="showEditTask(pbTask.Id, pbTask)"]')),
         editTaskNameInput = element(by.model('editedTask.name')),
         editTaskDescriptionInput = element(by.model('editedTask.description')),
         editTaskTagsInput = element(by.model('editedTask.tags')),
         editTaskPointsInput = element(by.model('editedTask.points')),
         editTaskPriorityInput = element(by.model('editedTask.priority')),
         editTaskUpdateButton = element(by.css('form[name="editTaskForm"] button[type="submit"]')),
-        deleteTaskButtons = element.all(by.css('a[on-confirm="deleteTask(pbTask.Id)"]')),
+        deleteTaskButtons = element.all(by.css('button[on-confirm="deleteTask(pbTask.Id, pbTask)"]')),
         dialogConfirmYes = element(by.css('button[ng-click="yes(dialog)"]')),
         sleep = function() {
             browser.sleep(2000);
@@ -28,8 +28,8 @@ var sprintView = function() {
         },
         sprintView = {
             //elements
-            pbTasks: element.all(by.css('div[drop-type="sb"] div[task-item]')),
-            sbTasks: element.all(by.css('div[drop-type="pb"] div[task-item]')),
+            pbTasks: element.all(by.css('div[drag-type="pb"]')), //by.css('div[drop-type="sb"] div[task-item]')), //by.css('.productbacklog .task-item-body')), //by.css('div[drag-type="pb"]')), //by.css('div[drop-type="sb"] div[task-item]')),
+            sbTasks: element.all(by.css('div[drag-type="sb"]')), //.sprintbacklog .task-item-body')), //div[drag-type="sb"]')), //by.css('div[drop-type="pb"] div[task-item]')),
             //actions
             get: function() {
                 element(by.css('a[href="#/"]')).click();
@@ -53,6 +53,7 @@ var sprintView = function() {
                     y: 0
                 }).perform();
                 taskCreateButton.click();
+                sleep();
                 browser.waitForAngular();
             },
             editLastTask: function(name, description, tags, points, priority) {

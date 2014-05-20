@@ -80,7 +80,7 @@ describe('Controller: TaskController', function() {
         });
 
         it('..with userId', function() {
-            expect(User.getTask).toHaveBeenCalledWith('userId');
+            expect(User.getTask).toHaveBeenCalledWith('projectId', 'userId');
         });
     });
 

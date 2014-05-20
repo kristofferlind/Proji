@@ -19,8 +19,8 @@
         </p>
         <div ng-repeat="(pbTaskId, pbTask) in pbTasks | toArray | orderBy: 'priority':true | filter: pbFilter | filter: pbStatus">
             <div task-item ng-model="pbTask" drag drag-data="{{pbTask}}" drag-type="pb" drag-id="{{pbTask.Id}}" >
-                <a ng-click="showEditTask(pbTask.Id, pbTask)"><i class="fa fa-cog"></i></a>
-                <a dialog-confirm dialog-message="Are you sure you want to remove this task?" on-confirm="deleteTask(pbTask.Id)"><i class="fa fa-times"></i></a>
+                <button class="pure-button button-secondary button-small" ng-click="showEditTask(pbTask.Id, pbTask)"><i class="fa fa-cog"></i></button>
+                <button class="pure-button button-error button-small" dialog-confirm dialog-message="Are you sure you want to remove this task?" on-confirm="deleteTask(pbTask.Id, pbTask)"><i class="fa fa-trash-o"></i></button>
             </div>
         </div>
 	</div>
