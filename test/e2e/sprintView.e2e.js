@@ -45,10 +45,10 @@ describe('View: /sprint', function() {
     });
 
     //drag & drop testing is really buggy, skip testing this for now..
-    describe('Feature: Backlogs', function() {
+    // describe('Feature: Backlogs', function() {
 
-        it('should put task in sprint backlog on drag from product to sprint backlog');
+    //     it('should put task in sprint backlog on drag from product to sprint backlog');
 
-        it('should put task in product backlog on drag from sprint to product backlog');
-    });
+    //     it('should put task in product backlog on drag from sprint to product backlog');
+    // });
 });

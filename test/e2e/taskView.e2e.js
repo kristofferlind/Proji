@@ -17,10 +17,10 @@ describe('View: /task', function() {
 
     });
 
-    describe('Feature: My task', function() {
+    // describe('Feature: My task', function() {
 
-        it('should set task to done when task dragged to done');
+    //     it('should set task to done when task dragged to done');
 
-        it('should remove task from my task when dragged to sprint backlog');
-    });
+    //     it('should remove task from my task when dragged to sprint backlog');
+    // });
 });

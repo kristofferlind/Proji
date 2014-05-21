@@ -13,7 +13,7 @@ var overviewView = function() {
         taskPriorityInput = element(by.model('newTask.priority')),
         taskCreateButton = element(by.css('form[name="taskForm"] button[type="submit"]')),
         sleep = function() {
-            browser.sleep(2000);
+            browser.sleep(5000);
         };
 
     var overviewView = {

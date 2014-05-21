@@ -91,16 +91,16 @@ describe('View: /overview', function() {
         });
 
         //This might get a bit heavy, is it useful ?
-        describe('addComment', function() {
-            it('should be possible');
-        });
-        describe('removeComment', function() {
-            it('should be possible');
-        });
+        // describe('addComment', function() {
+        //     it('should be possible');
+        // });
+        // describe('removeComment', function() {
+        //     it('should be possible');
+        // });
 
     });
-    describe('Feature: Events', function() {
-        it('should be possible');
-    });
+    // describe('Feature: Events', function() {
+    //     it('should be possible');
+    // });
 
 });
