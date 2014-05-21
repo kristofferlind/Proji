@@ -4,4 +4,16 @@ Ett projekthanteringssystem som görs till kursen 1DV430.
 
 Dokumentation finns i mappen doc, körbar version finns på [http://proji.se].
 
-git clone -> npm install -> bower install -> grunt serve
+##Installation
+git clone -> npm install (Installerar även compass och selenium. Kräver node, python, ruby och java)
+
+##Testning
+npm test (kör enhetstester, startar upp server och selenium, kör integrationstester)
+
+##Kör
+npm run (startar server och öppnar applikation i standardwebbläsare)
+
+##Övrigt
+grunt build, bygger dist  
+grunt e2e, kör enbart integrationstester
+karma start, kör enhetstester vid sparande

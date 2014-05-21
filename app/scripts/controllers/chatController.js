@@ -3,10 +3,13 @@ angular.module('projiApp')
 .controller('ChatController', function($scope, $rootScope, User, $firebase, FBURL) {
     'use strict';
 
+    var getName = function() {}
+
     var updateView = function() {
         if ($rootScope.currentUser && $rootScope.currentUser.pid) {
             $scope.messages = $firebase(new Firebase(FBURL + '/chat/' + $rootScope.currentUser.pid + '/messages'));
             $scope.user = User.find($rootScope.currentUser.uid);
+
             $scope.message = {
                 md5Hash: $rootScope.currentUser.md5Hash,
                 uid: $rootScope.currentUser.uid,
@@ -14,7 +17,6 @@ angular.module('projiApp')
                 text: ''
             };
             $scope.sendMessage = function($event) {
-                console.log($event);
                 if ($event.keyCode === 13 && $event.shiftKey) {
                     return false;
                 } else {
@@ -24,12 +26,11 @@ angular.module('projiApp')
                             $event.preventDefault();
                             return false;
                         }
+                        $scope.message.username = $scope.user.username;
                         $event.preventDefault();
                         $scope.messages.$add($scope.message);
                         $scope.message.text = '';
                     }
-
-
                 }
             };
         }

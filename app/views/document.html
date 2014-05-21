@@ -24,11 +24,11 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="document.name">
+                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="document.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <textarea required id="description" type="text" ng-model="document.description"></textarea>
+                        <textarea required id="description" type="text" maxlength="250"ng-maxlength="250" ng-model="document.description"></textarea>
                     </div>
                     <div class="pure-controls">
                         <button ng-disabled="createDocForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>

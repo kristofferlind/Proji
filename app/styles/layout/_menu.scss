@@ -1,6 +1,5 @@
 .home-menu {
 
-    text-align: center;
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 
@@ -75,4 +74,10 @@
         width: 31px;
     }
 
+    span[ng-click="showDetails=!showDetails"] {
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+        position: absolute;
+    }
 }

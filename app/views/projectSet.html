@@ -21,11 +21,11 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="newProject.name">
+                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="newProject.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="newProject.description">
+                        <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="newProject.description">
                     </div>
                     <div class="pure-controls">
                         <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
@@ -44,11 +44,11 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="changeProject.name">
+                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="changeProject.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <input required id="description" type="text" ng-model="changeProject.description">
+                        <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="changeProject.description">
                     </div>
                     <div class="pure-controls">
                         <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>

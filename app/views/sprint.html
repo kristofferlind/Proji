@@ -53,15 +53,15 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="newTask.name">
+                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="newTask.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <textarea required id="description" type="text" ng-model="newTask.description"></textarea>
+                        <textarea required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="newTask.description"></textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="tags">Tags</label>
-                        <input id="tags" type="text" ng-model="newTask.tags">
+                        <input id="tags" type="text" maxlength="250" ng-maxlength="250" ng-model="newTask.tags">
                     </div>
                     <div class="pure-control-group">
                         <label for="points">Points</label>
@@ -84,15 +84,15 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="name">Name</label>
-                        <input required id="name" type="text" ng-model="editedTask.name">
+                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="editedTask.name">
                     </div>
                     <div class="pure-control-group">
                         <label for="description">Description</label>
-                        <textarea required id="description" type="text" ng-model="editedTask.description"></textarea>
+                        <textarea required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="editedTask.description"></textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="tags">Tags</label>
-                        <input id="tags" type="text" ng-model="editedTask.tags">
+                        <input id="tags" type="text" maxlength="250" ng-maxlength="250" ng-model="editedTask.tags">
                     </div>
                     <div class="pure-control-group">
                         <label for="points">Points</label>

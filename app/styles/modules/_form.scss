@@ -1,3 +1,21 @@
 .pure-control-group input, .pure-control-group textarea {
-	width: 200px;
+	width: 250px;
+}
+
+
+@media (min-width: 48em) {
+    .pure-control-group label {
+        max-width: 7em !Important;
+    }
+    fieldset {
+    	padding: 0 !Important;
+    }
+
+    .modal-content h2 {
+    	margin-top: 0;
+    }
+
+    form input[type="checkbox"] {
+        width: 1em;
+    } 
 }

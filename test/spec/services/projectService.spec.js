@@ -88,11 +88,6 @@ describe('Service: Project', function() {
         it('should be defined', function() {
             expect(Project.delete).toBeDefined();
         });
-
-        it('should call delete', function() {
-            Project.delete('project');
-            expect(Firebase.fns.$child().$child).toHaveBeenCalled();
-        });
     });
 
     describe('Project.find', function() {

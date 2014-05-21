@@ -21,9 +21,9 @@ var sprintView = function() {
         },
         getPosition = function(value) {
             if (value > 50) {
-                return 100;
+                return 200;
             } else {
-                return -100;
+                return -200;
             }
         },
         sprintView = {

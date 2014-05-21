@@ -47,6 +47,7 @@ angular.module('projiApp')
 
     $scope.deleteProject = function(projectId) {
         Project.delete(userId, projectId);
+        fetchProjects();
     };
 
     $scope.createSprint = function() {

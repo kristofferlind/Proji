@@ -45,6 +45,8 @@
         "node": ">=0.8.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "install": "gem install compass && npm install -g bower grunt-cli && node node_modules/protractor/bin/webdriver-manager update && bower install",
+        "test": "grunt test",
+        "run": "grunt serve"
     }
 }

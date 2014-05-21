@@ -1,13 +1,18 @@
+.full-height {
+}
+
+.flex-panel {
+	border-left: 2px solid #000;
+}
+
 .chat-collapsed {
 	height: 100%;
-	margin-top: -7px;
 }
 
 .chat-uncollapsed {
 	width: 400px;
-	height: 100%;
-	background-color: #eee;
-	margin-top: -7px;
+	 height: 100%; 	
+	background-color: #f5f5fb;
 }
 
 .chat {
@@ -17,13 +22,14 @@
 
 .chat-messages {
 	clear: both;
-	max-height: calc(100% - 83px);
+	max-height: calc(100% - 90px);
 	padding-left: 0;
 	list-style-type: none;
 	overflow-y: auto;
 	color: #555;
-	margin-top: -7px;
+	margin: 0;
 }
+
 
 .chat-send {
 	width: 400px;
@@ -41,10 +47,10 @@
 
 .chat-options {
 	float: right;
-	margin-right: 0.5em;
+	margin-right: 20px;
 	position: absolute;
 	right: 0;
-	top: 50px;
+	margin-top: 20px;
 }
 
 .chat-message .userimage {

@@ -89,9 +89,16 @@ angular.module('projiApp')
                 });
             },
             delete: function(userId, projectId) {
-                users.$child(userId).$child('projects').$remove(projectId);
-                projects.$remove(projectId);
-                //TODO remove for all users
+                var projectUsersRef = new Firebase(FBURL + '/projects/' + projectId + '/users');
+
+                projectUsersRef.once('value', function(userData) {
+                    userData.forEach(function(user) {
+                        Project.removeUser(projectId, user.name());
+                    })
+
+                    projects.$remove(projectId);
+                    return users.$child(userId).$child('projects').$remove(projectId);
+                });
             },
             find: function(projectId) {
                 if (projectId !== undefined) {
@@ -107,6 +114,7 @@ angular.module('projiApp')
                 return projects.$child(projectId).$child('users');
             },
             removeUser: function(projectId, userId) {
+                users.$child(userId).$child('projects').$remove(projectId);
                 return projects.$child(projectId).$child('users').$remove(userId);
             },
             update: function(projectId, project) {

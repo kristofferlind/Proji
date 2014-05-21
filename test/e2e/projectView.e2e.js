@@ -81,23 +81,21 @@ describe('View: /project', function() {
         describe('Create sprint', function() {
 
             it('should create a sprint on success', function() {
-                projectView.createSprint('testName', 'testGoal', '2100-01-01', '2100-12-31');
+                projectView.createSprint('testName', 'testGoal', '2099-01-01', '2099-12-31');
                 expect(projectView.sprintName(7).getText()).toEqual('testName');
                 expect(projectView.sprintGoal(7).getText()).toEqual('testGoal');
-                expect(projectView.sprintDuration(7).getText()).toEqual('(2100-01-01 - 2100-12-31)');
+                expect(projectView.sprintDuration(7).getText()).toEqual('(2099-01-01 - 2099-12-31)');
             });
-
         });
 
         describe('Edit sprint', function() {
 
             it('should edit sprint on success', function() {
-                projectView.editLastSprint('testName2', 'testGoal2', '2150-01-01', '2150-12-31');
+                projectView.editLastSprint('testName2', 'testGoal2', '2050-01-01', '2050-12-31');
                 expect(projectView.sprintName(7).getText()).toEqual('testName2');
                 expect(projectView.sprintGoal(7).getText()).toEqual('testGoal2');
-                expect(projectView.sprintDuration(7).getText()).toEqual('(2150-01-01 - 2150-12-31)');
+                expect(projectView.sprintDuration(7).getText()).toEqual('(2050-01-01 - 2050-12-31)');
             });
-
         });
 
         describe('Delete sprint', function() {
@@ -108,8 +106,6 @@ describe('View: /project', function() {
                 // expect(projectView.lastSprintName().getText()).not.toEqual('testName2');
                 // expect(projectView.sprintName(7).getText()).toThrow();
             });
-
         });
-
     });
 });
