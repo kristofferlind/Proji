@@ -23,6 +23,7 @@ var documentView2 = function() {
                 element(by.css('a[href="#/"]')).click();
                 browser.waitForAngular();
                 element(by.css('a[href="#/document"]')).click();
+                sleep();
                 browser.waitForAngular();
             },
             createDocument: function(name, description) {
