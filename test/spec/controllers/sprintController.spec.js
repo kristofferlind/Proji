@@ -99,16 +99,6 @@ describe('Controller: SprintController', function() {
         });
     });
 
-    describe('$scope.cancelEditTask()', function() {
-        beforeEach(function() {
-            scope.cancelEditTask();
-        });
-
-        it('should set viewEditTask to false', function() {
-            expect(scope.viewEditTask).toBe(false);
-        });
-    });
-
     describe('$scope.createTask()', function() {
         beforeEach(function() {
             scope.createTask();

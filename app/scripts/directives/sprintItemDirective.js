@@ -1,23 +1,20 @@
+/*
+    Directive: sprintItem
+    Description: Template and logic for showing sprint item
+*/
+
 angular.module('projiApp')
 
 .directive('sprintItem', function() {
     'use strict';
     // Runs during compile
     return {
-        // name: '',
-        // priority: 1,
-        // terminal: true,
         scope: {
             sprint: '=ngModel'
         }, // {} = isolate, true = child, false/undefined = no change
-        // controller: function($scope, $element, $attrs, $transclude) {},
-        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-        // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-        // template: '',
         templateUrl: 'views/partials/sprintItem.html',
         replace: true,
         transclude: true,
-        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
         link: function($scope) {
             var status,
                 sprint = $scope.sprint,
@@ -25,24 +22,34 @@ angular.module('projiApp')
                 end = new Date(sprint.end),
                 now = new Date().getTime();
 
+            //Set time of start to 00:00:00
             start.setHours(0);
             start.setMinutes(0);
+            start.setSeconds(0);
+
+            //Set time of end to 23:59:59
             end.setHours(23);
             end.setMinutes(59);
+            end.setSeconds(59);
 
+            //Convert date to milliseconds from 1970
             start = start.getTime();
             end = end.getTime();
 
+            // If now is later than end
             if (now > end) {
                 status = 'completed';
             }
+            //If now is between start and end
             if (now > start && now < end) {
                 status = 'in-progress';
             }
+            //If now is before start
             if (now < start) {
                 status = 'not-started';
             }
 
+            //Apply status to sprint
             $scope.sprint.status = status;
         }
     };

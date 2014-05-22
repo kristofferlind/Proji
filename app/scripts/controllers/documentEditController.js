@@ -1,4 +1,10 @@
-/* jshint undef:false, unused:false */
+/* jshint undef:false, unused:false */ //ignore som js hint warnings.. i know this code is crap, i just dont want to be nagged about it every save
+
+/*
+    Controller for editing documents
+    view: /document/documentId
+    Most of this code should be in a directive instead. Pretty much all of this code will change though
+*/
 
 angular.module('projiApp')
 

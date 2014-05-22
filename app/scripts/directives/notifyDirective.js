@@ -1,7 +1,13 @@
+/*
+    Directive: notify
+    Description: Logic for showing notifications
+*/
+
 angular.module('projiApp')
 
 .directive('notify', function() {
     'use strict';
+
     return {
         scope: true, // {} = isolate, true = child, false/undefined = no change
         restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
@@ -9,7 +15,9 @@ angular.module('projiApp')
         replace: true,
         transclude: true,
         controller: function($scope, $timeout, $rootScope) {
+            //Add notification
             var addNotification = function(notification) {
+                //ttl = time to live, sets the time the notification is shown based on length of message
                 var ttl = 1000 + notification.text.length * 45;
                 $scope.notifications.push(notification);
                 $timeout(function() {
@@ -19,18 +27,25 @@ angular.module('projiApp')
 
             $scope.notifications = [];
 
+            //Delete notification
             $scope.deleteNotification = function(notification) {
+                //Find index of notification
                 var index = $scope.notifications.indexOf(notification);
                 if (index > -1) {
+                    //Delete notification
                     $scope.notifications.splice(index, 1);
                 }
             };
 
+            //Add Notification on NotificationMessage event
             $rootScope.$on('NotificationMessage', function(event, notification) {
+                //Make sure we arent currently in a $digest cycle
                 if (!$scope.$$phase) {
+                    //Trigger $digest for addNotification
                     $scope.$apply(function() {
                         addNotification(notification);
                     });
+                    //$digest is already running, add notification
                 } else {
                     addNotification(notification);
                 }
