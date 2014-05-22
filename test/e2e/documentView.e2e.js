@@ -32,14 +32,14 @@ describe('View: document', function() {
         });
     });
 
-    describe('Feature: Templates', function() {
+    // describe('Feature: Templates', function() {
 
-        it('should contain a list of templates');
+    //     it('should contain a list of templates');
 
-        it('should create template on create');
+    //     it('should create template on create');
 
-        it('should delete template on delete');
-    });
+    //     it('should delete template on delete');
+    // });
 
     describe('Feature: Documents', function() {
 

@@ -11,11 +11,11 @@ describe('View: /task', function() {
         browser.ignoreSynchronization = false;
     });
 
-    describe('Feature: Sprint backlog', function() {
+    // describe('Feature: Sprint backlog', function() {
 
-        it('should be set current task on drag to dropzone');
+    //     it('should be set current task on drag to dropzone');
 
-    });
+    // });
 
     // describe('Feature: My task', function() {
 

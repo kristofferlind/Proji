@@ -37,10 +37,6 @@ var overviewView = function() {
             browser.waitForAngular();
             element(by.css('a[href="#/"]')).click();
             browser.waitForAngular();
-
-            // browser.get('#/');
-            // sleep();
-            // browser.waitForAngular();
         },
         createIdea: function(name, description) {
             ideaAddButton.click();
@@ -66,12 +62,18 @@ var overviewView = function() {
             browser.waitForAngular();
         },
         ideaVoteUp: function(index) {
-            element.all(by.css('.idea-item-voting-up')).get(index).click();
+            element.all(by.css('.idea-item-voting-up')).then(function(voteUps) {
+                voteUps[0].click();
+            })
+
             sleep();
             browser.waitForAngular();
         },
         ideaVoteDown: function(index) {
-            element.all(by.css('.idea-item-voting-down')).get(index).click();
+            element.all(by.css('.idea-item-voting-down')).then(function(voteDowns) {
+                voteDowns[0].click();
+            })
+
             sleep();
             browser.waitForAngular();
         }
