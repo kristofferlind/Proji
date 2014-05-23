@@ -131,7 +131,11 @@ angular.module('projiApp')
                     //Notify user that it was successful
                     Notify.success('Project activated');
                     //Redirect user to overview (overview should be first page the user sees, also removes the need to update current view)
-                    $location.path('/overview');
+                    if ($location.path() === '/project/set') {
+                        $location.path('/project');
+                    } else {
+                        $location.path('/overview');
+                    }
                 });
             },
             //Set current user

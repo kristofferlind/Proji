@@ -22,6 +22,19 @@ Detta dokument innehåller idéer och funderingar, dokumentet är inte en del av
 * My task, task is done/stop working on task -> Done/Cancel?
 * documentedit, profilbild istället för färgrutan och namnet i den färg ens cursor har..
 * Alltid ha en sopkorg i ett hörn för radering?
+##Troligen
+* Välj sprintlängd, sprintar genereras per automatik
+* My projects -> done sprints, olika rubriker för status på sprints
+* Se till att formulär får sitt första fält markerat när modal öppnas
+* google calendar api för kalender
+* Snabbvisning av dokument (just nu finns bara redigering)
+* Plan project, My projects flyttas - hanteringen flyttas till aktivt projektnamn i menyn. Ger uppdelning i menyn hantering av specifikt projekt på högerkant. Dessutom blir jag av med my projects på plan projekt, vilket är en ganska ologisk placering.
+* markdown för dokument - https://github.com/btford/angular-markdown-directive
+* logotypen som gif? visa att gränssnittet arbetar genom en animation av logotypen?
+* Mobilanpassning, applikationen är just nu närmast oanvändbar på en mobil/tablet.
+* Möjlighet att förflytta uppgifter på annat vis än drag&drop
+* mer beskrivning för drag&drop på plan sprint och my task
+
 
 ##Dokumentation
 * hela problemet är vyer, man behöver ett system som presenterar informationen på olika sätt beroende på vad som är intressant.. en vy för att lägga till information.. sen olika vyer för presentation för manager, utvecklare osv..

@@ -1,4 +1,4 @@
-#Krav
+<!-- #Krav
 
 Krav | Källa | Författare | Beroende | Status | Baskrav | Risk | Täckning | Kundnytta | Prioritet | Points
 --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
@@ -24,4 +24,4 @@ Till1 - Handikappanpassning | Grundare | Kristoffer 							| inget  | 0 		| 0 | 
 
 
 
-Prioritet = 1*risk+0,5*täckning + 0,25*kundnytta
+Prioritet = 1*risk+0,5*täckning + 0,25*kundnytta -->

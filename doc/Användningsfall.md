@@ -1,6 +1,6 @@
 #Användningsfall
 
-##AF1.1 Skapa projekt
+<!-- ##AF1.1 Skapa projekt
 Projektledaren väljer att skapa ett projekt, systemet ber projektledaren välja namn på projektet, projektledaren väljer namn och systemet skapar sedan ett projekt med detta namn.
 Systemet visar sedan en överblickssida av projektet.
 
@@ -91,3 +91,4 @@ AF2.2 med lämpliga variationer
 
 ##AF2.11 - Hantera listbaserat dokument  
 AF2.2 med lämpliga variationer
+ -->

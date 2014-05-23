@@ -15,51 +15,54 @@
                 <button class="pure-button button-small button-error" ng-show="currentUser.pid !== project.$id" dialog-confirm dialog-message="Are you sure you want to delete this project and all it's data?" on-confirm="deleteProject(project.$id)"><i class="fa fa-trash-o"></i></button></td>
             </tr>
         </table>
-        <div modal show="showAddProject">
-            <h2>Create project</h2>
-            <form role="form" name="createProjectForm" class="pure-form pure-form-aligned" ng-submit="createProject()">
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="name">Name</label>
-                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="newProject.name">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="description">Description</label>
-                        <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="newProject.description">
-                    </div>
-                    <div class="pure-controls">
-                        <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <br />
-            <div class="alert alert-danger" ng-show="err">
-                {{err}}
-            </div>
-        </div>
-        <div modal show="showEditProject">
-            <h2>Edit project</h2>
-            <form role="form" name="editProjectForm" class="pure-form pure-form-aligned" ng-submit="updateProject()">
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="name">Name</label>
-                        <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="changeProject.name">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="description">Description</label>
-                        <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="changeProject.description">
-                    </div>
-                    <div class="pure-controls">
-                        <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <br />
-            <div class="alert alert-danger" ng-show="err">
-                {{err}}
-            </div>
-        </div>
 	</div>
+</div>
+
+<!-- modals -->
+
+<div modal show="showAddProject">
+    <h2>Create project</h2>
+    <form role="form" name="createProjectForm" class="pure-form pure-form-aligned" ng-submit="createProject()">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">Name</label>
+                <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="newProject.name">
+            </div>
+            <div class="pure-control-group">
+                <label for="description">Description</label>
+                <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="newProject.description">
+            </div>
+            <div class="pure-controls">
+                <button ng-disabled="createProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <br />
+    <div class="alert alert-danger" ng-show="err">
+        {{err}}
+    </div>
+</div>
+<div modal show="showEditProject">
+    <h2>Edit project</h2>
+    <form role="form" name="editProjectForm" class="pure-form pure-form-aligned" ng-submit="updateProject()">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">Name</label>
+                <input required id="name" type="text" maxlength="50" ng-maxlength="50" ng-model="changeProject.name">
+            </div>
+            <div class="pure-control-group">
+                <label for="description">Description</label>
+                <input required id="description" type="text" maxlength="250" ng-maxlength="250" ng-model="changeProject.description">
+            </div>
+            <div class="pure-controls">
+                <button ng-disabled="editProjectForm.$invalid" class="pure-button pure-button-primary" type="submit">Create</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <br />
+    <div class="alert alert-danger" ng-show="err">
+        {{err}}
+    </div>
 </div>

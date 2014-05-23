@@ -48,7 +48,7 @@
 	  
 	  
 -->
-##TF AF2.2 - Hantera textbaserade dokument
+<!-- ##TF AF2.2 - Hantera textbaserade dokument
 Målet för detta testfall är att undersöka att det går att hantera ett dokument.
 
 ###Förkrav
@@ -79,7 +79,7 @@ Kontrollera att innehållet sparats korrekt
 
 5a. Välj att avbryta redigeringen av dokumentet
   1. Kontrollera att ändringarna inte har sparats  
-
+ -->
 
 <!--
 

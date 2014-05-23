@@ -1,6 +1,6 @@
 #Kravspecifikation
 
-###Referenser
+<!-- ###Referenser
 
 ####Vision
 Beskriver bakgrund, användargrupper och baskrav.
@@ -89,3 +89,4 @@ Systemet ska uppfattas som snabbt
 
 ####Säkerhet
 
+ -->
