@@ -8,7 +8,8 @@ Dokumentation finns i mappen doc, körbar version finns på [http://proji.se].
 git clone -> npm install (Installerar även compass och selenium. Kräver node, python, ruby och java)
 
 ##Testning
-npm test (kör enhetstester, startar upp server och selenium, kör integrationstester)
+npm test (kör enhetstester, startar upp server och selenium, kör integrationstester)  
+Efter att detta kommando genomförts finns statistik över testningen i mappen coverage.
 
 ##Kör
 npm run (startar server och öppnar applikation i standardwebbläsare)

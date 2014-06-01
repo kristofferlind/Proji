@@ -5,7 +5,7 @@
 
 angular.module('projiApp')
 
-.factory('User', function($firebase, FBURL, simpleLogin, $rootScope, $q, $timeout, Task, Sprint, Notify, $location) {
+.factory('User', function($firebase, FBURL, simpleLogin, $route, $rootScope, $q, $timeout, Task, Sprint, Notify, $location) {
     'use strict';
     var ref = new Firebase(FBURL + '/users'),
         users = $firebase(ref),
@@ -134,7 +134,8 @@ angular.module('projiApp')
                     if ($location.path() === '/project/set') {
                         $location.path('/project');
                     } else {
-                        $location.path('/overview');
+                        // $location.path('/overview');
+                        $route.reload();
                     }
                 });
             },

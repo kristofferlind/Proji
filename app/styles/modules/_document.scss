@@ -1,6 +1,18 @@
-.document-list td:nth-child(2) {
+.document-list td:nth-child(1) {
+	min-width: 130px;
 	max-width: 100%;
 }
+
+.document-list td:nth-child(2) {
+	width: 100%;
+	max-width: 100%;
+}
+
+.document-list td:nth-child(3) {
+	min-width: 50px;
+	max-width: 100%;
+}
+
 .document-list th {
 	text-align: left;
 }

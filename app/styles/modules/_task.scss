@@ -29,7 +29,8 @@
 }
 
 .task-item.task-in-sprint {
-	border: 1px black dashed;
+	border-left: 1px black dashed;
+	border-right: 1px black dashed;
 }
 
 /*.task-item.task-in-sprint .task-item-body {

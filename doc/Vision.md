@@ -44,9 +44,9 @@ Samtliga användargrupper har också ett intresse för effektiviseringen detta syst
 ##Intressenter
 * Kristoffer Lind - Grundare - kristoffer@krad.se
 * Linnéuniversitetet, 1dv404 - Kvalitetskontroll, dokumentation
-* Linnéuniversitetet, 1dv430 - Kvalitetskontroll, projekt
+* Linnéuniversitetet, 1dv430 - Kvalitetskontroll, gränssnitt
 * John Häggerud, Linnéuniversitetet - handledning, projekt
-* Github - Koppling för kodkontroller
+* Github - Versionshantering
 * W3C - Kodstandard
 * WCAG - Tillgänglighetsanpassning
 

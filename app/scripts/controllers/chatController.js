@@ -67,4 +67,6 @@ angular.module('projiApp')
     $scope.init = function() {
         updateView();
     };
+
+    $scope.collapsed = true;
 });

@@ -34,6 +34,7 @@ angular.module('projiApp')
     $scope.inviteUser = function() {
         Project.addUser(projectId, $scope.addUser.email);
         $scope.showAddUser = false; //remove modal
+        $scope.addUser = {};
     };
 
     //Remove user from project
