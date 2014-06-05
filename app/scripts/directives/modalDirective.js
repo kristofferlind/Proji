@@ -16,7 +16,20 @@ angular.module('projiApp')
         templateUrl: 'views/partials/modal.html',
         replace: true,
         transclude: true,
-        link: function(scope) {
+        link: function(scope, iElm) {
+            //Check if modal contains a form when shown
+            scope.$watch('show', function() {
+                if (scope.show === true) {
+                    var element = iElm[0],
+                        formInputFields = element.querySelectorAll('form input:first-of-type');
+
+                    //Focus first input element if it is
+                    if (formInputFields) {
+                        formInputFields[0].focus();
+                    }
+                }
+            });
+
             //Close modal
             scope.close = function() {
                 scope.show = false;

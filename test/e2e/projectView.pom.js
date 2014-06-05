@@ -76,7 +76,7 @@ var projectView = function() {
             // lastSprintGoal: element.all(by.binding('sprint.goal')).last(),
             // lastSprintDuration: element.all(by.binding('sprint.start')).last(),
             // lastUserEmail: element.all(by.binding('user')).last(),
-            navProjectName: element(by.css('div.home-menu span[ng-click="showDetails=!showDetails"]')),
+            navProjectName: element(by.css('div.home-menu span[ng-mouseenter="showDetails=true"]')),
             //actions
             get: function() {
                 element(by.css('a[href="#/"]')).click();

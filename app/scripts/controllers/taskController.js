@@ -5,7 +5,7 @@
 
 angular.module('projiApp')
 
-.controller('TaskController', function($scope, User, Sprint, $rootScope) {
+.controller('TaskController', function($scope, User, Sprint, $rootScope, Notify) {
     'use strict';
 
     var userId = $rootScope.currentUser.uid,
@@ -18,6 +18,11 @@ angular.module('projiApp')
 
     //Set task as active task for user (on dragging task to my task)
     $scope.workOnTask = function(taskId, task) {
+        if (task.status === 'In Progress') {
+            var taskUser = User.find(task.userId);
+            Notify.warning(taskUser.username + ' is currently working on this task, there should only be one user working on each task. Try splitting up your tasks into smaller chunks.');
+            return;
+        }
         task.taskId = taskId;
         User.startTask(projectId, sprintId, userId, taskId, task);
     };

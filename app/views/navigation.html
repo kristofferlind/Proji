@@ -1,6 +1,6 @@
 <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" ng-controller="NavigationController">
     <a class="pure-menu-heading" href="">Projise</a>
-    <span ng-click="showDetails=!showDetails" ng-model="project.name">{{project.name}}</span>
+    <span ng-mouseenter="showDetails=true" ng-mouseleave="showDetails=false" ng-model="project.name">{{project.name}}</span>
         <div class="project-details-drop" ng-show="showDetails">
             <h2>{{project.name}}</h2>
             <p><b>Description:</b> {{project.description}}</p>

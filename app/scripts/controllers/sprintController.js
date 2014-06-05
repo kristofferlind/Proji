@@ -5,7 +5,7 @@
 
 angular.module('projiApp')
 
-.controller('SprintController', function($scope, Sprint, Task, $rootScope) {
+.controller('SprintController', function($scope, Sprint, Task, $rootScope, Notify, User) {
     'use strict';
 
     var projectId = $rootScope.currentUser.pid,
@@ -56,6 +56,11 @@ angular.module('projiApp')
 
     //Remove task from sprint backlog (when dragging task from sprint backlog)
     $scope.fromSprintBacklog = function(taskId, task) {
+        if (task.status && task.status === 'In Progress') {
+            var taskUser = User.find(task.userId);
+            Notify.warning(taskUser.username + ' is currently working on this task, please notify the user to stop working on it before removing it from sprint backlog.');
+            return;
+        }
         Sprint.removeTask(projectId, sprintId, taskId, task);
     };
 

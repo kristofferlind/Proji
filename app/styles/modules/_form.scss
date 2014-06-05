@@ -17,5 +17,10 @@
 
     form input[type="checkbox"] {
         width: 1em;
-    } 
+    }
+
+    .pure-control-group textarea {
+        min-width: 250px;
+        min-height: 50px;
+    }
 }

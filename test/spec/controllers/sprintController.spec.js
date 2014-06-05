@@ -26,6 +26,9 @@ describe('Controller: SprintController', function() {
             create: jasmine.createSpy('create'),
             delete: jasmine.createSpy('delete'),
             find: jasmine.createSpy('find')
+        },
+        User = {
+            find: 'userId'
         };
 
 
@@ -42,7 +45,8 @@ describe('Controller: SprintController', function() {
         SprintController = $controller('SprintController', {
             $scope: scope,
             Sprint: Sprint,
-            Task: Task
+            Task: Task,
+            User: User
         });
     }));
 
@@ -73,7 +77,11 @@ describe('Controller: SprintController', function() {
 
     describe('$scope.fromSprintBacklog(taskId)', function() {
         beforeEach(function() {
-            scope.fromSprintBacklog();
+            var task = {
+                id: 'taskId',
+                status: 'Not Started'
+            };
+            scope.fromSprintBacklog(task.taskId, task);
         });
 
         it('should call Sprint.removeTask', function() {

@@ -16,8 +16,10 @@ var chatView = function() {
             // browser.waitForAngular();
         },
         sendMessage: function(message) {
-            var messageInput = element(by.css('.chat-send'));
+            var messageInput = element(by.css('.chat-send')),
+                toggleChat = element(by.css('a[ng-click="collapsed=!collapsed"]'));
 
+            toggleChat.click();
             messageInput.sendKeys(message);
             messageInput.sendKeys(protractor.Key.ENTER);
             browser.waitForAngular();
